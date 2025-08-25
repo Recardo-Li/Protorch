@@ -1,0 +1,66 @@
+cookie:
+  expiry_days: 1
+  key: LTEnjoy
+  name: LTEnjoy
+credentials:
+  usernames:
+    dad:
+      email: zhouxibin@westlake.edu.cn
+      failed_login_attempts: 0
+      first_name: sujin's
+      last_name: Dad
+      logged_in: true
+      password: $2b$12$BMrXcfU.oCX//GB503lxIe23rPaiqXqOSFc3eMZJFdj1Lk7K..to6
+      roles: null
+    donotsavemypassword:
+      email: donotsavemypassword@66.com
+      failed_login_attempts: 0
+      first_name: donotsavemypassword
+      last_name: donotsavemypassword
+      logged_in: true
+      password: $2b$12$g4aG6/P2eLEu040G666oCe1O1ShC0yLiAX4DEhsUKMkQLoeBVcjdq
+      roles: null
+    guanqili:
+      email: LiGuanqi040615@163.com
+      failed_login_attempts: 0
+      first_name: Guanqi
+      last_name: Li
+      logged_in: true
+      password: $2b$12$MXZjC6bkD4jBGfwc6yJcE..u1FDtfmtTo3/DHL563mNuLBeFtjHPu
+      roles: null
+    jiawei_zhang1:
+      email: jiawei_zhang1@163.com
+      failed_login_attempts: 0
+      first_name: jiawei
+      last_name: zhang
+      logged_in: true
+      password: $2b$12$BPN72yRAmLGSDjecdZGA3OwK0gqTv0G1b2ZQMCkYBEnOeARXJddY6
+      roles: null
+    sujin:
+      email: sujinltenjoy@gmail.com
+      failed_login_attempts: 0
+      first_name: Jin
+      last_name: Su
+      logged_in: true
+      password: $2b$12$Mg44tndXYuvF3N1KsMaf/OgCIoITVAYB9noGJNcPfweEfaZxPQ1Am
+    taotl:
+      email: taotianli@westlake.edu.cn
+      failed_login_attempts: 0
+      first_name: tl
+      last_name: tao
+      logged_in: true
+      password: $2b$12$bYgLQr6DznRUXsfIqXiPou6OcXIY1uM1Tc3VGGiLdozTFqoAXqaEu
+      roles: null
+    yuan:
+      email: yuanfajie@westlake.edu.cn
+      failed_login_attempts: 0
+      first_name: Fajie
+      last_name: Yuan
+      logged_in: true
+      password: $2b$12$3KMCJHvj.g3rlBObgu4a0upemCPANkeO4sB9suUzf7Q9hFsYK5pTm
+      roles: null
+oauth2:
+  google:
+    client_id: null
+    client_secret: null
+    redirect_uri: null

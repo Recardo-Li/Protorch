@@ -1,0 +1,5 @@
+############################################
+#       Config for llm initialization      #
+############################################
+agent:
+  model_name: grok-3-mini-fast-beta
