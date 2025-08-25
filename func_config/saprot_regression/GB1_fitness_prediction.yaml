@@ -1,0 +1,4 @@
+model:
+  huggingface_path: SaProt/SaProt_35M_AF2
+  model_path: saprot/saprot_regression_model
+  lora_adaptor: SaProt_Adapter/GB1_fitness_prediction

@@ -1,0 +1,11 @@
+{
+    "protrek_protein2text": 0,
+    "protrek_text2protein": 1,
+    "protrek_protein2structure": 2,
+    "protrek_structure2protein": 3,
+    "protrek_structure2text": 4,
+    "protrek_text2structure": 5,
+    "protrek_protein2protein": 6,
+    "protrek_structure2structure": 7,
+    "protrek_text2text": 8
+}

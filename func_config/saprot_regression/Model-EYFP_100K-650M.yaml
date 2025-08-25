@@ -1,0 +1,4 @@
+model:
+  huggingface_path: SaProt/SaProt_650M_AF2
+  model_path: saprot/saprot_regression_model
+  lora_adaptor: SaProt_Adapter/Model-EYFP_100K-650M

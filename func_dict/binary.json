@@ -1,0 +1,15 @@
+{
+    "clustalw": 0,
+    "foldseek": 1,
+    "hmm_search": 2,
+    "mmseqs_cluster": 3,
+    "mmseqs_group": 4,
+    "mmseqs_search": 5,
+    "tmalign": 6,
+    "hhblits": 7,
+    "hhmake": 8,
+    "hhsearch": 9,
+    "hhfilter": 10,
+    "hhalign": 11,
+    "blast": 12
+}

@@ -1,0 +1,5 @@
+model:
+  huggingface_path: SaProt/SaProt_650M_AF2
+  model_path: saprot/saprot_token_classification_model
+  lora_adaptor: SaProt_Adapter/Model-Binding_Site_Detection-650M
+  num_labels: 2

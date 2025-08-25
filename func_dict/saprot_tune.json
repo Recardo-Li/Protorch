@@ -1,0 +1,7 @@
+{
+    "saprot_tune_pair_classification": 0,
+    "saprot_tune_pair_regression": 1,
+    "saprot_tune_classification": 2,
+    "saprot_tune_regression": 3,
+    "saprot_tune_token_classification": 4
+}

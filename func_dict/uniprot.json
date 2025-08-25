@@ -1,0 +1,5 @@
+{
+    "uniprot_fetch_subsection": 0,
+    "uniprot_fetch_sequence": 1,
+    "uniprot_fetch_structure": 2
+}

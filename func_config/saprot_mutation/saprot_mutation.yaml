@@ -1,0 +1,3 @@
+model:
+  huggingface_path: SaProt/SaProt_650M_AF2
+  model_path: saprot/saprot_mutation_model

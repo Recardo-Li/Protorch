@@ -1,0 +1,7 @@
+{
+    "rf_diffusion_binder_design": 0,
+    "rf_diffusion_conditional_fold_generation": 1,
+    "rf_diffusion_motif_scaffolding": 2,
+    "rf_diffusion_partial_diffusion": 3,
+    "rf_diffusion_unconditional_protein_design": 4
+}
