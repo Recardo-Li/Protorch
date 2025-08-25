@@ -1,0 +1,58 @@
+example_output:
+  blast_xml: blast/20231003_1153/result.xml
+  blast_fasta: blast/20231003_1153/result.fasta
+python: /home/public/miniconda3/envs/agent/bin/python
+document:
+  category_name: Sequence
+  tool_name: blast
+  tool_description: BLAST is a powerful bioinformatics tool highly relevant for protein research. When provided with a protein sequence as input, it conducts a comprehensive search against a chosen protein database. This process involves sending the query protein sequence to the NCBI BLAST server, patiently waiting for the analysis to complete, and then retrieving the most pertinent matches. By doing so, it offers valuable insights into potential functional similarities, structural resemblances, and evolutionary relationships among proteins.
+  required_parameters:
+  - name: query_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The protein sequence to search against the database.
+
+  optional_parameters: 
+  - name: blast_program
+    type: SELECTION
+    detailed_type: BLAST_PROGRAM
+    description: The BLAST program to use. Common options include blastp.
+    choices:
+    - blastp
+    default: blastp
+  - name: blast_database
+    type: SELECTION
+    detailed_type: BLAST_DATABASE
+    description: The specific database to search for the query protein sequence.
+    choices:
+    - nr
+    - swissprot
+    - pdb
+    - refseq_protein
+    default: nr
+  - name: hitlist_size
+    type: INTEGER
+    detailed_type: HIT_NUM
+    description: The number of hits to return from the BLAST search.
+    default: 50
+  - name: expect_value
+    type: FLOAT
+    detailed_type: EVALUE
+    description: The expected value (E-value) threshold for reporting matches.
+    default: 10
+  return_values:
+  - name: blast_xml
+    type: PATH
+    detailed_type: BLAST_XML_PATH
+    description: The path to the BLAST XML output file containing the results of the BLAST search. This file includes detailed information about each hit, such as sequence identifiers, alignment scores, and E-values.
+  - name: blast_fasta
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: The path to the FASTA file containing the sequences of all hits returned by the BLAST search. This file is useful for further analysis or alignment of the hit sequences.
+  return_scores:
+  - name: hit_count
+    description: The hit_count represents ​the count of database sequences that show significant similarity to the query sequence in a BLAST search, indicating potential biological homology or functional relevance.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+  - name: top_hit_id
+    description: The identifier of the top hit in the BLAST search results, which is the sequence with the highest similarity to the query sequence. This ID can be used to retrieve more information about the hit from the database.

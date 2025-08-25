@@ -1,0 +1,518 @@
+example_output:
+  saprot_classification:
+    pred: 1
+  saprot_mutation_byinfo:
+    effect_score: 0.999
+  saprot_mutation_bypos:
+    effect_ score:
+    - A: 8.97e-10
+    - C: 8.97e-10
+    - D: 8.97e-10
+    - E: 8.97e-10
+    - F: 8.97e-10
+    - G: 8.97e-10
+    - H: 8.97e-10
+    - I: 8.97e-10
+    - K: 8.97e-10
+    - L: 8.97e-10
+    - M: 8.97e-10
+    - N: 8.97e-10
+    - P: 8.97e-10
+    - Q: 8.97e-10
+    - R: 8.97e-10
+    - S: 8.97e-10
+    - T: 8.97e-10
+    - V: 8.97e-10
+    - W: 8.97e-10
+    - Y: 8.97e-10
+  saprot_pair_classification:
+    pred: 0.999
+  saprot_pair_regression:
+    pred: 0.999
+  saprot_regression:
+    pred: 0.999
+  saprot_token_classification:
+    pred: [[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]]
+
+python: /home/public/miniconda3/envs/agent/bin/python
+foldseek: /home/public/bin/foldseek
+saprot_classification:
+  AVIDa-SARS-CoV-2-Alpha:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/AVIDa-SARS-CoV-2-Alpha
+    model_path: saprot_classification_model
+    num_labels: 2
+  Model-Binary_Localization-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-Binary_Localization-650M
+    model_path: saprot_classification_model
+    num_labels: 2
+  Model-Metal_Ion_Binding-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-Metal_Ion_Binding-650M
+    model_path: saprot_classification_model
+    num_labels: 2
+  Model-Structure_Class-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-Structure_Class-650M
+    model_path: saprot_classification_model
+    num_labels: 3042
+  Model-Subcellular_Localization-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-Subcellular_Localization-650M
+    model_path: saprot_classification_model
+    num_labels: 10
+saprot_mutation_byinfo:
+  saprot_mutation:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    model_path: saprot_mutation_model
+saprot_mutation_bypos:
+  saprot_mutation:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    model_path: saprot_mutation_model
+saprot_pair_classification:
+  AVIDa-hIL6_Interaction_prediction:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/AVIDa-hIL6_Interaction_prediction
+    model_path: saprot_pair_classification_model
+    num_labels: 2
+saprot_pair_regression:
+  Model-Structural_Similarity-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-Structural_Similarity-650M
+    model_path: saprot_pair_regression_model
+saprot_regression:
+  ACE2_Omicron_BQ.1.1_binding_affinity:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/ACE2_Omicron_BQ.1.1_binding_affinity
+    model_path: saprot_regression_model
+  ACE2_Omicron_XBB.1.5_binding_affinity:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/ACE2_Omicron_XBB.1.5_binding_affinity
+    model_path: saprot_regression_model
+  DMS_AsCas12f:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/DMS_AsCas12f
+    model_path: saprot_regression_model
+  DMS_BLAT_ECOLX:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/DMS_BLAT_ECOLX
+    model_path: saprot_regression_model
+  DMS_DLG4_RAT:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/DMS_DLG4_RAT
+    model_path: saprot_regression_model
+  DMS_GAL4_YEAST:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/DMS_GAL4_YEAST
+    model_path: saprot_regression_model
+  DMS_PTEN_HUMAN:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/DMS_PTEN_HUMAN
+    model_path: saprot_regression_model
+  DMS_RASH_HUMAN:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/DMS_RASH_HUMAN
+    model_path: saprot_regression_model
+  DMS_UBC9_HUMAN:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/DMS_UBC9_HUMAN
+    model_path: saprot_regression_model
+  DMS_YAP1_HUMAN:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/DMS_YAP1_HUMAN
+    model_path: saprot_regression_model
+  GB1_fitness_prediction:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/GB1_fitness_prediction
+    model_path: saprot_regression_model
+  Mega-sacle-Protein-Stability-Prediction:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/Mega-sacle-Protein-Stability-Prediction
+    model_path: saprot_regression_model
+  Model-AAV-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-AAV-650M
+    model_path: saprot_regression_model
+  Model-BetaLactamase-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-BetaLactamase-650M
+    model_path: saprot_regression_model
+  Model-EYFP-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-EYFP-650M
+    model_path: saprot_regression_model
+  Model-EYFP_100K-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-EYFP_100K-650M
+    model_path: saprot_regression_model
+  Model-Fluorescence-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-Fluorescence-650M
+    model_path: saprot_regression_model
+  Model-Stability-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-Stability-650M
+    model_path: saprot_regression_model
+  Model-Thermostability-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-Thermostability-650M
+    model_path: saprot_regression_model
+  Omicron_BQ.1.1_Expr:
+    huggingface_path: SaProt/SaProt_35M_AF2
+    specific_task: SaProt_Adapter/Omicron_BQ.1.1_Expr
+    model_path: saprot_regression_model
+saprot_token_classification:
+  Model-Binding_Site_Detection-650M:
+    huggingface_path: SaProt/SaProt_650M_AF2
+    specific_task: SaProt_Adapter/Model-Binding_Site_Detection-650M
+    model_path: saprot_token_classification_model
+    num_labels: 2
+document:
+- category_name: Function
+  tool_name: saprot_classification
+  tool_description: Use saprot to do protein-level classification task.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: specific_task
+    type: SELECTION
+    detailed_type: SAPROT_ADAPTOR
+    description: The adaptor model to be used for localization prediction.
+    choices:
+    - Model-Binary_Localization-650M
+    - Model-Subcellular_Localization-650M
+    - Model-Metal_Ion_Binding-650M
+    - AVIDa-SARS-CoV-2-Alpha
+    - Model-Structure_Class-650M
+  optional_parameters:
+  - name: structure_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: pred
+    type: INTEGER
+    detailed_type: CLASSIFICATION_RESULT
+    description: The classification result of the protein.
+- category_name: Function
+  tool_name: saprot_mutation_bypos
+  tool_description: Predicts the mutational effect scores of a given mutation position on a wild type sequence.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The wild type sequence
+  - name: mut_position
+    type: INTEGER
+    detailed_type: AA_POSITION
+    description: The position of this mutation. This should be a INT within the range
+      of the sequence length, starting from 0
+  optional_parameters:
+  - name: structure_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: effect_score
+    type: DICT
+    detailed_type: MUTATION_SCORE_DICT
+    description: The predicted mutational effect scores of the specific mutant or position. This is a list
+      of scores, each score corresponds to a specific mutation.
+  return_score:
+  - name: origin_aa
+    description: The original amino acid at the mutation position.
+  - name: best_mutation
+    description: The best mutation at the mutation position, which has the highest effect score.
+- category_name: Function
+  tool_name: saprot_mutation_byinfo
+  tool_description: Predicts the mutational effect score of a given specific mutation on a wild type sequence.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The wild type sequence
+  - name: mut_info
+    type: TEXT
+    detailed_type: MUTATION_INFO
+    description: The mutation information in the format of "A123B", where A is the
+      original amino acid, 123 is the position and B is the mutated amino acid. If
+      multiple mutations are provided, they should be separated by colon, e.g. "A123B:C124D".
+  optional_parameters:
+  - name: structure_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: effect_score
+    type: FLOAT
+    detailed_type: MUTATION_SCORE
+    description: The predicted mutational effect score of the specific mutant.
+- category_name: Function
+  tool_name: saprot_pair_classification
+  tool_description: Use saprot to do protein-protein pairwise classification task.
+  required_parameters:
+  - name: protein1_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: One string representing the amino acid sequence of the protein.
+  - name: protein2_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The other string representing the amino acid sequence of the protein.
+  - name: specific_task
+    type: SELECTION
+    detailed_type: SAPROT_ADAPTOR
+    description: The adaptor model to be used for localization prediction.
+    choices:
+    - AVIDa-hIL6_Interaction_prediction
+  optional_parameters:
+  - name: structure1_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  - name: structure2_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: pred
+    type: INTEGER
+    detailed_type: CLASSIFICATION_RESULT
+    description: The predicted classification result of the protein-protein pair.
+- category_name: Function
+  tool_name: saprot_pair_regression
+  tool_description: Use saprot to do protein-protein pairwise regression task.
+  required_parameters:
+  - name: protein1_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the frist protein.
+  - name: protein2_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the second protein.
+  - name: specific_task
+    type: SELECTION
+    detailed_type: SAPROT_ADAPTOR
+    description: The adaptor model to be used for localization prediction.
+    choices:
+    - Model-Structural_Similarity-650M
+  optional_parameters:
+  - name: structure1_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  - name: structure2_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: pred
+    type: FLOAT
+    detailed_type: REGRESSION_RESULT
+    description: The regreesion result of the protein-protein pair.
+- category_name: Function
+  tool_name: saprot_regression
+  tool_description: Use saprot to do protein-level regression task.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: specific_task
+    type: SELECTION
+    detailed_type: SAPROT_ADAPTOR
+    description: The adaptor model to be used for localization prediction.
+    choices:
+    - Mega-sacle-Protein-Stability-Prediction
+    - DMS_DLG4_RAT
+    - DMS_GAL4_YEAST
+    - DMS_RASH_HUMAN
+    - ACE2_Omicron_XBB.1.5_binding_affinity
+    - Model-Stability-650M
+    - Model-Thermostability-650M
+    - Model-Fluorescence-650M
+    - DMS_YAP1_HUMAN
+    - DMS_AsCas12f
+    - DMS_UBC9_HUMAN
+    - DMS_BLAT_ECOLX
+    - Model-AAV-650M
+    - Omicron_BQ.1.1_Expr
+    - GB1_fitness_prediction
+    - Model-EYFP-650M
+    - Model-BetaLactamase-650M
+    - Model-EYFP_100K-650M
+    - ACE2_Omicron_BQ.1.1_binding_affinity
+    - DMS_PTEN_HUMAN
+  optional_parameters:
+  - name: structure_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: pred
+    type: FLOAT
+    detailed_type: REGRESSION_RESULT
+    description: The predicted regression result of the protein.
+- category_name: Function
+  tool_name: saprot_token_classification
+  tool_description: Use saprot to do token-level classification task.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: specific_task
+    type: SELECTION
+    detailed_type: SAPROT_ADAPTOR
+    description: The adaptor model to be used for localization prediction.
+    choices:
+    - Model-Binding_Site_Detection-650M
+  optional_parameters:
+  - name: structure1_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  - name: structure2_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: pred
+    type: LIST
+    detailed_type: TOKEN_CLASSIFICATION_RESULT
+    description: A series of values indicating whether each residue belongs to which
+      category
+- category_name: Function
+  tool_name: saprot_tuned_inference_pair_classification
+  tool_description: Use finetuned model to do protein-protein pair classification. Predict the classification result of a protein-protein pair. This requires a saprot tuned result path as input. Usually used after a saprot tuning task is finished.
+  required_parameters:
+  - name: protein1_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: protein2_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The other string representing the amino acid sequence of the protein.
+  - name: num_label
+    type: INTEGER
+    detailed_type: LABEL_NUM
+    description: The number of labels of the task.
+  - name: model_dir
+    type: DIRECTORY
+    detailed_type: ADAPTOR_DIRECTORY
+    description: The directory of the finetuned saprot model
+  optional_parameters:
+  - name: structure_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: pred
+    type: INTEGER
+    detailed_type: CLASSIFICATION_RESULT
+    description: The output of the finetuned saprot model
+- category_name: Function
+  tool_name: saprot_tuned_inference_pair_regression
+  tool_description: Use finetuned model to do protein-protein pair regression. Predict the regression result of a protein-protein pair. This requires a saprot tuned result path as input. Usually used after a saprot tuning task is finished.
+  required_parameters:
+  - name: protein1_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: protein2_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The other string representing the amino acid sequence of the protein.
+  - name: model_dir
+    type: DIRECTORY
+    detailed_type: ADAPTOR_DIRECTORY
+    description: The directory of the finetuned saprot model
+  optional_parameters:
+  - name: structure_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: pred
+    type: FLOAT
+    detailed_type: REGRESSION_RESULT
+    description: The output of the finetuned saprot model
+- category_name: Function
+  tool_name: saprot_tuned_inference_classification
+  tool_description: Use finetuned model to do classification. Predict the classification result of a protein sequence. This requires a saprot tuned result path as input. Usually used after a saprot tuning task is finished.
+  required_parameters:
+  - name: num_label
+    type: INTEGER
+    detailed_type: LABEL_NUM
+    description: The number of labels of the task. Only used for classification task.
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: model_dir
+    type: DIRECTORY
+    detailed_type: ADAPTOR_DIRECTORY
+    description: The directory of the finetuned saprot model
+  optional_parameters:
+  - name: structure_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: pred
+    type: INTEGER
+    detailed_type: CLASSIFICATION_RESULT
+    description: The output of the finetuned saprot model
+- category_name: Function
+  tool_name: saprot_tuned_inference_token_classification
+  tool_description: Use finetuned model to do token level classification. Predict the token level classification result of a protein sequence. This requires a saprot tuned result path as input. Usually used after a saprot tuning task is finished.
+  required_parameters:
+  - name: num_label
+    type: INTEGER
+    detailed_type: LABEL_NUM
+    description: The number of labels of the task. Only used for classification task.
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: model_dir
+    type: DIRECTORY
+    detailed_type: ADAPTOR_DIRECTORY
+    description: The directory of the finetuned saprot model
+  optional_parameters:
+  - name: structure_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: pred
+    type: LIST
+    detailed_type: TOKEN_CLASSIFICATION_RESULT
+    description: The output of the finetuned saprot model
+- category_name: Function
+  tool_name: saprot_tuned_inference_regression
+  tool_description: Use finetuned model to do regression. Predict the regression result of a protein sequence. This requires a saprot tuned result path as input. Usually used after a saprot tuning task is finished.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: model_dir
+    type: DIRECTORY
+    detailed_type: ADAPTOR_DIRECTORY
+    description: The directory of the finetuned saprot model.
+  optional_parameters:
+  - name: structure_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure file of the protein. If this structure has multiple chains, only the first chain will be used.
+  return_values:
+  - name: pred
+    type: FLOAT
+    detailed_type: REGRESSION_RESULT
+    description: The output of the finetuned saprot model

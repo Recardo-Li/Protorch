@@ -1,0 +1,22 @@
+{
+    "category_name": "structure_prediction",
+    "tool_name": "esmfold",
+    "tool_description": "This tool utilizes ESMFold to efficiently predict the three-dimensional structure of proteins based on their sequences. ESMFold is better suited for proteins lacking homologous sequence information because it does not depend on multiple sequence alignment. For newly discovered or rare proteins, ESMFold may hold certain advantages.",
+    "required_parameters": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": " A string representing the amino acid sequence of the protein for which the structure is to be predicted. The sequence consists of single-letter amino acid codes.",
+            "example": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQVVIDGETCLLDILDTAGQEEYSAMRDQYMRTGEGFLCVFAINNTKSFEDIHQYREQIKRVKDSDDVPMVLVGNKCDLAARTVESRQAQDLARSYGIPYIETSAKTRQGVEDAFYTLVREIRQHKLRKLNPPDESGPGCMSCKCVLS"
+        }
+    ],
+    "optional_parameters": [
+    ],
+    "return_values": [
+        {
+            "name": "protein_structure",
+            "type": "STRUCTURE",
+            "description": "A string in PDB format that represents the predicted 3D structure of the input protein sequence. The PDB (Protein Data Bank) format is a standard format for representing 3D structures of proteins and other biological macromolecules."
+        }
+    ]
+}

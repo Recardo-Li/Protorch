@@ -1,0 +1,12 @@
+This subsection of the 'Family and Domains' section describes a region of interest that cannot be described in other subsections.
+
+It may be used to describe characteristics of a region that have been experimentally defined, such as the role of a region in mediating protein-protein interactions or some other biological process, to describe the different regions in multifunctional enzymes or fusion proteins, or to fully describe the characteristics of a region containing repeats.
+
+Examples: Q8CJF7, P26948, Q8BUZ1, P25490, P13475, O76041, P08796, P54602, P03879
+
+See also
+DNA binding
+Domain
+Motif
+Repeat
+Zinc finger

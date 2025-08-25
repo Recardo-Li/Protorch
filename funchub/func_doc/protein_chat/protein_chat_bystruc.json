@@ -1,0 +1,25 @@
+{
+    "category_name": "protein_chat",
+    "tool_name": "protein_chat_bystruc",
+    "tool_description": "Given a protein's structure, this tool can answer questions related to this protein",
+    "required_parameters": [
+        {
+            "name": "question",
+            "type": "TEXT",
+            "description": "Question for the given protein",
+            "example": "What is the function of this protein"
+        },
+        {
+            "name": "protein_structure",
+            "type": "STRUCTURE",
+            "description": "The structure of the given protein",
+            "example": "examples/pdb/diffab/Omicron_RBD.pdb"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": {
+        "name": "answer",
+        "type": "PARAMETER",
+        "description": "The answer to the protein related question"
+    }
+}

@@ -1,0 +1,20 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+
+document:
+  category_name: Structure
+  tool_name: pdb_entry
+  tool_description: This tool retrieves the PDB file for a given PDB identifier.
+  required_parameters:
+  - name: pdb_id
+    type: PDB_ID
+    detailed_type: PDB_ID
+    description: The PDB identifier of the target protein structure.
+  optional_parameters: []
+  return_values:
+  - name: pdb_file
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The PDB file of the target protein structure.
+  return_scores:
+  - name: duration
+    description: The time taken to retrieve the PDB file in seconds.

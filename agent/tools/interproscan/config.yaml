@@ -1,0 +1,53 @@
+example_output:
+  parsed_tsv: interproscan/20250703_1153/test_proteins.fasta.parsed.tsv
+  result_dir: interproscan/20250703_1153/
+
+InterproScan: modelhub/local_interproscan/interproscan-5.74-105.0/interproscan.sh
+script: interproscan.sh
+
+document:
+  category_name: Knowledge
+  tool_name: interproscan
+  tool_description: InterProScan is a powerful tool for protein function prediction and annotation. It integrates multiple protein family, domain, and functional site databases (e.g., Pfam, PROSITE, SMART) to provide comprehensive functional analysis of protein sequences. It supports both protein and nucleotide sequences as input, with flexible output formats (e.g., TSV, XML, JSON) for downstream analysis.
+  required_parameters:
+  - name: fasta_file
+    type: PATH
+    detailed_type: FASTA_PATH
+    description:  A single protein/DNA/RNA sequence or a set of protein/DNA/RNA sequences to be analyzed using InterProScan. Saved in a FASTA file format.
+
+  optional_parameters:
+  - name: goterms
+    type: BOOLEAN
+    detailed_type: ANALYZING_SETTING
+    description: Switch on lookup of corresponding Gene Ontology annotation.
+    default: False
+  - name: pathways
+    type: BOOLEAN
+    detailed_type: ANALYZING_SETTING
+    description: Switch on lookup of corresponding Pathway annotation.
+    default: False
+  return_values:
+  - name: parsed_tsv
+    type: PATH
+    detailed_type: INTERPROSCAN_TSV_PATH
+    description: The primary, structured output of the InterProScan analysis in a tab-separated values (TSV) format. Each row represents a found match, detailing the analysis method, signature accession, start/stop locations, and score. It includes annotations for protein families, domains, and functional sites. Optional columns for GO terms and pathway annotations will be present if those analyses were enabled.
+  - name: result_dir
+    type: PATH
+    detailed_type: INTERPROSCAN_RESULT_DIR
+    description: The main output directory containing all files generated during the InterProScan run. This includes the primary `parsed_tsv` result file, raw InterProScan outputs in other formats (if generated)
+  - name: top_accession
+    type: TEXT
+    detailed_type: INTERPRO_ID
+    description: The most frequently occurring signature accession in the `parsed_tsv` file. This provides insight into the most common functional annotations found across the input sequences.
+  - name: top_accession_name
+    type: TEXT
+    detailed_type: INTERPRO_NAME
+    description: The name of the most frequently occurring signature accession in the `parsed_tsv` file. This provides a human-readable label for the most common functional annotation found across the input sequences.
+  return_scores:
+  - name: duration
+    description: The total time elapsed in seconds from the start of the InterProScan execution to the completion of result parsing.
+  - name: total_hits
+    description: The total number of annotation matches found across all input sequences. This value corresponds to the number of rows in the final `parsed_tsv` output file, where each row represents a single domain, family, or site match from a member database.
+  - name: num_unique_annotations
+    description: The number of unique annotations found in the `parsed_tsv` file. This is calculated by counting distinct combinations of signature accessions and analysis methods, providing insight into the diversity of functional annotations across the input sequences.
+

@@ -1,0 +1,255 @@
+example_output:
+  design: rf_design.pdb
+
+python: /home/public/miniconda3/envs/SE3nv/bin/python
+rf_root: modelhub/RFdiffusion
+document:
+- category_name: Design
+  tool_name: rfdiffusion_binder_design
+  tool_description: Binder design involves creating novel amino acid sequences that
+    will specifically bind to a target protein structure. The input typically includes
+    the target PDB structure, the length of the binder, and the target chain or hotspots,
+    and the output is a new protein structure predicted to effectively bind to the
+    target structure. This design just generated a backbone structure, usually we need to run ProteinMPNN and Alphafold after this tool to obtain the complete sequence and folded structure. DO NOT extract the amino acid sequences from it since this is only a backbone while the foldseek sequence of it can be used for further analysis.
+  required_parameters:
+  - name: contigs
+    type: TEXT
+    detailed_type: RFDIFFUSION_CONTIGS
+    description: 'Defines the contiguous sequence segments for binder design. Use
+      a '':'' to define multiple contigs and a ''/'' to define multiple segments within
+      a contig. Example: ''A:50'' for a binder of length 50 to chain A of the defined
+      PDB. Example: ''E6-155:70-100'' for a binder of length 70 to 100 from residues
+      6 to 155 of chain E of the defined PDB. If not explicitly specified, use ''A:50''.'
+  - name: protein_structure
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The PDB file containing the three-dimensional structure of the target protein, used for analyzing its binding properties and interactions.
+  optional_parameters:
+  - name: iterations
+    type: INTEGER
+    detailed_type: ITERATION_NUM
+    description: Used to specify the number of iterations for the RF-diffusion.
+    default: 50
+  - name: hotspot
+    type: TEXT
+    detailed_type: HOTSPOT
+    description: Specifies any hotspot regions that should be prioritized during the
+      backbone generation process.
+    default: ~
+  - name: num_designs
+    type: INTEGER
+    detailed_type: DESIGN_NUM
+    description: Used to specify the number of generated protein backbone designs.
+    default: 1
+  - name: symmetry
+    type: SELECTION
+    detailed_type: RF_SYMMETRY
+    description: Used to specify symmetry settings, such as automatic detection or
+      cyclic symmetry.
+    default: none
+    choices:
+    - auto
+    - cyclic
+    - dihedral
+    - none
+  - name: order
+    type: INTEGER
+    detailed_type: RF_SYMMETRY_ORDER
+    description: Used to specify the order of symmetry.
+    default: 1
+  - name: chains
+    type: TEXT
+    detailed_type: CHAIN_ID
+    description: Used to specify the protein chains to be processed.
+    default: A
+  return_values:
+  - name: design
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The generated protein backbone design(s) in PDB format. This only include the backbone of the protein and does not provide any amino acid sequence information. DO NOT extract the amino acid sequences from it since this is only a backbone while the foldseek sequence of it can be used for further analysis.
+  return_scores:
+  - name: avg_plddt
+    description: avg_plddt (Average Predicted Local Distance Difference Test), represents the average confidence score (0-100) for local structure accuracy across all residues, with higher values indicating more reliable overall backbone predictions.
+- category_name: Design
+  tool_name: rfdiffusion_motif_scaffolding
+  tool_description: Motif scaffolding involves creating novel amino acid sequences that will connect or scaffold specific segments within a predefined protein structure. The input typically includes the target PDB structure and the defined segments or loops to be scaffolded, and the output is a new protein structure predicted to achieve the desired scaffolded structure. This design just generated a backbone structure, usually we need to run ProteinMPNN and Alphafold after this tool to obtain the complete sequence and folded structure. DO NOT extract the amino acid sequences from it since this is only a backbone while the foldseek sequence of it can be used for further analysis.
+  required_parameters:
+  - name: contigs
+    type: PARAMETER
+    detailed_type: RFDIFFUSION_CONTIGS
+    description: 'Defines the contiguous sequence segments for motif scaffolding,
+      including segments to be connected or scaffolded within a defined protein structure.
+      Example: ''40/A163-181/40'' for diffussing a scaffold with 40 amino acids on
+      each side of the motif A163-181. Example: ''A3-30/36/A33-68'' for diffusing
+      a loop of length 36 between two segments (A3-30 and A33-68) of defined PDB ranges.'
+  - name: protein_structure
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The original PDB file to act as a template for the motif scaffolding, providing the structural context for the new segments.
+  optional_parameters:
+  - name: iterations
+    type: INTEGER
+    detailed_type: ITERATION_NUM
+    description: Used to specify the number of iterations for the RF-diffusion.
+    default: 50
+  - name: hotspot
+    type: TEXT
+    detailed_type: HOTSPOT
+    description: Specifies any hotspot regions that should be prioritized during the
+      backbone generation process.
+    default: ~
+  - name: num_designs
+    type: INTEGER
+    detailed_type: DESIGN_NUM
+    description: Used to specify the number of generated protein backbone designs.
+    default: 1
+  - name: symmetry
+    type: SELECTION
+    detailed_type: RF_SYMMETRY
+    description: Used to specify symmetry settings, such as automatic detection or
+      cyclic symmetry.
+    default: none
+    choices:
+    - auto
+    - cyclic
+    - dihedral
+    - none
+  - name: order
+    type: INTEGER
+    detailed_type: RF_SYMMETRY_ORDER
+    description: Used to specify the order of symmetry.
+    default: 1
+  - name: chains
+    type: TEXT
+    detailed_type: CHAIN_ID
+    description: Used to specify the protein chains to be processed.
+    default: A
+  return_values:
+  - name: design
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The generated protein backbone design(s) in PDB format. This only include the backbone of the protein and does not provide any amino acid sequence information. DO NOT extract the amino acid sequences from it since this is only a backbone while the foldseek sequence of it can be used for further analysis.
+  return_scores:
+  - name: avg_plddt
+    description: avg_plddt (Average Predicted Local Distance Difference Test), represents the average confidence score (0-100) for local structure accuracy across all residues, with higher values indicating more reliable overall backbone predictions.
+- category_name: Design
+  tool_name: rfdiffusion_partial_diffusion
+  tool_description: Partial diffusion involves creating novel amino acid sequences by diffusing specific parts of a protein structure while keeping other parts fixed. The input typically includes the target PDB structure and the defined segments to be fixed or diffused, and the output is a new amino acid sequence that maintains the fixed regions while achieving desired modifications in the diffused regions. This design just generated a backbone structure, usually we need to run ProteinMPNN and Alphafold after this tool to obtain the complete sequence and folded structure. DO NOT extract the amino acid sequences from it since this is only a backbone while the foldseek sequence of it can be used for further analysis.
+  required_parameters:
+  - name: contigs
+    type: TEXT
+    detailed_type: RFDIFFUSION_CONTIGS
+    description: 'Defines the contiguous sequence segments for partial diffusion,
+      specifying which parts of the sequence should remain fixed and which parts should
+      be diffused. Example: contigs=''A1-10'' to keep the first 10 positions fixed
+      and noise the rest. Example: contigs='''' to noise the entire sequence. Example:
+      contigs=''A'' to fix chain A and noise the rest.'
+  - name: protein_structure
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The original PDB file to act as a template for the partial diffusion process.
+  optional_parameters:
+  - name: iterations
+    type: INTEGER
+    detailed_type: ITERATION_NUM
+    description: Used to specify the number of iterations for the RF-diffusion.
+    default: 50
+  - name: hotspot
+    type: TEXT
+    detailed_type: HOTSPOT
+    description: Specifies any hotspot regions that should be prioritized during the
+      backbone generation process.
+    default: ~
+  - name: num_designs
+    type: INTEGER
+    detailed_type: DESIGN_NUM
+    description: Used to specify the number of generated protein backbone designs.
+    default: 1
+  - name: symmetry
+    type: SELECTION
+    detailed_type: RF_SYMMETRY
+    description: Used to specify symmetry settings, such as automatic detection or
+      cyclic symmetry.
+    default: none
+    choices:
+    - auto
+    - cyclic
+    - dihedral
+    - none
+  - name: order
+    type: INTEGER
+    detailed_type: RF_SYMMETRY_ORDER
+    description: Used to specify the order of symmetry.
+    default: 1
+  - name: chains
+    type: TEXT
+    detailed_type: CHAIN_ID
+    description: Used to specify the protein chains to be processed.
+    default: A
+  return_values:
+  - name: design
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The generated protein backbone design(s) in PDB format. This only include the backbone of the protein and does not provide any amino acid sequence information.
+  return_scores:
+  - name: avg_plddt
+    description: avg_plddt (Average Predicted Local Distance Difference Test), represents the average confidence score (0-100) for local structure accuracy across all residues, with higher values indicating more reliable overall backbone predictions.
+- category_name: Design
+  tool_name: rfdiffusion
+  tool_description: A state-of-the-art tool for protein design, specializing in generating protein backbones through unconditional design with minimal constraints. This framework creates high-quality backbone structures that could be further refined using proteinMPNN to obtain complete sequences and subsequently folded into 3D structures via AlphaFold. This design just generated a backbone structure, usually we need to run ProteinMPNN and Alphafold after this tool to obtain the complete sequence and folded structure. DO NOT extract the amino acid sequences from it since this is only a backbone while the foldseek sequence of it can be used for further analysis.
+  required_parameters:
+  - name: contigs
+    type: PARAMETER
+    detailed_type: RFDIFFUSION_CONTIGS
+    description: 'Specifies the number of contiguous sequence segments to be generated
+      during the diffusion process. Use a '':'' to define multiple contigs. Example:
+      ''100'' for a protein backbone of length 100. Example: ''50:100'' for a hetero-oligomer
+      with two chains of length 50 and 100. If not explicitly specified, use ''100''.'
+  optional_parameters:
+  - name: iterations
+    type: INTEGER
+    detailed_type: ITERATION_NUM
+    description: Used to specify the number of iterations for the RF-diffusion.
+    default: 50
+  - name: hotspot
+    type: TEXT
+    detailed_type: HOTSPOT
+    description: Specifies any hotspot regions that should be prioritized during the
+      backbone generation process.
+    default: ~
+  - name: num_designs
+    type: INTEGER
+    detailed_type: DESIGN_NUM
+    description: Used to specify the number of generated protein backbone designs.
+    default: 1
+  - name: symmetry
+    type: SELECTION
+    detailed_type: RF_SYMMETRY
+    description: Used to specify symmetry settings, such as automatic detection or
+      cyclic symmetry.
+    default: none
+    choices:
+    - auto
+    - cyclic
+    - dihedral
+    - none
+  - name: order
+    type: INTEGER
+    detailed_type: RF_SYMMETRY_ORDER
+    description: Used to specify the order of symmetry.
+    default: 1
+  - name: chains
+    type: TEXT
+    detailed_type: CHAIN_ID
+    description: Used to specify the protein chains to be processed.
+    default: A
+  return_values:
+  - name: design
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The generated protein backbone design(s) in PDB format. This only include the backbone of the protein and does not provide any amino acid sequence information.
+  return_scores:
+  - name: avg_plddt
+    description: avg_plddt (Average Predicted Local Distance Difference Test), represents the average confidence score (0-100) for local structure accuracy across all residues, with higher values indicating more reliable overall backbone predictions.
+
+

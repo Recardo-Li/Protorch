@@ -1,0 +1,525 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+document:
+- category_name: Multimodal
+  tool_name: protrek_protein2protein
+  tool_description: Given a protein sequence, this tool searches for the most relevant
+    similar protein sequences.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  optional_parameters: 
+  - name: database
+    type: SELECTION
+    detailed_type: PROTREK_DATABASE
+    description: The specific database to search for the protein sequences.
+    choices:
+    - Swiss-Prot
+    default:
+    - Swiss-Prot
+  return_values:
+  - name: protein_id
+    type: UNIPROT_ID
+    detailed_type: UNIPROT_ID
+    description: The unique identifier of the protein. Usually the uniprot id.
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: protein_length
+    type: INTEGER
+    detailed_type: PROTEIN_LENGTH
+    description: The length of the protein sequence.
+  return_scores:
+  - name: sequence_identity
+    description: The percentage of sequence identity between the query protein and
+      the retrieved protein.
+  - name: matching_score
+    description: The score of the match between the query protein and the retrieved
+      protein. This is a ProTrek calculated score.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+- category_name: Multimodal
+  tool_name: protrek_protein2structure
+  tool_description: Given a protein sequence, this tool searches for the most relevant foldseek
+    structure string of the protein.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    detailed_type: PROTREK_DATABASE
+    description: The specific database to search for the protein sequences.
+    choices:
+    - Swiss-Prot
+    default:
+    - Swiss-Prot
+  return_values:
+  - name: protein_id
+    type: UNIPROT_ID
+    detailed_type: UNIPROT_ID
+    description: The unique identifier of the protein. Usually the uniprot id.
+  - name: foldseek_sequence
+    type: SEQUENCE
+    detailed_type: FOLDSEEK_SEQUENCE
+    description: The foldseek structure sequence of the protein.
+  - name: protein_length
+    type: INTEGER
+    detailed_type: PROTEIN_LENGTH
+    description: The length of the protein sequence.
+  return_scores:
+  - name: matching_score
+    description: The score of the match between the query protein and the retrieved
+      protein. This is a ProTrek calculated score.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+- category_name: Multimodal
+  tool_name: protrek_protein2text
+  tool_description: Given a protein sequence, this tool searches the text database
+    to retrieve most relevant descriptions of the protein.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    detailed_type: PROTREK_DATABASE
+    description: The specific database to search for the protein sequences.
+    default: Swiss-Prot
+    choices:
+    - Swiss-Prot
+  - name: subsection
+    type: SELECTION
+    detailed_type: UNIPROT_SUBSECTION
+    description: In UniProt web page, Section is a major organizational category that groups related information
+      about a protein. Each section focuses on a specific aspect of the protein's
+      biology, structure, function, or interactions. These sections make it easier
+      to find relevant information about a protein in a structured format. The subsection
+      of Uniprot to be queried. A subsection refers to a more detailed breakdown within
+      a section. For example, within the "Function" section, there could be multiple
+      subsections that give different types of functional information. Subsections
+      are designed to present more granular, specific data under the broader category
+      of the section.
+    default: Function
+    choices:
+    - Active site
+    - Activity regulation
+    - Allergenic properties
+    - Binding site
+    - Biophysicochemical properties
+    - Biotechnology
+    - Catalytic activity
+    - Caution
+    - Chain
+    - Cofactor
+    - Coiled coil
+    - Compositional bias
+    - Cross-link
+    - DNA binding
+    - Developmental stage
+    - Disruption phenotype
+    - Disulfide bond
+    - Domain (non-positional annotation)
+    - Domain
+    - Function
+    - GO annotation
+    - Gene names
+    - Glycosylation
+    - Induction
+    - Intramembrane
+    - Involvement in disease
+    - Lipidation
+    - Miscellaneous
+    - Modified residue
+    - Motif
+    - Mutagenesis
+    - Natural variant
+    - Organism
+    - Pathway
+    - Peptide
+    - Pharmaceutical use
+    - Polymorphism
+    - Post-translational modification
+    - Propeptide
+    - Protein names
+    - Proteomes
+    - RNA Editing
+    - Region
+    - Repeat
+    - Sequence similarities
+    - Signal peptide
+    - Site
+    - Subcellular location
+    - Subunit
+    - Taxonomic lineage
+    - Tissue specificity
+    - Topological domain
+    - Toxic dose
+    - Transit peptide
+    - Transmembrane
+    - Virus host
+  return_values:
+  - name: protein_text
+    type: TEXT
+    detailed_type: TEXT
+    description: The text description of the protein.
+  return_scores:
+  - name: matching_score
+    description: The score of the match between the query protein and the retrieved
+      protein. This is a ProTrek calculated score.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+- category_name: Multimodal
+  tool_name: protrek_structure2protein
+  tool_description: Given a protein foldseek structure sequence, this tool searches the protein sequence
+    database to retrieve the most relevant protein sequences. This is useful when foldseek can not find any proteins,
+    since it always yields valid results.
+  required_parameters:
+  - name: foldseek_sequence
+    type: SEQUENCE
+    detailed_type: FOLDSEEK_SEQUENCE
+    description: The foldseek structure sequence of the protein.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    detailed_type: PROTREK_DATABASE
+    description: The specific database to search for the protein sequences.
+    choices:
+    - Swiss-Prot
+    default:
+    - Swiss-Prot
+  return_values:
+  - name: protein_id
+    type: UNIPROT_ID
+    detailed_type: UNIPROT_ID
+    description: The unique identifier of the protein. Usually the uniprot id.
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: protein_length
+    type: INTEGER
+    detailed_type: PROTEIN_LENGTH
+    description: The length of the protein sequence.
+  return_scores:
+  - name: matching_score
+    description: The score of the match between the query protein and the retrieved
+      protein. This is a ProTrek calculated score.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+- category_name: Multimodal
+  tool_name: protrek_structure2structure
+  tool_description: Given a protein foldseek structure sequence, this tool retrieves the most relevant
+    similar protein foldseek structure sequences. This is useful when foldseek can not find any proteins,
+    since it always yields valid results.
+  required_parameters:
+  - name: foldseek_sequence
+    type: SEQUENCE
+    detailed_type: FOLDSEEK_SEQUENCE
+    description: The foldseek structure sequence of the protein.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    detailed_type: PROTREK_DATABASE
+    description: The specific database to search for the protein sequences.
+    choices:
+    - Swiss-Prot
+    default:
+    - Swiss-Prot
+  return_values:
+  - name: protein_id
+    type: UNIPROT_ID
+    detailed_type: UNIPROT_ID
+    description: The unique identifier of the protein. Usually the uniprot id.
+  - name: foldseek_sequence
+    type: SEQUENCE
+    detailed_type: FOLDSEEK_SEQUENCE
+    description: The foldseek structure sequence of the protein.
+  - name: protein_length
+    type: INTEGER
+    detailed_type: PROTEIN_LENGTH
+    description: The length of the protein sequence.
+  return_scores:
+  - name: matching_score
+    description: The score of the match between the query protein and the retrieved
+      protein. This is a ProTrek calculated score.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+- category_name: Multimodal
+  tool_name: protrek_structure2text
+  tool_description: Given a protein foldseek structure sequence, this tool retrieves the most relevant
+    natural language text description about the protein. This is useful when foldseek can not find any proteins,
+    since it always yields valid results.
+  required_parameters:
+  - name: foldseek_sequence
+    type: SEQUENCE
+    detailed_type: FOLDSEEK_SEQUENCE
+    description: The foldseek structure sequence of the protein.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    detailed_type: PROTREK_DATABASE
+    description: The specific database to search for the protein sequences.
+    default: Swiss-Prot
+    choices:
+    - Swiss-Prot
+  - name: subsection
+    type: SELECTION
+    detailed_type: UNIPROT_SUBSECTION
+    description: Section is a major organizational category that groups related information
+      about a protein. Each section focuses on a specific aspect of the protein's
+      biology, structure, function, or interactions. These sections make it easier
+      to find relevant information about a protein in a structured format. The subsection
+      of Uniprot to be queried. A subsection refers to a more detailed breakdown within
+      a section. For example, within the "Function" section, there could be multiple
+      subsections that give different types of functional information. Subsections
+      are designed to present more granular, specific data under the broader category
+      of the section.
+    default: Function
+    choices:
+    - Active site
+    - Activity regulation
+    - Allergenic properties
+    - Binding site
+    - Biophysicochemical properties
+    - Biotechnology
+    - Catalytic activity
+    - Caution
+    - Chain
+    - Cofactor
+    - Coiled coil
+    - Compositional bias
+    - Cross-link
+    - DNA binding
+    - Developmental stage
+    - Disruption phenotype
+    - Disulfide bond
+    - Domain (non-positional annotation)
+    - Domain
+    - Function
+    - GO annotation
+    - Gene names
+    - Glycosylation
+    - Induction
+    - Intramembrane
+    - Involvement in disease
+    - Lipidation
+    - Miscellaneous
+    - Modified residue
+    - Motif
+    - Mutagenesis
+    - Natural variant
+    - Organism
+    - Pathway
+    - Peptide
+    - Pharmaceutical use
+    - Polymorphism
+    - Post-translational modification
+    - Propeptide
+    - Protein names
+    - Proteomes
+    - RNA Editing
+    - Region
+    - Repeat
+    - Sequence similarities
+    - Signal peptide
+    - Site
+    - Subcellular location
+    - Subunit
+    - Taxonomic lineage
+    - Tissue specificity
+    - Topological domain
+    - Toxic dose
+    - Transit peptide
+    - Transmembrane
+    - Virus host
+  return_values:
+  - name: protein_text
+    type: TEXT
+    detailed_type: TEXT
+    description: The text description of the protein.
+  return_scores:
+  - name: matching_score
+    description: The score of the match between the query protein and the retrieved
+      protein. This is a ProTrek calculated score.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+- category_name: Multimodal
+  tool_name: protrek_text2protein
+  tool_description: Given a natural language text description of a protein,  this
+    tool searches the protein sequence database to retrieve most relevant proteins.
+  required_parameters:
+  - name: protein_text
+    type: TEXT
+    detailed_type: TEXT
+    description: The natural language text description of a protein.
+      of genes involved in cell cycle progression.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    detailed_type: PROTREK_DATABASE
+    description: The specific database to search for the protein sequences.
+    choices:
+    - Swiss-Prot
+    default:
+    - Swiss-Prot
+  return_values:
+  - name: protein_id
+    type: UNIPROT_ID
+    detailed_type: UNIPROT_ID
+    description: The unique identifier of the protein. Usually the uniprot id.
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: protein_length
+    type: INTEGER
+    detailed_type: PROTEIN_LENGTH
+    description: The length of the protein sequence.
+  return_scores:
+  - name: matching_score
+    description: The score of the match between the query protein and the retrieved
+      protein. This is a ProTrek calculated score.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+- category_name: Multimodal
+  tool_name: protrek_text2structure
+  tool_description: Given a natural language text description of a protein, this tool
+    searches for the most relevant structural information of the protein.
+  required_parameters:
+  - name: protein_text
+    type: TEXT
+    detailed_type: TEXT
+    description: The natural language text description of the protein.
+      of genes involved in cell cycle progression.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    detailed_type: PROTREK_DATABASE
+    description: The specific database to search for the protein sequences.
+    choices:
+    - Swiss-Prot
+    default:
+    - Swiss-Prot
+  return_values:
+  - name: protein_id
+    type: UNIPROT_ID
+    detailed_type: UNIPROT_ID
+    description: The unique identifier of the protein. Usually the uniprot id.
+  - name: foldseek_sequence
+    type: SEQUENCE
+    detailed_type: FOLDSEEK_SEQUENCE
+    description: The foldseek structure sequence of the protein.
+  - name: protein_length
+    type: INTEGER
+    detailed_type: PROTEIN_LENGTH
+    description: The length of the protein sequence.
+  return_scores:
+  - name: matching_score
+    description: The score of the match between the query protein and the retrieved
+      protein. This is a ProTrek calculated score.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+- category_name: Multimodal
+  tool_name: protrek_text2text
+  tool_description: Given a natural language text description of a protein, this tool
+    searches for the most relevant natural language descriptions of similar proteins.
+  required_parameters:
+  - name: protein_text
+    type: TEXT
+    detailed_type: TEXT
+    description: The natural language text description of the protein.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    detailed_type: PROTREK_DATABASE
+    description: The specific database to search for the protein sequences.
+    default: Swiss-Prot
+    choices:
+    - Swiss-Prot
+  - name: subsection
+    type: SELECTION
+    detailed_type: UNIPROT_SUBSECTION
+    description: Section is a major organizational category that groups related information
+      about a protein. Each section focuses on a specific aspect of the protein's
+      biology, structure, function, or interactions. These sections make it easier
+      to find relevant information about a protein in a structured format. The subsection
+      of Uniprot to be queried. A subsection refers to a more detailed breakdown within
+      a section. For example, within the "Function" section, there could be multiple
+      subsections that give different types of functional information. Subsections
+      are designed to present more granular, specific data under the broader category
+      of the section.
+    default: Function
+    choices:
+    - Active site
+    - Activity regulation
+    - Allergenic properties
+    - Binding site
+    - Biophysicochemical properties
+    - Biotechnology
+    - Catalytic activity
+    - Caution
+    - Chain
+    - Cofactor
+    - Coiled coil
+    - Compositional bias
+    - Cross-link
+    - DNA binding
+    - Developmental stage
+    - Disruption phenotype
+    - Disulfide bond
+    - Domain (non-positional annotation)
+    - Domain
+    - Function
+    - GO annotation
+    - Gene names
+    - Glycosylation
+    - Induction
+    - Intramembrane
+    - Involvement in disease
+    - Lipidation
+    - Miscellaneous
+    - Modified residue
+    - Motif
+    - Mutagenesis
+    - Natural variant
+    - Organism
+    - Pathway
+    - Peptide
+    - Pharmaceutical use
+    - Polymorphism
+    - Post-translational modification
+    - Propeptide
+    - Protein names
+    - Proteomes
+    - RNA Editing
+    - Region
+    - Repeat
+    - Sequence similarities
+    - Signal peptide
+    - Site
+    - Subcellular location
+    - Subunit
+    - Taxonomic lineage
+    - Tissue specificity
+    - Topological domain
+    - Toxic dose
+    - Transit peptide
+    - Transmembrane
+    - Virus host
+  return_values:
+  - name: protein_text
+    type: TEXT
+    detailed_type: TEXT
+    description: The text description of the protein.
+  - name: matching_score
+    type: FLOAT
+    detailed_type: PROTREK_SCORE
+    description: The score of the match between the query protein and the retrieved
+      protein. This is a ProTrek calculated score.

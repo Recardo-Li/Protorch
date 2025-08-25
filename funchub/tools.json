@@ -1,0 +1,23 @@
+{
+    "uniprot": 0,
+    "saprot_regression": 1,
+    "antibody_design": 2,
+    "pfam": 3,
+    "saprot_mutation": 4,
+    "saprot_pair_regression": 5,
+    "structure_prediction": 6,
+    "saprot_classification": 7,
+    "protein_sequence_design": 8,
+    "protein_ligand_structure_prediction": 9,
+    "literature_search": 10,
+    "protein_design": 11,
+    "binary": 12,
+    "protrek": 13,
+    "saprot_tune": 14,
+    "saprot_token_classification": 15,
+    "saprot_pair_classification": 16,
+    "wikipedia": 17,
+    "pinal": 18,
+    "protein_chat": 19,
+    "saprot_inference": 20
+}

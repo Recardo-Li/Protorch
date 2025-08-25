@@ -1,0 +1,44 @@
+example_output:
+  filtered_fasta_path: target_filtered50.fasta
+bin: /home/public/bin/mmseqs
+script: mmseqs_search.sh
+document:
+  category_name: Sequence
+  tool_name: mmseqs_search
+  tool_description: MMseqs2 search tool for comparing sequences between two FASTA files.
+    Given two FASTA files A (query) and B (target), this tool identifies sequences in B
+    that are similar to sequences in A with similarity above the specified threshold,
+    and removes those similar sequences from B to create a filtered output file.
+    This is useful for removing redundant sequences and identifying unique sequences.
+  required_parameters:
+  - name: query_fasta_path
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: Query FASTA file (A) containing protein sequences to search against.
+  - name: target_fasta_path
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: Target FASTA file (B) containing protein sequences to be filtered.
+      Sequences similar to query will be removed from this file.
+  optional_parameters:
+  - name: identity
+    type: FLOAT
+    detailed_type: SEQUENCE_IDENTITY
+    description: The sequence identity threshold for similarity comparison. Sequences
+      in target file with identity above this threshold compared to query sequences
+      will be removed.
+    default: 0.5
+  return_values:
+  - name: filtered_fasta_path
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: Filtered target FASTA file with similar sequences removed.
+      Contains only sequences from target file that have similarity below the threshold
+      compared to all sequences in query file.
+  return_scores:
+  - name: target_sequences_remaining_number
+    description: Number of sequences remaining in target file after filtering.
+  - name: target_sequences_removed_number
+    description: Number of sequences removed from target file due to high similarity with query sequences.
+  - name: duration
+    description: Total time spent on sequence comparison and filtering (unit of measurement in seconds).

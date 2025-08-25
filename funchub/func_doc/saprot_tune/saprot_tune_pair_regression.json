@@ -1,0 +1,50 @@
+{
+    "category_name": "saprot_tune",
+    "tool_name": "saprot_tune_pair_regression",
+    "tool_description": "Protein-protein regression tasks aim to predict the strength and characteristics of interactions between proteins. This includes interaction strength prediction, which quantifies the binding force between two proteins; binding free energy calculation, which estimates the energy required for the interaction; and interaction affinity prediction, which evaluates how strongly the proteins will bind under various conditions.",
+    "required_parameters": [
+        {
+            "name": "dataset",
+            "type": "TEXT",
+            "description": "Training dataset of saprot_pair_regression model. Dataset should be a .csv file with three required columns: sequence, label and stage",
+            "example": "examples/saprot_train/[EXAMPLE][Pair AA][Regression].csv"
+        },
+        {
+            "name": "base_model",
+            "type": "SELECTION",
+            "description": "Base model for saprot_protein_classification model. Base model should be one of (1) SaProt_35M (2) SaProt_650M",
+            "choices": [
+                "SaProt_35M",
+                "SaProt_650M"
+            ],
+            "example": "SaProt_35M"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "batch_size",
+            "type": "PARAMETER",
+            "description": "batch_size depends on the number of training samples. Adaptive (default choice) refers to automatic batch size according to your data size. If your training data set is large enough, you can use 32, 64, 128, 256, ..., others can be set to 8, 4, 2.",
+            "default": "Adaptive"
+        },
+        {
+            "name": "max_epoch",
+            "type": "PARAMETER",
+            "description": "max_epochs refers to the maximum number of training iterations. A larger value needs more training time. The best model will be saved after each iteration. You can adjust max_epochs to control training duration.",
+            "default": "1"
+        },
+        {
+            "name": "learning_rate",
+            "type": "PARAMETER",
+            "description": "learning_rate affects the convergence speed of the model. Through experimentation, we have found that 5.0e-4 is a good default value for base model Official pretrained SaProt (650M) and 1.0e-3 for Official pretrained SaProt (35M).",
+            "default": "1e-3"
+        }
+    ],
+    "return_values": [
+        {
+            "name": "status",
+            "type": "TEXT",
+            "description": "Whether the model is successfully trained or not"
+        }
+    ]
+}

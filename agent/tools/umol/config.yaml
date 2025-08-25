@@ -1,0 +1,47 @@
+example_output:
+  complex_structure: umol_complex.pdb
+
+# The path of python interpreter
+python: /home/public/miniconda3/envs/umol/bin/python
+
+UNICLUST: dataset/uniclust30/uniclust30_2018_08
+HHBLITS: bin/hhblits
+POCKET_PARAMS: modelhub/Umol/params/params_pocket.npy #Umol-pocket params
+NO_POCKET_PARAMS: modelhub/Umol/params/params_no_pocket.npy #Umol no-pocket params
+
+document:
+  category_name: Structure
+  tool_name: umol
+  tool_description: This tool predicts the structure of protein-ligand complexes from
+    sequence information.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A string representing the amino acid sequence of the protein.
+  - name: ligand_sequence
+    type: MOLECULE
+    detailed_type: SMILES
+    description: A SMILES(simplified molecular input line entry system) string representing
+      the sequence of the ligand.
+  optional_parameters:
+  - name: protein_pocket
+    type: TEXT
+    detailed_type: POCKET
+    description: The location of protein pockets(string split by comma, like 10, 11,
+      12, 15).
+    default: NONE
+  - name: num_recycles
+    type: INTEGER
+    detailed_type: RECYCLE_NUM
+    description: Number of recycles to use in the prediction.
+    default: 3
+  return_values:
+  - name: complex_structure
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The predicted 3D structure of the protein-ligand complex saved as
+      a PDB file.
+  return_scores:
+  - name: avg_plddt
+    description: avg_plddt (Average Predicted Local Distance Difference Test), represents the average confidence score (0-100) for local structure accuracy across all residues, with higher values indicating more reliable overall backbone predictions.

@@ -1,0 +1,51 @@
+{
+    "category_name": "antibody_design",
+    "tool_name": "diffab_antigen_only",
+    "tool_description": "This tool designs antibody structures based on the given antigen. Optional inputs include an antibody template, optimization of antibody settings and number of samples.",
+    "required_parameters": [
+        {
+            "name": "antigen_structure",
+            "type": "STRUCTURE",
+            "description": "The path to the antigen PDB file.",
+            "example": "examples/pdb/diffab/Omicron_RBD.pdb"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "diffab_config",
+            "type": "SELECTION",
+            "description": "codesign_single: Sample both the sequence and structure of one CDR; codesign_multicdrs: Sample both the sequence and structure of all the CDRs simultaneously; abopt_singlecdr: Optimize the sequence and structure of one CDR; fixbb: Sample only the sequence of one CDR (fix-backbone sequence design); strpred: Sample only the structure of one CDR (structure prediction).",
+            "default": "codesign_multicdrs",
+            "choices":["abopt_singlecdr", "codesign_multicdrs", "codesign_single", "fixbb", "strpred"],
+            "example": "codesign_multicdrs"
+        },
+        {
+            "name": "antibody_template",
+            "type": "STRUCTURE",
+            "description": "The path to the antibody template PDB file. If not provided, the default template (3QHF_Fv.pdb) will be used.",
+            "default": "examples/pdb/diffab/3QHF_Fv.pdb",
+            "example": "examples/pdb/diffab/3QHF_Fv.pdb"
+        },
+        {
+            "name": "decoys",
+            "type": "PARAMETER",
+            "description": "Number of samples when docking antigen-antibody with hdock.",
+            "default": 10,
+            "example": 10
+        },
+        {
+            "name": "num_samples",
+            "type": "PARAMETER",
+            "description": "Number of samples taken at each prediction.",
+            "default": 10,
+            "example": 10
+        }
+    ],
+    "return_values": [
+        {
+            "name": "complex_structure",
+            "type": "STRUCTURE",
+            "description": "The designed and docked 3D structure of the antibody-antigen complex saved as a PDB file."
+        }
+    ]
+}

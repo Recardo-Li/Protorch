@@ -1,0 +1,318 @@
+example_output:
+  hhalign_hmm:
+    report: hhalign_hmm/20250702_040957/hhalign_result.hhr
+  hhalign_msa:
+    report: hhalign_msa/20250702_041033/hhalign_result.hhr
+  hhblits:
+    msa_file: hhblits/20250702_043957/protein_sequence.a3m
+    report: hhblits/20250702_043957/protein_sequence_align-detail.hhr
+  hhfilter:
+    filtered_msa: hfilter/20250702_0445/protein_sequence_filtered-90.a3m
+  hhmake:
+    hmm_file: hhmake/20250702_0423/protein_sequence.hmm
+  hhsearch:
+    top_hit_report: hhsearch/20250702_0502/example_align-detail.hhr
+    top_hit_msa: hhsearch/20250702_0502/example_top-hit.a3m
+
+HHalign: bin/hhalign
+HHblits: bin/hhblits
+HHfilter: bin/hhfilter
+HHmake: bin/hhmake
+HHsearch: bin/hhsearch
+
+UNICLUST: dataset/uniclust30/uniclust30_2018_08
+
+document:
+- category_name: Sequence
+  tool_name: hhalign_hmm
+  tool_description: HHalign performs a sensitive pairwise alignment between two Profile Hidden Markov Models (HMMs). It is optimized for detecting remote homologies.
+  required_parameters:
+  - name: query_hmm
+    type: PATH
+    detailed_type: HHSUITE_HMM_PATH
+    description: The query input file, which should be a Profile Hidden Markov Model (HMM).
+  - name: template_hmm
+    type: PATH
+    detailed_type: HHSUITE_HMM_PATH
+    description: The template input file to be aligned against the query. This should be an HMM.
+  optional_parameters:
+  - name: mact
+    type: FLOAT
+    detailed_type: MACT
+    description: "Set the MAC (Maximum Accuracy) alignment threshold. 0.0 means Viterbi alignment (fastest), 0.9 means full MAC alignment (most sensitive). Values in between trade-off speed for sensitivity."
+    default: 0.1
+  return_values:
+  - name: report
+    type: PATH
+    detailed_type: HHR_PATH
+    description: The path to the output file in HH-suite result format (.hhr), summarizing the pairwise alignment, scores, and sequence identities.
+  return_scores:
+  - name: prob
+    description: The probability of the two HMMs being homologous (from 0 to 100). This is the main score to assess significance.
+  - name: evalue
+    description: The E-value indicates the expected number of random matches with a score as good as or better than this alignment. Lower is better.
+  - name: score
+    description: The raw alignment score, calculated from the log-sum-of-odds scoring function.
+  - name: aligned_cols
+    description: The number of aligned columns in the HMM-HMM alignment.
+  - name: identities
+    description: The percentage of identical aligned residue pairs between the consensus sequences of the two profiles.
+  - name: similarity
+    description: The average score per aligned column, indicating the similarity of the aligned residues.
+  - name: duration
+    description: Total time spent on the alignment process (unit of measurement in seconds).
+- category_name: Sequence
+  tool_name: hhalign_msa
+  tool_description: HHalign performs a sensitive pairwise alignment between two Multiple Sequence Alignments (MSAs). It is optimized for detecting remote homologies.
+  required_parameters:
+  - name: query_msa
+    type: PATH
+    detailed_type: HHSUITE_A3M_PATH
+    description: The query input file, which should be a Multiple Sequence Alignment (MSA).
+  - name: template_msa
+    type: PATH
+    detailed_type: HHSUITE_A3M_PATH
+    description: The template input file to be aligned against the query. This should be a MSA.
+  optional_parameters:
+  - name: mact
+    type: FLOAT
+    detailed_type: MACT
+    description: Set the MAC (Maximum Accuracy) alignment threshold. 0.0 means Viterbi alignment (fastest), 0.9 means full MAC alignment (most sensitive). Values in between trade-off speed for sensitivity.
+    default: 0.1
+  return_values:
+  - name: report
+    type: PATH
+    # NOTE: The standard output for hhalign is a .hhr file. I've proposed a new detailed_type for clarity.
+    detailed_type: HHR_PATH
+    description: The path to the output file in HH-suite result format (.hhr), summarizing the pairwise alignment, scores, and sequence identities.
+  return_scores:
+  - name: prob
+    description: The probability of the two HMMs being homologous (from 0 to 100). This is the main score to assess significance.
+  - name: evalue
+    description: The E-value indicates the expected number of random matches with a score as good as or better than this alignment. Lower is better.
+  - name: score
+    description: The raw alignment score, calculated from the log-sum-of-odds scoring function.
+  - name: aligned_cols
+    description: The number of aligned columns in the HMM-HMM alignment.
+  - name: identities
+    description: The percentage of identical aligned residue pairs between the consensus sequences of the two profiles.
+  - name: similarity
+    description: The average score per aligned column, indicating the similarity of the aligned residues.
+  - name: duration
+    description: Total time spent on the alignment process (unit of measurement in seconds).
+- category_name: Sequence
+  tool_name: hhblits
+  tool_description: HHblits is used to iteratively search a query sequence against
+    a protein sequence database, generating high-quality multiple sequence alignments
+    (MSAs) and a profile for downstream analysis. It is much faster than HHsearch. 
+  required_parameters:
+  - name: query
+    type: PATH
+    detailed_type: FASTA_PATH 
+    description: >-
+      Path to the input query file. This is typically a single sequence in FASTA format,
+      but can also be an existing alignment (A3M, PSI-BLAST, HMM). Corresponds to the '-i' flag.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    choices:
+    - uniclust30
+    detailed_type: HHSUITE_DATABASE
+    description: >-
+      The database to search against. Options currently only include 'uniclust30'
+    default: uniclust30
+  - name: n_iter
+    type: INTEGER
+    detailed_type: ITERATION_NUM
+    description: The number of search iterations to refine the multiple sequence alignment.
+    default: 2
+  - name: evalue
+    type: FLOAT
+    detailed_type: EVALUE
+    description: The E-value threshold for including sequences in the MSA.
+    default: 0.001
+  - name: cpu
+    type: INTEGER
+    detailed_type: CPU_CORE_NUM
+    description: Number of CPU threads to use for the search.
+    default: 1
+  return_values:
+  - name: msa_file
+    type: PATH
+    detailed_type: HHSUITE_A3M_PATH
+    description:  >-
+      Path to the resulting Multiple Sequence Alignment (MSA) file in A3M format.
+      This file contains the query sequence and all found homologous sequences.
+  - name: report
+    type: PATH
+    detailed_type: HHR_PATH
+    description: >-
+      Path to the HHblits report file in HHR format. This file contains detailed information
+      about the search, including sequence identities, E-values, and alignment scores.
+  - name: top_hit_id
+    type: TEXT
+    detailed_type: HHSUITE_HIT_ID
+    description: >-
+      The identifier of the top-ranking hit from the database. This is typically a
+      PDB ID and chain (e.g., '4A6L_A') when searching structural databases, or a
+      family accession (e.g., 'PF00001') for family databases. It is the primary
+      key for retrieving the template's structural data.
+  return_scores:
+  - name: msa_length
+    description: >-
+      The number of significant hits in the MSA generated.
+  - name: top_hit_probability
+    description: >-
+      The probability (from 0 to 100) that the top hit is a true homolog. This is
+      often the most important single metric for assessing a match.
+  - name: top_hit_evalue
+    description: >-
+      The E-value of the top hit, indicating its statistical significance. Lower is better.
+  - name: top_hit_score
+    description: >-
+      The raw alignment score of the top hit. This is the primary score from which
+      probability and E-value are derived.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+- category_name: Sequence
+  tool_name: hhfilter
+  tool_description: HHfilter processes multiple sequence alignments (MSA) to filter
+    out redundant sequences based on sequence identity, coverage, and other criteria,
+    producing a refined MSA.
+  required_parameters:
+  - name: input_msa
+    type: PATH
+    detailed_type: HHSUITE_A3M_PATH
+    description: The input multiple sequence alignment (MSA) file, typically in A3M
+      format, to be filtered.
+  optional_parameters:
+  - name: id
+    type: FLOAT
+    detailed_type: SEQUENCE_IDENTITY
+    description: The maximum pairwise sequence identity allowed between sequences
+      in the MSA.
+    default: 90
+  - name: cov
+    type: FLOAT
+    detailed_type: ALIGNMENT_COVERAGE
+    description: The minimum coverage of sequences compared to the query sequence,
+      expressed as a percentage.
+    default: 50
+  - name: diff
+    type: INTEGER
+    detailed_type: SEQUENCE_LENGTH_DIFFERENCE
+    description: The maximum allowable length difference between the longest and shortest
+      sequences in the MSA.
+    default: 1000
+  return_values:
+  - name: filtered_msa
+    type: PATH
+    detailed_type: HHSUITE_A3M_PATH
+    description: The output filtered MSA file in A3M format, containing sequences
+      that meet the specified filtering criteria.
+  return_scores:
+  - name: origin_num
+    description: The original number of sequences in the input MSA before filtering.
+  - name: results_num
+    description: The total number of sequences included in the output A3M alignment file.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+- category_name: Sequence
+  tool_name: hhmake
+  tool_description: >-
+    Builds a profile Hidden Markov Model (HMM) from a Multiple Sequence Alignment (MSA).
+    This is the standard procedure to convert an MSA (e.g., from hhblits) into the HMM
+    format required for HMM-HMM comparison with hhsearch. Note: Filtering the MSA to
+    reduce redundancy or improve quality is a common pre-processing step performed
+    with a separate tool (like hhfilter) *before* using hhmake.
+  required_parameters:
+  - name: msa_file
+    type: PATH
+    detailed_type: HHSUITE_A3M_PATH
+    description: A multiple sequence alignment (MSA) file in A3M format, typically
+      generated by HHblits, which will be used to build the HMM.
+  optional_parameters: []
+  return_values:
+  - name: hmm_file
+    type: PATH
+    detailed_type: HMM_PATH
+    description: A Hidden Markov Model (HMM) file generated from the input MSA, ready
+      for use in HHsearch or other tools.
+  return_scores:
+  - name: duration
+    description: Total time spent generating the HMM (unit of measurement in seconds).
+- category_name: Sequence
+  tool_name: hhsearch
+  tool_description: >-
+    Searches a query Hidden Markov Model (HMM) against a database of HMMs to detect
+    remote homologous relationships. It is a highly sensitive method for finding
+    suitable structural templates for protein modeling by performing a profile-profile
+    comparison, which leverages richer information (including predicted secondary
+    structure) than sequence-based searches.
+  required_parameters:
+  - name: query_hmm
+    type: PATH
+    detailed_type: HHSUITE_HMM_PATH
+    description: >-
+      Path to the query Profile Hidden Markov Model (HMM) in `.hhm` format. This HMM
+      is typically generated from a multiple sequence alignment (MSA), often created
+      using `hhblits`.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    choices:
+    - uniclust30
+    detailed_type: HHSUITE_DATABASE
+    description: >-
+      The database to search against. Options currently only include 'uniclust30'
+    default: uniclust30
+  - name: evalue
+    type: FLOAT
+    detailed_type: EVALUE
+    description: The E-value threshold for including sequences in the MSA.
+    default: 0.001
+  - name: cpu
+    type: INTEGER
+    detailed_type: CPU_CORE_NUM
+    description: Number of CPU threads to use for the search.
+    default: 1
+  return_values:
+  - name: top_hit_msa
+    type: PATH
+    detailed_type: HHSUITE_A3M_PATH
+    description:  >-
+      Path to the resulting Multiple Sequence Alignment (MSA) file in A3M format.
+      This file contains the query sequence and all found homologous sequences.
+  - name: top_hit_report
+    type: PATH
+    detailed_type: HHR_PATH
+    description: >-
+      Path to the output file in HH-suite result format (`.hhr`). This file contains
+      a ranked list of homologous hits, including detailed alignments, probabilities,
+      E-values, and scores for each match.
+  return_scores:
+  - name: duration
+    description: Total time taken for the search, in seconds.
+  - name: msa_length
+    description: >-
+      The number of significant hits in the best HMM found.
+  - name: top_hit_id
+    type: TEXT
+    detailed_type: HHSUITE_HIT_ID
+    description: >-
+      The identifier of the top-ranking hit from the database. This is typically a
+      PDB ID and chain (e.g., '4A6L_A') when searching structural databases, or a
+      family accession (e.g., 'PF00001') for family databases. It is the primary
+      key for retrieving the template's structural data.
+  - name: top_hit_probability
+    description: >-
+      The probability (from 0 to 100) that the top hit is a true homolog. This is
+      often the most important single metric for assessing a match.
+  - name: top_hit_evalue
+    description: >-
+      The E-value of the top hit, indicating its statistical significance. Lower is better.
+  - name: top_hit_score
+    description: >-
+      The raw alignment score of the top hit. This is the primary score from which
+      probability and E-value are derived.
+

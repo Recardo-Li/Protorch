@@ -1,0 +1,35 @@
+{
+    "category_name": "binary",
+    "tool_name": "hmm_search",
+    "tool_description": "HMMER's hmm_search tool is used to search for sequence homologs of a query protein domain model within a sequence database. It utilizes Hidden Markov Models (HMMs) for identifying domains and sequences with similar structural and functional motifs.",
+    "required_parameters": [
+        {
+            "name": "annotated_domains",
+            "type": "SEQUENCE",
+            "description": "A set of protein sequences with known domain annotations to be used as query models for the search.",
+            "example": "examples/fasta/human_FP.fasta"
+        },
+        {
+            "name": "unannotated_database",
+            "type": "SEQUENCE",
+            "description": "A database of protein sequences without domain annotations, which will be searched for homologous domains using the query models.",
+            "example": "examples/fasta/human_FP_full-length.fasta"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "domE",
+            "type": "PARAMETER",
+            "description": "The E-value threshold for domain-level reporting. Domains with an E-value above this threshold will not be reported.",
+            "default": 0.1,
+            "example": 0.05
+        }
+    ],
+    "return_values": [
+        {
+            "name": "hot_domains",
+            "type": "SEQUENCE",
+            "description": "A list of sequences from the database that show significant matches to the query domain models, indicating potential homologous domains."
+        }
+    ]
+}

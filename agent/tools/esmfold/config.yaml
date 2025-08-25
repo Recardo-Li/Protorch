@@ -1,0 +1,33 @@
+example_output:
+  protein_structure: esmfold_predicted_structure.pdb
+
+# The path of python interpreter
+python: /home/public/miniconda3/envs/protagent_backbone/bin/python
+
+# The path of the ESMFold model
+model_path: modelhub/esmfold_v1
+
+document:
+  category_name: Structure
+  tool_name: esmfold
+  tool_description: This tool utilizes ESMFold to efficiently predict the three-dimensional
+    structure of proteins based on their sequences. ESMFold is better suited for proteins
+    lacking homologous sequence information because it does not depend on multiple
+    sequence alignment. For newly discovered or rare proteins, ESMFold may hold certain
+    advantages.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: Protein sequence to be predicted.
+  optional_parameters: []
+  return_values:
+  - name: protein_structure
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: A string in PDB format that represents the predicted 3D structure
+      of the input protein sequence. The PDB (Protein Data Bank) format is a standard
+      format for representing 3D structures of proteins and other biological macromolecules.
+  return_scores:
+  - name: avg_plddt
+    description: avg_plddt (Average Predicted Local Distance Difference Test), represents the average confidence score (0-100) for local structure accuracy across all residues, with higher values indicating more reliable overall backbone predictions.

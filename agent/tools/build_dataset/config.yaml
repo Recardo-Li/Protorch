@@ -1,0 +1,67 @@
+example_output:
+  dataset_dir: workflow_dataset
+  original_fasta: input_sequences.fasta
+  final_dataset: classification_dataset_split.csv
+  dataset_summary: dataset_summary.json
+
+python: /home/public/miniconda3/envs/protagent_backbone/bin/python
+
+document:
+  category_name: Function
+  tool_name: build_dataset
+  tool_description: Protein classification dataset creation from FASTA file, creating datasets and splitting train/val/test sets.
+  required_parameters:
+  - name: fasta_files
+    type: LIST
+    detailed_type: FASTA_FILE_LIST
+    description: List of FASTA file paths (relative to out_dir) containing protein sequences. Number of classes is automatically determined by list length, labels are assigned as 0,1,2... in order of files.
+  optional_parameters:
+  - name: train_ratio
+    type: FLOAT
+    detailed_type: SPLIT_RATIO
+    description: Ratio of training set
+    default: 0.7
+  - name: val_ratio
+    type: FLOAT
+    detailed_type: SPLIT_RATIO
+    description: Ratio of validation set
+    default: 0.15
+  - name: test_ratio
+    type: FLOAT
+    detailed_type: SPLIT_RATIO
+    description: Ratio of test set
+    default: 0.15
+  return_values:
+  - name: dataset_path
+    type: PATH
+    detailed_type: DATASET_FILE
+    description: Path to final dataset after splitting train/val/test sets
+  - name: class_distribution
+    type: DICT
+    detailed_type: CLASS_DISTRIBUTION
+    description: Distribution of sequences across classes
+  return_scores:
+  - name: train_count
+    type: INTEGER
+    detailed_type: COUNT
+    description: Number of sequences in training set
+  - name: val_count
+    type: INTEGER
+    detailed_type: COUNT
+    description: Number of sequences in validation set
+  - name: test_count
+    type: INTEGER
+    detailed_type: COUNT
+    description: Number of sequences in test set
+  - name: total_sequences
+    type: INTEGER
+    detailed_type: COUNT
+    description: Total number of sequences in dataset
+  - name: num_classes
+    type: INTEGER
+    detailed_type: LABEL_NUM
+    description: Number of classes in dataset
+  - name: duration
+    type: FLOAT
+    detailed_type: TIME
+    description: Time taken to process dataset in seconds 

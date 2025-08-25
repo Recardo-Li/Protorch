@@ -1,0 +1,11 @@
+model_dir: ProTrek/ProTrek_650M_UniRef50
+faiss_config:
+  IO_FLAG_MMAP: True
+sequence_index_dir:
+  - name: Swiss-Prot
+    index_dir: ProTrek/ProTrek_650M_UniRef50/Swiss-Prot/sequence
+
+text_index_dir:
+  - name: Swiss-Prot
+    index_dir: ProTrek/ProTrek_650M_UniRef50/Swiss-Prot/text
+

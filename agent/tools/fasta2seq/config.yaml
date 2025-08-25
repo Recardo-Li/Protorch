@@ -1,0 +1,18 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+
+document:
+  category_name: Sequence
+  tool_name: fasta2seq
+  tool_description: This tool parses a FASTA file and extracts sequence records. If multiple sequences are present, it only returns the first sequence.
+  required_parameters:
+  - name: fasta_file
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: The FASTA file containing the protein sequences to be parsed.
+  optional_parameters: []
+  return_values:
+  - name: protein_sequence
+    type: LIST
+    detailed_type: AA_SEQUENCE
+    description: >
+      The amino acid sequence extracted from the first record of the FASTA file.

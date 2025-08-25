@@ -1,0 +1,26 @@
+# The path of the TMalign tool
+TMalign: bin/TMalign
+
+# Description of the tool
+document:
+  category_name: Structure
+  tool_name: tmalign
+  tool_description: TMAlign is used for structural alignment of two protein structures. It calculates the TM-score to evaluate the structural similarity between the aligned proteins.
+  required_parameters:
+  - name: structure_path_1
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: Path to the first protein structure (.pdb or .cif) file
+  - name: structure_path_2
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: Path to the second protein structure (.pdb or .cif) file
+  optional_parameters: []
+  return_values:
+  - name: tmscore
+    type: FLOAT
+    detailed_type: TMSCORE
+    description: The TM-score value representing the structural similarity between the aligned proteins.
+  return_scores:
+  - name: duration
+    description: Total time spent aligning (unit of measurement in seconds).

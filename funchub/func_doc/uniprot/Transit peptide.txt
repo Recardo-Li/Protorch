@@ -1,0 +1,54 @@
+This subsection of the 'PTM / Processing' section describes the extent of a transit peptide.
+
+Transit peptides are responsible for the transport of a protein encoded by a nuclear gene to a particular organelle. To date, we report transit peptides for the following organelles:
+
+Mitochondrion
+Apicoplast
+Chromoplast
+Chloroplast
+Cyanelle
+Thylakoid
+Amyloplast
+Peroxisome
+Glyoxysome
+Hydrogenosome
+Cyanelles are the plastids of glaucocystophyte algae.
+
+Peroxisomes, hydrogenosomes, glyoxysomes and glycosomes constitute the class of microbodies, which are defined as single membrane-bounded small organelles. Proteins can be targeted to microbodies via an N-terminal transit peptide (which is rare), or via a C-terminal motif (which is more common).
+
+Chromoplasts are plastids containing pigments other than chlorophyll. Found in flowers, petals and fruits.
+
+Transit peptides are generally cleaved from the mature protein and so will logically be found in proteins tagged with the 'Sequence processing' information: 'The displayed sequence is further processed into a mature form.'.
+
+The particular organelle to which a protein is targeted is indicated in the 'Subcellular location' subsection and by the presence of a specific keyword.
+
+1. Annotation of experimentally proven transit peptides:
+We annotate experimentally proven transit peptides when the cleavage site has been determined by direct protein sequencing.
+Example: P15690
+
+Large-scale proteomics data are used to annotate transit peptides through the combination of experimental and computational methods, tagged with evidence from 'Combined sources'.
+Example: P28331
+
+This information can then be propagated 'By similarity' to closely related homologs provided that the transit peptide sequence is conserved.
+Example: Q0MQG1
+
+When a protein contains a transit peptide (according to experimental data or its similarity with a family of proteins), but the precise cleavage position has not been experimentally determined, we use a question mark instead of a precise position.
+Example: Q6GQ48
+
+2. Annotation of predicted transit peptides:
+We also annotate transit peptides which are predicted by the application of the predictive tools Mitofates, Predotar and TargetP, but only when such predictions are consistent with the known or presumed subcellular location of the protein concerned. The predicted positions of the transit peptide are annotated with evidence 'Sequence analysis'.
+Example: P91929
+
+See also
+Evidence
+Peptide (describing small active peptides)
+Sequence annotation (features)
+Related keywords:
+Transit peptide,
+Chloroplast,
+Cyanelle,
+Glyoxysome,
+Hydrogenosome,
+Mitochondrion,
+Peroxisome,
+Thylakoid.

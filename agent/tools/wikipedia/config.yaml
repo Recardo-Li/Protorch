@@ -1,0 +1,29 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+proxy: http://10.13.120.14:7890
+
+
+document:
+  category_name: Knowledge
+  tool_name: wikipedia
+  tool_description: This tool allows users to search Wikipedia for articles based on a given query and returns a specified number of relevant results. If you are provided with some biochemistry jargons or scientific terminologies, use this tool first. These keywords could be extracted by llm in the given context.
+  required_parameters:
+  - name: query
+    type: TEXT
+    detailed_type: TEXT
+    description: The short and precise keywords that will be searched using Wikipedia.
+  optional_parameters:
+  - name: max_items
+    type: INTEGER
+    detailed_type: MAX_WIKI_NUM
+    description: The maximum number of results to retrieve from Wikipedia. The default
+      value is 3, meaning the top 3 relevant search results will be returned.
+    default: 3
+  return_values:
+  - name: search_result
+    type: LIST
+    detailed_type: WIKIPEDIA_SEARCH_RESULTS
+    description: List of Wikipedia search results, each containing title, url, and summary.
+  return_scores:
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+

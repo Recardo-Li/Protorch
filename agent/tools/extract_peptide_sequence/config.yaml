@@ -1,0 +1,28 @@
+example_output:
+  peptide_sequence: extracted_peptide_sequence
+
+#The path of python interpreter
+python: /home/public/miniconda3/envs/protagent_backbone/bin/python
+
+document:
+  category_name: Sequence
+  tool_name: extract_peptide_sequence
+  tool_description: Extracts a peptide subsequence from a protein sequence using specified start and end residue positions.
+  required_parameters:
+    - name: protein_sequence
+      type: SEQUENCE
+      detailed_type: AA_SEQUENCE
+      description: The complete protein sequence from which the peptide subsequence will be extracted.
+    - name: start
+      type: INTEGER
+      detailed_type: AA_POSITION
+      description: The start residue index (1-based) for extraction. Specify the position of the first amino acid to include in the peptide subsequence. 
+    - name: end
+      type: INTEGER
+      detailed_type: AA_POSITION
+      description: The end residue index (1-based) for extraction. Specify the position of the last amino acid to include in the peptide subsequence.
+  return_values:
+    - name: peptide_sequence
+      type: STRING
+      detailed_type: AA_SEQUENCE 
+      description: The peptide subsequence extracted from the specified region of the protein sequence. 

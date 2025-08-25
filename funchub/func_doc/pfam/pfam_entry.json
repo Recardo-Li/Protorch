@@ -1,0 +1,23 @@
+{
+    "category_name": "pfam",
+    "tool_name": "pfam_entry",
+    "tool_description": "This tool retrieves detailed information about a specific Pfam entry given its entry accession ID. The information includes the entry name, type, description, and Wikipedia search information.",
+    "required_parameters": [
+        {
+            "name": "accession_id",
+            "type": "TEXT",
+            "description": "The accession ID of the Pfam entry to be searched. This ID typically starts with 'PF' followed by five digits, for example, 'PF00001'",
+            "example": "PF00001"
+        }
+    ],
+    "optional_parameters": [
+
+    ],
+    "return_values": [
+        {
+            "name": "query_result",
+            "type": "TEXT",
+            "description": "The detailed information of the Pfam entry, including its entry name, entry type, description, and relevant Wikipedia information."
+        }
+    ]
+}

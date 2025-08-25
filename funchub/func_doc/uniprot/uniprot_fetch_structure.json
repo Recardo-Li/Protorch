@@ -1,0 +1,21 @@
+{
+    "category_name": "uniprot",
+    "tool_name": "uniprot_fetch_structure",
+    "tool_description": "This tool retrieves 3D structural data for proteins from the UniProt database. By providing a UniProt accession number, the tool queries UniProt and fetches the corresponding structural information, if available. This includes details such as the experimental method used to determine the structure, resolution, and coordinates of the protein, aiding in studies related to protein function, folding, and interaction.",
+    "required_parameters": [
+        {
+            "name": "uniprot_id",
+            "type": "TEXT",
+            "description": "The Uniprot ID of the target protein structure",
+            "example": "P12345"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "protein_structure",
+            "type": "STRUCTURE",
+            "description": "The protein structure of the target protein."
+        }
+    ]
+}

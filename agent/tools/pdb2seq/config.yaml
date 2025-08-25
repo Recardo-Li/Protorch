@@ -1,0 +1,21 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+
+document:
+  category_name: Structure
+  tool_name: pdb2aaseq
+  tool_description: This tool extracts the amino acid sequence from a single chain PDB file. DO NOT use this tool to extract sequences from the generated backbone structure of rfdiffusion, as it only provides the backbone and not the complete amino acid sequence.
+  required_parameters:
+  - name: pdb_file
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The PDB file containing the protein structure. Notice that only full atom STRUCTURE_PATH could be used here while backbone only STRUCTURE_PATH does not work.
+  optional_parameters: []
+  return_values:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The amino acid sequence extracted from the PDB file.
+  - name: protein_length
+    type: INTEGER
+    detailed_type: PROTEIN_LENGTH
+    description: The length of the amino acid sequence.

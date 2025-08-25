@@ -1,0 +1,51 @@
+{
+    "category_name": "saprot_regression",
+    "tool_name": "saprot_regression",
+    "tool_description": "Use a pretrained saprot backbone model and a pretrained adaptor model to do protein-level regression task", 
+        "required_parameters": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": "A string representing the amino acid sequence of the protein."
+        },
+        {
+            "name": "lora_adaptor",
+            "type": "SELECTION",
+            "description": "The adaptor model to be used for localization prediction.",
+            "choices": [
+                "Mega-sacle-Protein-Stability-Prediction",
+                "DMS_DLG4_RAT",
+                "DMS_GAL4_YEAST",
+                "DMS_RASH_HUMAN",
+                "ACE2_Omicron_XBB.1.5_binding_affinity",
+                "Model-Stability-650M",
+                "Model-Thermostability-650M",
+                "Model-Fluorescence-650M",
+                "DMS_YAP1_HUMAN",
+                "DMS_AsCas12f",
+                "DMS_UBC9_HUMAN",
+                "DMS_BLAT_ECOLX",
+                "Model-AAV-650M",
+                "Omicron_BQ.1.1_Expr",
+                "GB1_fitness_prediction",
+                "Model-EYFP-650M",
+                "Model-BetaLactamase-650M",
+                "Model-EYFP_100K-650M",
+                "ACE2_Omicron_BQ.1.1_binding_affinity",
+                "DMS_PTEN_HUMAN"
+            ]
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "pred",
+            "type": "PREDICTION",
+            "description": "The predicted regression result of the protein."
+        }
+    ]
+}
+
+
+
+

@@ -1,0 +1,62 @@
+This subsection of the 'Subcellular location' section describes the subcellular compartment where each non-membrane region of a membrane-spanning protein is found.
+
+Topological domains are annotated according to a controlled vocabulary, the elements of which are listed below.
+
+Common topological domains
+
+Chloroplast intermembrane
+Cytoplasmic
+Extracellular
+Intravacuolar
+Intravirion
+Lumenal
+Lumenal, thylakoid
+Lumenal, vesicle
+Mitochondrial intermembrane
+Mitochondrial matrix
+Periplasmic
+Peroxisomal
+Peroxisomal matrix
+Nuclear
+Perinuclear space
+Stromal
+Vacuolar
+Vesicular
+Virion surface
+Rare topological domains
+
+Lumenal, melanosome
+Mother cell cytoplasmic
+Forespore intermembrane space
+Intragranular
+In membrane
+Pore forming
+Exoplasmic loop
+Examples: Q8BJ48, O14300, Q93ZB2, Q9LD37, P43524, Q9NR77, P25818, O15155, Q9H598, P0A221
+
+Note that in each case the subcellular location of the protein as a whole is defined in the 'Subcellular location' subsection.
+
+We annotate both experimentally determined and predicted topological domains.
+
+1. Annotation of experimentally proven topological domains:
+Most often, there is proof for the existence of transmembrane domains, but not for their boundaries. As a consequence, the extents of transmembrane regions and the corresponding neighboring topological domains are predicted. Even when supporting experimental evidence is available for the assignment of a particular region of a protein to a particular cellular compartment, the topological domains of a protein are therefore generally annotated using the evidence 'Sequence analysis'.
+Example: Q96BI3
+
+When there is clear experimental proof for the location of the N-terminus or the C-terminus in the cytoplasm (or some other cellular compartment), this is labeled with 'Experimental' or 'Curated' evidence depending on the level of confidence. In this case, the positions of the topological domains can be propagated to related entries 'By similarity' if applicable.
+Examples: Q8TCT9 (experimental), Q9D8V0 (propagated by similarity)
+
+However when the experimental technique used allows the assignment of the transmembrane boundary to a particular position (X-ray crystallography, etc.), the topological domain is labeled with 'Experimental' or 'Curated' evidence. In this case, the positions of the topological domains can be propagated to related entries 'By similarity' if applicable.
+Examples: P63142 (experimental), P22459 (propagated by similarity)
+
+Having said this, unfortunately not all UniProtKB/Swiss-Prot annotations have evidence. The annotations which are missing evidence were created before we started to manually curate information with evidence in UniProtKB/Swiss-Prot, and manual attribution of evidence to these existing annotations was not possible due to the huge amount of existing data. In such cases, the absence of any evidence for topological domains may in many cases be interpreted as 'Experimental' or 'Curated'.
+
+2. Annotation of predicted topological domains:
+We also annotate topological domains based on the predictions provided by the program TMHMM, which returns a probability that non-transmembrane regions of a protein are in a cytoplasmic compartment (specified as 'in') or a non-cytoplasmic compartment (specified as 'out'). When TMHMM returns a high confidence topology prediction for a protein of known subcellular location, the notional 'in' and 'out' predictions from TMHMM are specified using a controlled vocabulary as described above. For instance, we may specify 'in' as 'cytoplasmic' and 'out' as 'periplasmic'.
+Example: Q8BJ48
+
+When nothing is known about the subcellular location of the protein, we annotate the topological domains based on TMHMM predictions using the default values of 'cytoplasmic' and 'extracellular'. In all cases, predicted topological domains are annotated with 'Sequence analysis'.
+
+See also
+Evidence
+Transmembrane
+Sequence annotation (features)

@@ -1,0 +1,9 @@
+This subsection of the 'Expression' section reports the experimentally proven effects of inducers and repressors (usually chemical compounds or environmental factors) on the level of protein (or mRNA) expression (up-regulation, down-regulation, constitutive expression).
+
+Example: Q7XTE8, P29305
+
+Transcriptional regulation by transcription factors or repressors is only rarely described in UniProtKB. In some specific cases, however, we indicate such information without going into details.
+
+Example: Q59385
+
+This subsection does not describe the regulation of activity, which can be found in the subsection 'Activity regulation' for enzymes, transporters and microbial transcription factors, and in other subsections, such as 'Function'.

@@ -1,0 +1,30 @@
+{
+    "category_name": "binary",
+    "tool_name": "mmseqs_cluster",
+    "tool_description": "MMseqs2 (Many-against-Many sequence searching) is a fast and sensitive tool for clustering large protein sequence datasets. It groups similar sequences into clusters, which can be useful for reducing redundancy and identifying representative sequences. In this tool, we only keep the representative sequences as clustering result",
+    "required_parameters": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": "A set of protein sequences to be clustered using MMseqs2.",
+            "example": "examples/fasta/human_FP.fasta"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "identity",
+            "type": "PARAMETER",
+            "description": "The sequence identity threshold for clustering. Sequences with identity above this threshold will be grouped into the same cluster.",
+            "default": 0.5,
+            "example": 0.6
+        }
+    ],
+    "return_values": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": "The representative sequences in each clusters, where each cluster represents a group of similar sequences.",
+            "default": ""
+        }
+    ]
+}

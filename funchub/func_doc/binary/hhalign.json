@@ -1,0 +1,47 @@
+{
+    "category_name": "binary",
+    "tool_name": "hhalign",
+    "tool_description": "HHalign performs pairwise alignment between two HMMs or MSAs, providing detailed alignments and similarity scores.",
+    "required_parameters": [
+        {
+            "name": "input1",
+            "type": "SEQUENCE",
+            "description": "The first input file, which can be a Hidden Markov Model (HMM) file or a multiple sequence alignment (MSA) file."
+        },
+        {
+            "name": "input2",
+            "type": "SEQUENCE",
+            "description": "The second input file, which can also be an HMM or MSA file to be aligned with the first input."
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "evalue",
+            "type": "PARAMETER",
+            "description": "The E-value threshold for reporting alignments.",
+            "default": 1e-3,
+            "example": 1e-5
+        },
+        {
+            "name": "qid",
+            "type": "PARAMETER",
+            "description": "The minimum sequence identity threshold for alignments.",
+            "default": 0,
+            "example": 30
+        },
+        {
+            "name": "cov",
+            "type": "PARAMETER",
+            "description": "The minimum alignment coverage percentage to report.",
+            "default": 0,
+            "example": 50
+        }
+    ],
+    "return_values": [
+        {
+            "name": "alignment_result",
+            "type": "TEXT",
+            "description": "A file summarizing the pairwise alignment results, including scores, alignments, and other metrics."
+        }
+    ]
+}

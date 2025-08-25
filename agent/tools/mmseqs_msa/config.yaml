@@ -1,0 +1,34 @@
+example_output:
+  alignment_file: mmseqs_result.a3m
+document:
+  category_name: Sequence
+  tool_name: mmseqs_msa
+  tool_description: mmseqs_msa is a tool that prepares sequences for multiple sequence alignment (MSA). It quickly finds evolutionarily related sequences (including distant relatives) from large databases, removes duplicates, and prioritizes diversity. This creates a streamlined, diverse set of sequences optimized for alignment tools, making it efficient for large datasets where traditional MSA methods struggle.
+  required_parameters:
+  - name: query_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: A single protein sequence that will be used as the query for homology
+      searches.
+    example: GSHSMRYFYTAMSRPGRGEPRFIAVGYVDDTQFVRFDSDAASPRMAPRAPWIEQEGPEYWDRETQISKTNTQTYRESLRNLRGYYNQSEAGSHTLQRMYGCDVGPDGRLLRGHDQSAYDGKDYIALNEDLSSWTAADTAAQITQRKWEAAREAEQWRAYLEGLCVEWLRRYLENG
+  optional_parameters:
+  - name: msa_mode
+    type: SELECTION
+    detailed_type: MSA_DATABASE
+    description: Databases to use for creating the MSA. Default is UniRef30+Environmental.
+    choices:
+    - mmseqs2_uniref_env
+    - mmseqs2_uniref
+    default: mmseqs2_uniref_env
+    example: mmseqs2_uniref_env
+  return_values:
+  - name: alignment_file
+    type: PATH
+    detailed_type: HHSUITE_A3M_PATH
+    description: A multiple sequence alignment (MSA) file of homologous sequences
+      identified during the search.
+  return_scores:
+  - name: results_num
+    description: Number of sequences searched by mmseqs_msa.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).

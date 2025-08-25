@@ -1,0 +1,324 @@
+example_output:
+  save_dir: prediction_model
+
+python: /home/public/miniconda3/envs/protagent_caller/bin/python
+
+default_config_path: default.yaml
+
+saprot_root: modelhub/SaProt
+
+document:
+- category_name: Function
+  tool_name: saprot_tune_classification
+  tool_description: Protein-level classification involves categorizing protein sequences
+    into specific classes based on their characteristics. This tool trains a model
+    to classify proteins into different categories.
+  required_parameters:
+  - name: dataset
+    type: PATH
+    detailed_type: TRAINING_DATASET
+    description: 'Training dataset of saprot_protein_classification model. Dataset
+      should be a .csv file with three required columns: sequence, label and stage'
+  - name: num_classes
+    type: INTEGER
+    detailed_type: LABEL_NUM
+    description: Number of classes in the classification task. For example, if you
+      are working on a binary classification task, num_classes should be 2.
+  optional_parameters:
+  - name: base_model
+    type: SELECTION
+    detailed_type: SAPROT_BASE_MODEL
+    description: Base model for saprot_protein_classification model. Base model should
+      be one of (1) SaProt_35M (2) SaProt_650M
+    choices:
+    - SaProt_35M
+    - SaProt_650M
+    default: SaProt_35M
+  - name: batch_size
+    type: INTEGER
+    detailed_type: BATCH_SIZE
+    description: batch_size depends on the number of training samples. Adaptive (default
+      choice) refers to automatic batch size according to your data size. If your
+      training data set is large enough, you can use 32, 64, 128, 256, ..., others
+      can be set to 8, 4, 2.
+    default: Adaptive
+  - name: max_epoch
+    type: INTEGER
+    detailed_type: EPOCH_NUM
+    description: max_epochs refers to the maximum number of training iterations. A
+      larger value needs more training time. The best model will be saved after each
+      iteration. You can adjust max_epochs to control training duration.
+    default: 10
+  - name: learning_rate
+    type: FLOAT
+    detailed_type: LEARNING_RATE
+    description: learning_rate affects the convergence speed of the model. Through
+      experimentation, we have found that 5.0e-4 is a good default value for base
+      model Official pretrained SaProt (650M) and 1.0e-3 for Official pretrained SaProt
+      (35M).
+    default: 1e-3
+  return_values:
+  - name: save_dir
+    type: DIRECTORY
+    detailed_type: ADAPTOR_DIRECTORY
+    description: Directory where the trained model is saved
+  - name: num_classes
+    type: INTEGER
+    detailed_type: LABEL_NUM
+    description: Number of classes in the classification task.
+  return_scores:
+  - name: valid_metrics_curve
+    description: Validation metrics and loss curve.
+  - name: test_acc
+    description: Test set accuracy.
+  - name: test_loss
+    description: Test set loss.
+- category_name: Function
+  tool_name: saprot_tune_pair_classification
+  tool_description: Protein-protein classification tasks involve predicting whether
+    two proteins will interact and the nature of that interaction. This tool trains a model to classify protein pairs into different categories.
+  required_parameters:
+  - name: dataset
+    type: PATH
+    detailed_type: TRAINING_DATASET
+    description: 'Training dataset of saprot_protein_classification model. Dataset
+      should be a .csv file with three required columns: sequence, label and stage'
+  - name: num_classes
+    type: INTEGER
+    detailed_type: LABEL_NUM
+    description: Number of classes in the classification task. For example, if you
+      are working on a binary classification task, num_classes should be 2.
+  optional_parameters:
+  - name: base_model
+    type: SELECTION
+    detailed_type: SAPROT_BASE_MODEL
+    description: Base model for saprot_protein_classification model. Base model should
+      be one of (1) SaProt_35M (2) SaProt_650M
+    choices:
+    - SaProt_35M
+    - SaProt_650M
+    default: SaProt_35M
+  - name: batch_size
+    type: INTEGER
+    detailed_type: BATCH_SIZE
+    description: batch_size depends on the number of training samples. Adaptive (default
+      choice) refers to automatic batch size according to your data size. If your
+      training data set is large enough, you can use 32, 64, 128, 256, ..., others
+      can be set to 8, 4, 2.
+    default: Adaptive
+  - name: max_epoch
+    type: INTEGER
+    detailed_type: EPOCH_NUM
+    description: max_epochs refers to the maximum number of training iterations. A
+      larger value needs more training time. The best model will be saved after each
+      iteration. You can adjust max_epochs to control training duration.
+    default: 10
+  - name: learning_rate
+    type: FLOAT
+    detailed_type: LEARNING_RATE
+    description: learning_rate affects the convergence speed of the model. Through
+      experimentation, we have found that 5.0e-4 is a good default value for base
+      model Official pretrained SaProt (650M) and 1.0e-3 for Official pretrained SaProt
+      (35M).
+    default: 1e-3
+  return_values:
+  - name: save_dir
+    type: DIRECTORY
+    detailed_type: ADAPTOR_DIRECTORY
+    description: Directory where the trained model is saved
+  - name: num_classes
+    type: INTEGER
+    detailed_type: LABEL_NUM
+    description: Number of classes in the classification task.
+  return_scores:
+  - name: valid_metrics_curve
+    description: Validation metrics and loss curve.
+  - name: test_acc
+    description: Test set accuracy.
+  - name: test_loss
+    description: Test set loss.
+- category_name: Function
+  tool_name: saprot_tune_pair_regression
+  tool_description: Protein-protein regression tasks aim to predict the strength and
+    characteristics of interactions between proteins. This tool trains a model to predict
+    quantitative properties of protein pairs.
+  required_parameters:
+  - name: dataset
+    type: PATH
+    detailed_type: TRAINING_DATASET
+    description: 'Training dataset of saprot_protein_classification model. Dataset
+      should be a .csv file with three required columns: sequence, label and stage'
+  optional_parameters:
+  - name: base_model
+    type: SELECTION
+    detailed_type: SAPROT_BASE_MODEL
+    description: Base model for saprot_protein_classification model. Base model should
+      be one of (1) SaProt_35M (2) SaProt_650M
+    choices:
+    - SaProt_35M
+    - SaProt_650M
+    default: SaProt_35M
+  - name: batch_size
+    type: INTEGER
+    detailed_type: BATCH_SIZE
+    description: batch_size depends on the number of training samples. Adaptive (default
+      choice) refers to automatic batch size according to your data size. If your
+      training data set is large enough, you can use 32, 64, 128, 256, ..., others
+      can be set to 8, 4, 2.
+    default: Adaptive
+  - name: max_epoch
+    type: INTEGER
+    detailed_type: EPOCH_NUM
+    description: max_epochs refers to the maximum number of training iterations. A
+      larger value needs more training time. The best model will be saved after each
+      iteration. You can adjust max_epochs to control training duration.
+    default: 10
+  - name: learning_rate
+    type: FLOAT
+    detailed_type: LEARNING_RATE
+    description: learning_rate affects the convergence speed of the model. Through
+      experimentation, we have found that 5.0e-4 is a good default value for base
+      model Official pretrained SaProt (650M) and 1.0e-3 for Official pretrained SaProt
+      (35M).
+    default: 1e-3
+  return_values:
+  - name: save_dir
+    type: DIRECTORY
+    detailed_type: ADAPTOR_DIRECTORY
+    description: Directory where the trained model is saved
+  return_scores:
+  - name: valid_metrics_curve
+    description: Validation metrics and loss curve.
+  - name: test_spearman
+    description: Test set spearman correlation coefficient.
+  - name: test_R2
+    description: Test set coefficient of determination.
+  - name: test_pearson
+    description: Test set pearson correlation coefficient.
+  - name: test_loss
+    description: Test set loss.
+- category_name: Function
+  tool_name: saprot_tune_regression
+  tool_description: Protein-level regression tasks focus on predicting quantitative
+    properties of protein sequences. This tool trains a model to predict continuous
+    values for protein sequences.
+  required_parameters:
+  - name: dataset
+    type: PATH
+    detailed_type: TRAINING_DATASET
+    description: 'Training dataset of saprot_protein_classification model. Dataset
+      should be a .csv file with three required columns: sequence, label and stage'
+  optional_parameters:
+  - name: base_model
+    type: SELECTION
+    detailed_type: SAPROT_BASE_MODEL
+    description: Base model for saprot_protein_classification model. Base model should
+      be one of (1) SaProt_35M (2) SaProt_650M
+    choices:
+    - SaProt_35M
+    - SaProt_650M
+    default: SaProt_35M
+  - name: batch_size
+    type: INTEGER
+    detailed_type: BATCH_SIZE
+    description: batch_size depends on the number of training samples. Adaptive (default
+      choice) refers to automatic batch size according to your data size. If your
+      training data set is large enough, you can use 32, 64, 128, 256, ..., others
+      can be set to 8, 4, 2.
+    default: Adaptive
+  - name: max_epoch
+    type: INTEGER
+    detailed_type: EPOCH_NUM
+    description: max_epochs refers to the maximum number of training iterations. A
+      larger value needs more training time. The best model will be saved after each
+      iteration. You can adjust max_epochs to control training duration.
+    default: 10
+  - name: learning_rate
+    type: FLOAT
+    detailed_type: LEARNING_RATE
+    description: learning_rate affects the convergence speed of the model. Through
+      experimentation, we have found that 5.0e-4 is a good default value for base
+      model Official pretrained SaProt (650M) and 1.0e-3 for Official pretrained SaProt
+      (35M).
+    default: 1e-3
+  return_values:
+  - name: save_dir
+    type: DIRECTORY
+    detailed_type: ADAPTOR_DIRECTORY
+    description: Directory where the trained model is saved
+  return_scores:
+  - name: valid_metrics_curve
+    description: Validation metrics and loss curve.
+  - name: test_spearman
+    description: Test set spearman correlation coefficient.
+  - name: test_R2
+    description: Test set coefficient of determination.
+  - name: test_pearson
+    description: Test set pearson correlation coefficient.
+  - name: test_loss
+    description: Test set loss.
+- category_name: Function
+  tool_name: saprot_tune_token_classification
+  tool_description: Residue-level classification is concerned with categorizing individual
+    amino acids within a protein sequence. This tool trains a model to classify each amino
+    acids within a sequence into different categories.
+  required_parameters:
+  - name: dataset
+    type: PATH
+    detailed_type: TRAINING_DATASET
+    description: 'Training dataset of saprot_protein_classification model. Dataset
+      should be a .csv file with three required columns: sequence, label and stage'
+  - name: num_classes
+    type: INTEGER
+    detailed_type: LABEL_NUM
+    description: Number of classes in the classification task. For example, if you
+      are working on a binary classification task, num_classes should be 2.
+  optional_parameters:
+  - name: base_model
+    type: SELECTION
+    detailed_type: SAPROT_BASE_MODEL
+    description: Base model for saprot_protein_classification model. Base model should
+      be one of (1) SaProt_35M (2) SaProt_650M
+    choices:
+    - SaProt_35M
+    - SaProt_650M
+    default: SaProt_35M
+  - name: batch_size
+    type: INTEGER
+    detailed_type: BATCH_SIZE
+    description: batch_size depends on the number of training samples. Adaptive (default
+      choice) refers to automatic batch size according to your data size. If your
+      training data set is large enough, you can use 32, 64, 128, 256, ..., others
+      can be set to 8, 4, 2.
+    default: Adaptive
+  - name: max_epoch
+    type: INTEGER
+    detailed_type: EPOCH_NUM
+    description: max_epochs refers to the maximum number of training iterations. A
+      larger value needs more training time. The best model will be saved after each
+      iteration. You can adjust max_epochs to control training duration.
+    default: 10
+  - name: learning_rate
+    type: FLOAT
+    detailed_type: LEARNING_RATE
+    description: learning_rate affects the convergence speed of the model. Through
+      experimentation, we have found that 5.0e-4 is a good default value for base
+      model Official pretrained SaProt (650M) and 1.0e-3 for Official pretrained SaProt
+      (35M).
+    default: 1e-3
+  return_values:
+  - name: save_dir
+    type: DIRECTORY
+    detailed_type: ADAPTOR_DIRECTORY
+    description: Directory where the trained model is saved
+  - name: num_classes
+    type: INTEGER
+    detailed_type: LABEL_NUM
+    description: Number of classes in the classification task.
+  return_scores:
+  - name: valid_metrics_curve
+    description: Validation metrics and loss curve.
+  - name: test_acc
+    description: Test set accuracy.
+  - name: test_loss
+    description: Test set loss.

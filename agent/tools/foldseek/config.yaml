@@ -1,0 +1,25 @@
+bin: bin/foldseek
+script: foldseek.sh
+document:
+  category_name: Structure
+  tool_name: foldseek
+  tool_description: Foldseek is a bioinformatics tool used to extract and analyze
+    structural sequence data from protein structures.
+  required_parameters:
+  - name: pdb_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: Path to the PDB file containing the protein structure data.
+  optional_parameters: []
+  return_values:
+  - name: foldseek_sequence
+    type: SEQUENCE
+    detailed_type: FOLDSEEK_SEQUENCE
+    description: The foldseek structure sequence of the protein.
+  return_scores:
+  - name: avg_evalue
+    description: Measures the statistical significance of the comparison results, the smaller the value the better.
+  - name: variance
+    description: Measuring the instability of the foldseek results' evalue.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).

@@ -1,0 +1,32 @@
+{
+    "category_name": "binary",
+    "tool_name": "tmalign",
+    "tool_description": "TMAlign is a computational tool used for structural alignment of two protein structures. It calculates the TM-score to evaluate the structural similarity between the aligned proteins.",
+    "required_parameters": [
+        {
+            "name": "aln_pdb_path",
+            "type": "STRUCTURE",
+            "description": "Path to the PDB file of the protein structure to be aligned.",
+            "example": "examples/pdb/diffab/3QHF_Fv.pdb"
+        },
+        {
+            "name": "ref_pdb_path",
+            "type": "STRUCTURE",
+            "description": "Path to the PDB file of the reference protein structure.",
+            "example": "examples/pdb/diffab/Omicron_RBD.pdb"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "tmalign_output",
+            "type": "TEXT",
+            "description": "Execution output containing detailed alignment information."
+        },
+        {
+            "name": "tmscore",
+            "type": "PARAMETER",
+            "description": "The TM-score value representing the structural similarity between the aligned proteins."
+        }
+    ]
+}

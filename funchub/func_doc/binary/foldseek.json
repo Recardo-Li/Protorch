@@ -1,0 +1,21 @@
+{
+    "category_name": "binary",
+    "tool_name": "foldseek",
+    "tool_description": "Foldseek is a bioinformatics tool used to extract and analyze structural sequence data from protein structures.",
+    "required_parameters": [
+        {
+            "name": "pdb_path",
+            "type": "STRUCTURE",
+            "description": "Path to the PDB file containing the protein structure data.",
+            "example": "examples/pdb/diffab/3QHF_Fv.pdb"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "seq_dict",
+            "type": "PARAMETER",
+            "description": "Dictionary of extracted structural sequences by chain ID. Each entry contains a tuple with the primary sequence, structural sequence, and a combined annotated sequence."
+        }
+    ]
+}

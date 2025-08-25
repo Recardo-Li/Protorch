@@ -1,0 +1,30 @@
+example_output:
+  protein_alignment: result.aln
+clustalw2: bin/clustalw2
+document:
+  category_name: Sequence
+  tool_name: clustalw
+  tool_description: ClustalW is a widely used bioinformatics tool for multiple sequence
+    alignment of protein sequences. It aligns sequences to identify regions of similarity
+    that may indicate functional, structural, or evolutionary relationships among
+    the sequences.
+  required_parameters:
+  - name: sequence_path
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: A single protein sequence or a set of protein sequences to be aligned
+      using ClustalW. Saved in a FASTA file format.
+  optional_parameters: []
+  return_values:
+  - name: protein_alignment
+    type: PATH
+    detailed_type: CLUSTALW_ALN_PATH
+    description: The resulting multiple sequence alignment of the provided protein
+      sequences.
+  return_scores:
+  - name: results_num
+    description: How many results were searched by clustalw.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).
+  - name: alignment_score
+    description: The alignment score in ClustalW quantifies the similarity of aligned sequences, calculated using substitution matrices and gap penalties to measure the overall quality of the alignment.

@@ -1,0 +1,13 @@
+document:
+  category_name: chat
+  tool_name: chat
+  tool_description: "This tool is used in most cases. If you think you don't have to call any tool to obtain additional 
+                    information, or you have already obtained the final answer of the user's question, you must use 
+                    this tool to response to the user."
+  required_parameters: []
+  optional_parameters: []
+  return_values:
+    - name: response
+      type: TEXT
+      detailed_type: TEXT
+      description: The response to the user's question

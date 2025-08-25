@@ -1,0 +1,16 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+document:
+  - category_name: Files
+    tool_name: print_file
+    tool_description: This tool reads and outputs file content if it's a text file with under 10k lines.
+    required_parameters:
+      - name: file_path
+        type: PATH
+        detailed_type: FILE_PATH
+        description: Path to the target file for content reading.
+    optional_parameters: []
+    return_values:
+      - name: content
+        type: TEXT
+        detailed_type: LIMITED_FILE_CONTENT
+        description: File content (only for text files with ≤10,000 lines).

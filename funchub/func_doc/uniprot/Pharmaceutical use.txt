@@ -1,0 +1,8 @@
+This subsection of the 'Disease/Phenotypes and variants' section describes the use of a protein as a pharmaceutical drug. It indicates the name of the drug, the name of the firm that commercializes it and explains in a few words in which context the drug is used. In some cases, drugs that are under development are also described.
+
+Examples: P01275, P42166, P10845, P26441, O14543
+
+Related keyword: Pharmaceutical
+
+Related document
+Where can I buy protein X? Which company sells protein Y? Where can I buy strain Z?

@@ -1,0 +1,35 @@
+document:
+  category_name: Structure
+  tool_name: get_chain_sequence
+  tool_description: Extract the amino acid sequence for a specific chain ID from a PDB structure file. DO NOT use this tool to extract sequences from the generated backbone structure of rfdiffusion, as it only provides the backbone and not the complete amino acid sequence. 
+  required_parameters:
+  - name: pdb_file
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: Path to the PDB file containing the protein structure.
+  - name: chain_id
+    type: TEXT
+    detailed_type: CHAIN_ID
+    description: Chain ID to extract sequence from (e.g., 'A', 'B').
+  optional_parameters:
+  - name: output_format
+    type: TEXT
+    detailed_type: OUTPUT_FORMAT
+    description: Output format - "dict" (default), "fasta", or "sequence_only".
+    default: dict
+  return_values:
+  - name: chain_id
+    type: TEXT
+    detailed_type: CHAIN_ID
+    description: Chain ID from which sequence was extracted.
+  - name: sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: Amino acid sequence of the specified chain.
+  - name: length
+    type: INTEGER
+    detailed_type: PROTEIN_LENGTH
+    description: Number of amino acid residues in the chain.
+  return_scores:
+  - name: duration
+    description: Time spent processing and extracting the sequence (in seconds). 

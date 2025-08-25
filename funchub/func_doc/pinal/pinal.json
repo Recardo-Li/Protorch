@@ -1,0 +1,27 @@
+{
+    "category_name": "pinal",
+    "tool_name": "pinal",
+    "tool_description": "A tool for text-guided de novo protein design, enabling the generation of novel protein sequences based on textual descriptions. We only return a success status for you. The actual protein designs are provided in task manager.",
+    "required_parameters": [
+        {
+            "name": "input_text",
+            "type": "TEXT",
+            "description": "A textual input that provides the design guidance for the protein sequence. This text describes the desired function or characteristics of the target protein. The more detailed the input text, the more specific the generated protein designs will be.",
+            "example": "Catalysis is achieved through this protein's enzymatic function, facilitating the reaction: (S)-malate + NAD(+) = H(+) + NADH + oxaloacetate."
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "design_num",
+            "type": "PARAMETER",
+            "description": "The number of protein designs to generate based on the input guidance. If not specified, the default value is 5.",
+            "example": "5",
+            "default": "5"
+        }
+    ],
+    "return_values": {
+        "name": "status",
+        "type": "PARAMETER",
+        "description": "The success status of the tool execution."
+    }
+}

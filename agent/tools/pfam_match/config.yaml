@@ -1,0 +1,22 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+
+document:
+  category_name: Knowledge
+  tool_name: pfam_match
+  tool_description: This tool retrieves the pfam entry that matches the protein based on the input uniprot ID of the protein. The retrieved information includes the entry accession, entry name, entry type, start and end positions on the protein sequence. This tool is useful for researchers who need to access detailed information about a specific Pfam entry for further analysis on protein families and domains.
+  required_parameters:
+  - name: uniprot_id
+    type: UNIPROT_ID
+    detailed_type: UNIPROT_ID
+    description: The UniProt ID of the protein to be searched. For example, 'P00789'
+  optional_parameters: []
+  return_values:
+  - name: query_result
+    type: TEXT
+    detailed_type: TEXT
+    description: A list of dictionaries, each containing detailed information of the
+      matched Pfam entry, including entry accession, entry name, entry type, start
+      position, and end position.
+  return_scores:
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).

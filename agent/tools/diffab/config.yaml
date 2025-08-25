@@ -1,0 +1,135 @@
+example_output:
+  result_dir: diffab_result
+hdock: bin/hdock
+createpl: bin/createpl
+env_name: antibody
+script:
+  design: diffab/diffab_antigen_only.sh
+  optimize: diffab/diffab_antigen_antibody.sh
+document:
+- category_name: Design
+  tool_name: diffab_design
+  tool_description: This tool designs antibody structures based on the given antigen.
+    Optional inputs include an antibody template, optimization of antibody settings
+    and number of samples.
+  required_parameters:
+  - name: antigen_structure
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The path to the antigen PDB file.
+  optional_parameters:
+  - name: diffab_config
+    type: SELECTION
+    detailed_type: DIFFAB_TASK
+    description: 'codesign_single: Sample both the sequence and structure of one CDR;
+      codesign_multicdrs: Sample both the sequence and structure of all the CDRs simultaneously;
+      abopt_singlecdr: Optimize the sequence and structure of one CDR; fixbb: Sample
+      only the sequence of one CDR (fix-backbone sequence design); strpred: Sample
+      only the structure of one CDR (structure prediction).'
+    default: codesign_multicdrs
+    choices:
+    - abopt_singlecdr
+    - codesign_multicdrs
+    - codesign_single
+    - fixbb
+    - strpred
+  - name: antibody_template
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The path to the antibody template PDB file. Default(empty input) template is 3QHF_Fv.pdb.
+    default: ~
+  - name: decoys
+    type: INTEGER
+    detailed_type: DECOY_NUM
+    description: Number of samples when docking antigen-antibody with hdock.
+    default: 10
+  - name: num_samples
+    type: INTEGER
+    detailed_type: BATCH_SIZE
+    description: Number of samples taken at each prediction.
+    default: 10
+  - name: relax_distance
+    type: INTEGER
+    detailed_type: DISTANCE
+    description: This parameter defines the distance threshold (in Angstroms) from the antibody-antigen interface that will be included in the relaxation.
+    default: 6
+  - name: repeats
+    type: INTEGER
+    detailed_type: REPEATS
+    description: This determines how many relaxation cycles will be performed. 
+    default: 3
+  return_values:
+  - name: result_pdb
+    type: PDB
+    detailed_type: STRUCTURE
+    description: A relaxed antibody-antigen structure.
+  - name: binding_energy
+    type: FLOAT
+    detailed_type: METRIC
+    description: The calculated binding energy between the antibody and antigen.
+  - name: buried_sasa
+    type: FLOAT
+    detailed_type: METRIC
+    description: The buried solvent-accessible surface area (SASA) at the antibody-antigen interface.
+  - name: shape_complementarity
+    type: FLOAT
+    detailed_type: METRIC
+    description: The shape complementarity score for the antibody-antigen interface.
+
+- category_name: Design
+  tool_name: diffab_optimize
+  tool_description: This tool optimizes the variable region structures of the antibody
+    based on the given antibody-antigen complex.
+  required_parameters:
+  - name: antigen_antibody_structure
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The path to the antigen-antibody complex PDB file.
+  optional_parameters:
+  - name: diffab_config
+    type: SELECTION
+    detailed_type: DIFFAB_TASK
+    description: 'codesign_single: Sample both the sequence and structure of one CDR;
+      codesign_multicdrs: Sample both the sequence and structure of all the CDRs simultaneously;
+      abopt_singlecdr: Optimize the sequence and structure of one CDR; fixbb: Sample
+      only the sequence of one CDR (fix-backbone sequence design); strpred: Sample
+      only the structure of one CDR (structure prediction).'
+    default: codesign_multicdrs
+    choices:
+    - abopt_singlecdr
+    - codesign_multicdrs
+    - codesign_single
+    - fixbb
+    - strpred
+  - name: relax_distance
+    type: INTEGER
+    detailed_type: DISTANCE
+    description: This parameter defines the distance threshold (in Angstroms) from the antibody-antigen interface that will be included in the relaxation.
+    default: 6
+  - name: repeats
+    type: INTEGER
+    detailed_type: REPEATS
+    description: This determines how many relaxation cycles will be performed. 
+    default: 3
+  - name: num_samples
+    type: INTEGER
+    detailed_type: BATCH_SIZE
+    description: Number of samples taken at each prediction.
+    default: 10
+  return_values:
+  - name: result_pdb
+    type: PDB
+    detailed_type: STRUCTURE
+    description: A relaxed antibody-antigen structure.
+  - name: binding_energy
+    type: FLOAT
+    detailed_type: METRIC
+    description: The calculated binding energy between the antibody and antigen.
+  - name: buried_sasa
+    type: FLOAT
+    detailed_type: METRIC
+    description: The buried solvent-accessible surface area (SASA) at the antibody-antigen interface.
+  - name: shape_complementarity
+    type: FLOAT
+    detailed_type: METRIC
+    description: The shape complementarity score for the antibody-antigen interface.

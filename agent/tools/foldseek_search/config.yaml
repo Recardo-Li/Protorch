@@ -1,0 +1,50 @@
+bin: /home/public/bin/foldseek
+script: foldseek_search.sh
+default_database: dataset/pdb/pdb
+document:
+  category_name: Structure
+  tool_name: foldseek_search
+  tool_description: Foldseek Search is a bioinformatics tool used to search for structurally similar proteins in databases using protein structure comparisons.
+  required_parameters:
+  - name: query_pdb_path
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: Path to the query PDB file containing the protein structure to search for similar structures.
+  optional_parameters:
+  - name: database
+    type: SELECTION
+    choices:
+    - PDB
+    detailed_type: DATABASE_NAME
+    description: Database to search against. Currently only "PDB" database is supported for structure similarity searching.
+    default: PDB
+  - name: max_results
+    type: INTEGER
+    detailed_type: MAX_RESULTS_NUM
+    description: Maximum number of similar structures to return (default 100).
+    default: 100
+  - name: evalue_threshold
+    type: FLOAT
+    detailed_type: EVALUE_THRESHOLD
+    description: E-value threshold for filtering results, smaller values are more stringent (default 1e-3).
+    default: 1e-3
+  return_values:
+  - name: results_df_path
+    type: PATH
+    detailed_type: FOLDSEEK_TSV_PATH
+    description: Path to the TSV file containing all search results with detailed alignment information.
+  - name: top_target_id
+    type: TEXT
+    detailed_type: PDB_ID
+    description: The unique identifier (PDB ID) of the best-matching structure in the reference database.
+  return_scores:
+  - name: top_target_seqid
+    description: Sequence identity of the best-matching structure, indicating how similar the sequences are.
+  - name: top_target_evalue
+    description: E-value of the best-matching structure, indicating the statistical significance of the match. Expected number of random matches with similar score. Lower values (<0.001) indicate higher statistical significance.
+  - name: top_target_bitscore
+    description: Bitscore of the best-matching structure, a normalized score that indicates the quality of the alignment. Higher values indicate better alignments.
+  - name: total_hits
+    description: Total number of similar structures found.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds). 

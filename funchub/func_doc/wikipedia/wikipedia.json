@@ -1,0 +1,29 @@
+{
+    "category_name": "wikipedia",
+    "tool_name": "wikipedia",
+    "tool_description": "If you are provided with some biochemistry jargons or scientific terminologies, use this tool first. This tool allows users to search Wikipedia for articles based on a given query and returns a specified number of relevant results.",
+    "required_parameters": [
+        {
+            "name": "query",
+            "type": "TEXT",
+            "description": "The keywords that will be searched using Wikipedia.",
+            "example": "DNA"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "max_items",
+            "type": "PARAMETER",
+            "description": "The maximum number of results to retrieve from Wikipedia. The default value is 3, meaning the top 3 relevant search results will be returned.",
+            "default": "3",
+            "example": "3"
+        }
+    ],
+    "return_values": [
+        {
+            "name": "search_results",
+            "type": "PARAMETER",
+            "description": "A list of search results, each containing the article title, a brief summary of the article, and the corresponding Wikipedia URL."
+        }
+    ]
+}

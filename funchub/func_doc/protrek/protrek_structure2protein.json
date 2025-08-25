@@ -1,0 +1,30 @@
+{
+    "category_name": "protrek",
+    "tool_name": "protrek_structure2protein",
+    "tool_description": "Given a protein structure, this tool searches the protein sequence database to retrieve the most relevant protein sequences.",
+    "required_parameters": [
+        {
+            "name": "protein_structure",
+            "type": "STRUCTURE",
+            "description": "The structural description of the protein.",
+            "example": "examples/pdb/diffab/Omicron_RBD.pdb"
+        },
+        {
+            "name": "database",
+            "type": "SELECTION",
+            "description": "The specific database to search for the protein sequences.",
+            "choices": [
+                "Swiss-Prot"
+            ],
+            "example": "Swiss-Prot"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": "A string representing the amino acid sequence of the protein."
+        }
+    ]
+}

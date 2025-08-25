@@ -1,0 +1,19 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+document:
+  category_name: Structure
+  tool_name: extract_backbone
+  tool_description: This tool produces a backbone-only PDB file by retaining main chain atoms.
+  required_parameters:
+    - name: structure_file
+      type: PATH
+      detailed_type: STRUCTURE_PATH
+      description: Path to the input 3D structure file containing full protein structure.
+  optional_parameters: []
+  return_values:
+    - name: output_path
+      type: PATH
+      detailed_type: STRUCTURE_PATH
+      description: Path to the generated PDB file only with backbone atoms.
+  return_scores:
+  - name: duration
+    description: Time spent processing and extracting the backbone (in seconds).

@@ -1,0 +1,48 @@
+{
+    "category_name": "structure_prediction",
+    "tool_name": "alphafold2",
+    "tool_description": "This tool utilizes AlphaFold2 to accurately predict the three-dimensional structure of proteins from their amino acid sequences. AlphaFold2 excels in structure prediction by incorporating evolutionary information through multiple sequence alignments (MSA) and predicted residue-residue contact maps. It performs exceptionally well for proteins with homologous sequences, offering high accuracy in determining protein folds. AlphaFold2 is particularly effective for understanding the structural aspects of well-characterized proteins and their functional roles.",
+    "required_parameters": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": "Protein sequence to be predicted.",
+            "example": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQVVIDGETCLLDILDTAGQEEYSAMRDQYMRTGEGFLCVFAINNTKSFEDIHQYREQIKRVKDSDDVPMVLVGNKCDLAARTVESRQAQDLARSYGIPYIETSAKTRQGVEDAFYTLVREIRQHKLRKLNPPDESGPGCMSCKCVLS"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "msa_mode",
+            "type": "SELECTION",
+            "description": "Databases to use for creating the MSA. Default is UniRef30+Environmental. Single sequences can also be used without MSA, by setting its value to 'single_sequence'.",
+            "choices": ["mmseqs2_uniref_env", "mmseqs2_uniref","single_sequence","custom"],
+            "default": "mmseqs2_uniref_env",
+            "example": "mmseqs2_uniref_env"
+        },
+
+        {
+            "name": "template_mode",
+            "type": "SELECTION",
+            "description": "Specifies the use of template information. If None, no templates are used. If 'pdb100', templates will be detected from the PDB100 database on the Colab public server. If 'custom', user-uploaded templates will be used.",
+            "choices": ["None", "pdb100", "custom"],
+            "default": "None",
+            "example": "None"
+        },
+    
+        {
+            "name": "template_path",
+            "type": "PARAMETER",
+            "description": "Required if template_mode is set to 'custom'. This parameter should provide the directory with PDB or mmCIF files to provide as custom templates to the predictor.",
+            "default": "None",
+            "example": "None"
+        }
+
+    ],
+    "return_values": [
+        {
+            "name": "structure_results",
+            "type": "STRUCTURE",
+            "description": "The predicted structure of the protein, saved as a PDB file, along with the corresponding MSA information."
+        }
+    ]
+}

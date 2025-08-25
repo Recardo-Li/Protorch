@@ -1,0 +1,52 @@
+{
+    "category_name": "binary",
+    "tool_name": "blast",
+    "tool_description": "BLAST is a widely used bioinformatics tool for searching sequence databases. Given a protein or nucleotide sequence as input, it performs a BLAST search against a specified database to identify sequences that are similar or homologous to the query sequence. The tool sends the query to the NCBI BLAST server, waits for the results, and retrieves the most relevant matches, providing insights into potential functional, structural, or evolutionary relationships.",
+    "required_parameters": [
+        {
+            "name": "blast_program",
+            "type": "SELECTION",
+            "description": "The BLAST program to use. Common options include: megablast, blastn, blastp, rpsblast, blastx, tblastn, tblastx.",
+            "choices": [
+                "megablast",
+                "blastn",
+                "blastp",
+                "rpsblast",
+                "blastx",
+                "tblastn",
+                "tblastx"
+            ],
+            "example": "blastp"
+        },
+        {
+            "name": "blast_database",
+            "type": "SELECTION",
+            "description": "The specific database to search for the query sequence.",
+            "choices": [
+                "nr",
+                "swissprot",
+                "refseq_protein",
+                "refseq_rna",
+                "pdb",
+                "cdd"
+            ],
+            "example": "nr"
+        },
+        {
+            "name": "query_sequence",
+            "type": "SEQUENCE",
+            "description": "The file containing the sequence to search against the database. This can be a protein or nucleotide sequence file in FASTA format.",
+            "example": "examples/fasta/umol/7NB4.fasta"
+        }
+    ],
+    "optional_parameters": [
+    ],
+    "return_values": [
+        {
+            "name": "blast_results",
+            "type": "TEXT",
+            "description": "The BLAST results, including information about matching sequences, alignments, and statistical significance.",
+            "example": "Sequences matching your query are listed with E-values and other relevant data."
+        }
+    ]
+}

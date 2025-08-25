@@ -1,0 +1,98 @@
+{
+    "category_name": "protein_design",
+    "tool_name": "rf_diffusion_binder_design",
+    "tool_description": "Binder design involves creating novel amino acid sequences that will specifically bind to a target protein structure. The input typically includes the target PDB structure, the length of the binder, and the target chain or hotspots, and the output is a new protein structure predicted to effectively bind to the target structure.",
+    "required_parameters": [
+        {
+          "name": "contigs",
+          "type": "PARAMETER",
+          "description": "Defines the contiguous sequence segments for binder design. Use a ':' to define multiple contigs and a '/' to define multiple segments within a contig. Example: 'A:50' for a binder of length 50 to chain A of the defined PDB. Example: 'E6-155:70-100' for a binder of length 70 to 100 from residues 6 to 155 of chain E of the defined PDB.",
+          "example": "A:50"
+        },
+        {
+          "name": "protein_structure",
+          "type": "STRUCTURE",
+          "description": "The PDB (Protein Data Bank) identifier of the target protein structure used for binder design. It provides the 3D structure to which the binder will be diffused. Example: '4N5T'.",
+          "example": "4N5T"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "iterations",
+            "type": "PARAMETER",
+            "description": "Used to specify the number of iterations for the RF-diffusion.",
+            "default": "50",
+            "example": "50"
+        },
+        {
+            "name": "hotspot",
+            "type": "PARAMETER",
+            "description": "Specifies any hotspot regions that should be prioritized during the backbone generation process.",
+            "default": "",
+            "example": ""
+        },
+        {
+            "name": "visual",
+            "type": "PARAMETER",
+            "description": "The type of visualization output, which can be none, a static image, or an interactive display.",
+            "default": "image",
+            "example": "image"
+        },
+        {
+            "name": "num_designs",
+            "type": "PARAMETER",
+            "description": "Used to specify the number of generated protein backbone designs.",
+            "default": "1",
+            "example": "1"
+        },
+        {
+            "name": "symmetry",
+            "type": "PARAMETER",
+            "description": "Used to specify symmetry settings, such as automatic detection or cyclic symmetry.",
+            "default": "none",
+            "example": "none"
+        },
+        {
+            "name": "order",
+            "type": "PARAMETER",
+            "description": "Used to specify the order of symmetry.",
+            "default": "1",
+            "example": "1"
+        },
+        {
+            "name": "chains",
+            "type": "SEQUENCE",
+            "description": "Used to specify the protein chains to be processed.",
+            "default": "A",
+            "example": "A"
+        },
+        {
+            "name": "partial_T",
+            "type": "PARAMETER",
+            "description": "Used to specify the number of noising steps in the partial diffusion protocol.",
+            "default": "auto",
+            "example": "auto"
+        },
+        {
+            "name": "use_beta_model",
+            "type": "PARAMETER",
+            "description": "Used to select whether to use the Beta parameter model for better secondary structure element balance.",
+            "default": "False",
+            "example": "False"
+        },
+        {
+            "name": "add_potential",
+            "type": "PARAMETER",
+            "description": "Used to specify the potential to be added to the RF-diffusion.",
+            "default": "False",
+            "example": "False"
+        }
+    ],
+    "return_values": [
+        {
+            "name": "design",
+            "type": "STRUCTURE",
+            "description": "The generated protein backbone design(s) in PDB format."
+        }
+    ]
+}

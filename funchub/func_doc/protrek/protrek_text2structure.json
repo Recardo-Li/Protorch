@@ -1,0 +1,31 @@
+{
+    "category_name": "protrek",
+    "tool_name": "protrek_text2structure",
+    "tool_description": "Given a natural language text description of a protein, this tool searches for the most relevant structural information of the protein.",
+    "required_parameters": [
+        {
+            "name": "text",
+            "type": "TEXT",
+            "description": "The natural language text description of the protein.",
+            "example": "This protein is a transcription factor that regulates the expression of genes involved in cell cycle progression."
+        },
+        {
+            "name": "database",
+            "type": "SELECTION",
+            "description": "The specific database to search for protein structures.",
+            "choices": [
+                "Swiss-Prot"
+            ],
+            "example": "Swiss-Prot"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "protein_structure",
+            "type": "STRUCTURE",
+            "description": "The structure of the given protein.",
+            "example": "examples/pdb/diffab/Omicron_RBD.pdb"
+        }
+    ]
+}

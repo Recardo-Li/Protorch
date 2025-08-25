@@ -1,0 +1,31 @@
+{
+    "category_name": "protrek",
+    "tool_name": "protrek_structure2structure",
+    "tool_description": "Given a protein structure, this tool retrieves the most relevant similar protein structures.",
+    "required_parameters": [
+        {
+            "name": "protein_structure",
+            "type": "STRUCTURE",
+            "description": "The structural description of the protein.",
+            "example": "examples/pdb/diffab/Omicron_RBD.pdb"
+        },
+        {
+            "name": "database",
+            "type": "SELECTION",
+            "description": "The specific database to search for similar protein structures.",
+            "choices": [
+                "Swiss-Prot"
+            ],
+            "example": "Swiss-Prot"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "protein_structure",
+            "type": "STRUCTURE",
+            "description": "The structure of the given protein.",
+            "example": "examples/pdb/diffab/Omicron_RBD.pdb"
+        }
+    ]
+}

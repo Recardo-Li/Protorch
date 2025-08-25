@@ -1,0 +1,25 @@
+{
+    "category_name": "protein_chat",
+    "tool_name": "protein_chat_byid",
+    "tool_description": "Given a protein's uniprot id, this tool can answer questions related to this protein",
+    "required_parameters": [
+        {
+            "name": "question",
+            "type": "TEXT",
+            "description": "Question for the given protein",
+            "example": "What is the function of this protein"
+        },
+        {
+            "name": "uniprot_id",
+            "type": "TEXT",
+            "description": "The uniprot id of the given protein. If this is given and valid, we will use the sequence and structure from uniprot database",
+            "example": "P06213"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": {
+        "name": "answer",
+        "type": "PARAMETER",
+        "description": "The answer to the protein related question"
+    }
+}

@@ -1,0 +1,64 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+
+foldseek_path: bin/foldseek
+esmfold_path: modelhub/esmfold_v1
+
+document:
+- category_name: Knowledge
+  tool_name: evolla_chat_byid
+  tool_description: Given one protein's uniprot id, this tool can answer questions related
+    to this protein
+  required_parameters:
+  - name: question
+    type: TEXT
+    detailed_type: QUESTION
+    description: Question for the given protein
+  - name: uniprot_id
+    type: UNIPROT_ID
+    detailed_type: UNIPROT_ID
+    description: The uniprot id of the given protein. If this is given and valid,
+      we will use the sequence and structure from uniprot database
+  optional_parameters: []
+  return_values:
+  - name: answer
+    type: TEXT
+    detailed_type: TEXT
+    description: The answer to the protein related question
+- category_name: Knowledge
+  tool_name: evolla_chat_byseq
+  tool_description: Given one protein's amino acid sequence, this tool can answer questions
+    related to this protein
+  required_parameters:
+  - name: question
+    type: TEXT
+    detailed_type: QUESTION
+    description: Question for the given protein
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The amino acid sequence of the protein
+  optional_parameters: []
+  return_values:
+  - name: answer
+    type: TEXT
+    detailed_type: TEXT
+    description: The answer to the protein related question
+- category_name: Knowledge
+  tool_name: evolla_chat_bystruct
+  tool_description: Given one protein's structure, this tool can answer questions related
+    to this protein
+  required_parameters:
+  - name: question
+    type: TEXT
+    detailed_type: QUESTION
+    description: Question for the given protein
+  - name: protein_structure
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The structure of the given protein
+  optional_parameters: []
+  return_values:
+  - name: answer
+    type: TEXT
+    detailed_type: TEXT
+    description: The answer to the protein related question

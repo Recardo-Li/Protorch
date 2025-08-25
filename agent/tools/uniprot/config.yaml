@@ -1,0 +1,74 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+
+answers_template: uniprot/templates/text_template_new.json
+paragraph2sentence: uniprot/templates/paragraph_to_sentences_dict.json
+paraphrase: uniprot/templates/paraphrased_sentences.json
+
+document:
+- category_name: Knowledge
+  tool_name: uniprot_fetch_byid
+  tool_description:  Given a UniProt accession number or identifier, this tool retrieves protein sequence, structure and other subsections from the UniProt database. Analyze what type of information about the protein is requried and CAREFULLY select suitable subsections to get specific information about the protein.
+  required_parameters:
+  - name: uniprot_id
+    type: UNIPROT_ID
+    detailed_type: UNIPROT_ID
+    description: The Uniprot ID of the target protein sequence
+  optional_parameters:
+  - name: subsection
+    type: SELECTION
+    detailed_type: UNIPROT_SUBSECTION
+    description: The specific topic user wants to query about the protein.
+    choices:
+    - Domains
+    - Topology
+    - PTMs
+    - Function
+    - Disease/Biotech
+    - Genetics
+    default: Function
+  return_values:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The protein sequence of the target protein.
+  - name: protein_structure
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The protein structure of the target protein.
+  - name: subsection_info
+    type: TEXT
+    detailed_type: TEXT
+    description: Web query result of this subsection. This could be specific information
+      of this protein or an empty result.
+- category_name: Knowledge
+  tool_name: uniprot_query
+  tool_description: Given a protein related keyword or advanced-search phrase, this tool call the uniprot restful API to retrieve uniprot records of those proteins. More detailed information about the top related protein can be fetched using the Uniprot ID of the top protein sequence returned by the query, providing expert-level knowledge about those proteins.
+  required_parameters:
+  - name: keyword
+    type: TEXT
+    detailed_type: UNIPROT_KEYWORD
+    description: >
+      Protein name or general identifier to search for. This can be a specific protein name, a gene name, or a general term related to the protein of interest.
+  optional_parameters:
+  - name: all_results
+    type: BOOL
+    detailed_type: BOOL
+    description: If True, retrieves all results. If False, retrieves a limited number of results (default is 25).
+    default: False
+  return_values:
+  - name: top_id
+    type: UNIPROT_ID
+    detailed_type: UNIPROT_ID
+    description: The Uniprot ID of the top protein sequence returned by the query. This can be used to fetch detailed information about the protein.
+  - name: result_json
+    type: PATH
+    detailed_type: UNIPROT_JSON_PATH
+    description: The path to the file containing the results of the Uniprot query.
+  - name: result_fasta
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: The path to the file containing the protein sequences in FASTA format.
+  return_scores:
+  - name: record_count
+    description: The number of records returned by the Uniprot query. This indicates
+      how many protein sequences matched the search criteria.

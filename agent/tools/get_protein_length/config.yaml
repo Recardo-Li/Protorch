@@ -1,0 +1,29 @@
+document:
+  category_name: Structure
+  tool_name: get_protein_length
+  tool_description: Calculate the length (number of amino acid residues) of protein chains from a PDB structure file.
+  required_parameters:
+  - name: pdb_file
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: Path to the PDB file containing the protein structure.
+  optional_parameters:
+  - name: chain_id
+    type: TEXT
+    detailed_type: CHAIN_ID
+    description: Specific chain ID to analyze (e.g., 'A', 'B'). If not provided, analyzes all chains.
+    default: null
+  return_values:
+  - name: total_length
+    type: INTEGER
+    detailed_type: PROTEIN_LENGTH
+    description: Total length of all protein chains combined (when no specific chain_id provided).
+  - name: chain_count
+    type: INTEGER
+    detailed_type: CHAIN_COUNT
+    description: Number of protein chains found (when no specific chain_id provided).
+  return_scores:
+  - name: chain_lengths
+    description: Dictionary mapping chain IDs to their lengths (when no specific chain_id provided).
+  - name: duration
+    description: Time spent processing the PDB file (in seconds). 

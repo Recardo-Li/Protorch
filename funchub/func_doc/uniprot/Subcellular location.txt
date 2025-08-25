@@ -1,0 +1,23 @@
+This subsection provides information on the location and the topology of the mature protein in the cell.
+
+The information contained in this subsection uses a structured hierarchy of controlled vocabulary, except for the 'Note' which allows free text.
+Example: Q9ULX6
+
+The whole ontology is described, if known.
+Example: Q02630, P38182
+
+The subcellular location generally concerns the mature protein. When specific alternative products (isoforms or derived peptides for example) have a specific location, that is clearly indicated.
+Example: O43687
+
+Cell images from the SwissBioPics library of interactive biological images are included this section to enhance the representation of UniProt and Gene Ontology (GO) subcellular location annotations. SwissBioPics covers cell types from all kingdoms of life - ranging from muscle, neuronal and epithelial cells of animals, to the rods, cocci, clubs, spirals and other more exotic forms of bacteria and archaea.
+
+Related documents
+Controlled vocabulary of subcellular locations and membrane topologies and orientations (subcell.txt)
+
+Supporting data set: Locations
+
+SwissBioPics interactive biological images for visualizing subcellular location data
+
+Subcellular location section in the entry view
+
+Evidence

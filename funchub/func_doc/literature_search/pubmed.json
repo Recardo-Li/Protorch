@@ -1,0 +1,43 @@
+{
+    "category_name": "literature_search",
+    "tool_name": "pubmed",
+    "tool_description": "Help users find literatures/articles/papers on the pubmed server. The user needs to specify the keywords, start date, end date, and maximum number of items to be searched. This tool will help the user search literatures/articles/papers on the pubmed database and return the search results.",
+    "required_parameters": [
+        {
+            "name": "keywords",
+            "type": "TEXT",
+            "description": "A term to search within all articles on pubmed server.",
+            "example": "COVID-19"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "max_papers",
+            "type": "PARAMETER",
+            "description": "The maximum number of articles you want to get. Default is 25.",
+            "default": "25",
+            "example": "50"
+        },
+        {
+            "name": "start_date",
+            "type": "PARAMETER",
+            "description": "The date from which you want to start searching for articles. Use format \"yyyy-mm-dd\", e.g., \"2024-03-19\". Default(empty input) is 3 years ago from today. The start date must be the same or earlier than the end date.",
+            "default": "",
+            "example": ""
+        },
+        {
+            "name": "end_date",
+            "type": "PARAMETER",
+            "description": "The date up to which you want to search for articles. Use format \"yyyy-mm-dd\", e.g., \"2024-03-19\". Default(empty input) is today's date.",
+            "default": "",
+            "example": ""
+        }
+    ],
+    "return_values": [
+        {
+            "name": "search_result",
+            "type": "TEXT",
+            "description": "The results of the user's search for articles. Including the title, publication date, link and doi information of the articles."
+        }
+    ]
+}

@@ -1,0 +1,94 @@
+{
+    "category_name": "protrek",
+    "tool_name": "protrek_text2text",
+    "tool_description": "Given a natural language text description of a protein, this tool searches for the most relevant natural language descriptions of similar proteins.",
+    "required_parameters": [
+        {
+            "name": "text",
+            "type": "TEXT",
+            "description": "The natural language text description of the protein.",
+            "example": "This protein is a transcription factor that regulates the expression of genes involved in cell cycle progression."
+        },
+        {
+            "name": "database",
+            "type": "SELECTION",
+            "description": "The specific database to search for natural language descriptions of similar proteins.",
+            "choices": [
+                "Swiss-Prot"
+            ],
+            "example": "Swiss-Prot"
+        },
+        {
+            "name": "subsection",
+            "type": "SELECTION",
+            "description": "Section is a major organizational category that groups related information about a protein. Each section focuses on a specific aspect of the protein's biology, structure, function, or interactions. These sections make it easier to find relevant information about a protein in a structured format. The subsection of Uniprot to be queried. A subsection refers to a more detailed breakdown within a section. For example, within the \"Function\" section, there could be multiple subsections that give different types of functional information. Subsections are designed to present more granular, specific data under the broader category of the section.",
+            "choices": [
+                "Active site",
+                "Activity regulation",
+                "Allergenic properties",
+                "Binding site",
+                "Biophysicochemical properties",
+                "Biotechnology",
+                "Catalytic activity",
+                "Caution",
+                "Chain",
+                "Cofactor",
+                "Coiled coil",
+                "Compositional bias",
+                "Cross-link",
+                "DNA binding",
+                "Developmental stage",
+                "Disruption phenotype",
+                "Disulfide bond",
+                "Domain (non-positional annotation)",
+                "Domain",
+                "Function",
+                "GO annotation",
+                "Gene names",
+                "Glycosylation",
+                "Induction",
+                "Intramembrane",
+                "Involvement in disease",
+                "Lipidation",
+                "Miscellaneous",
+                "Modified residue",
+                "Motif",
+                "Mutagenesis",
+                "Natural variant",
+                "Organism",
+                "Pathway",
+                "Peptide",
+                "Pharmaceutical use",
+                "Polymorphism",
+                "Post-translational modification",
+                "Propeptide",
+                "Protein names",
+                "Proteomes",
+                "RNA Editing",
+                "Region",
+                "Repeat",
+                "Sequence similarities",
+                "Signal peptide",
+                "Site",
+                "Subcellular location",
+                "Subunit",
+                "Taxonomic lineage",
+                "Tissue specificity",
+                "Topological domain",
+                "Toxic dose",
+                "Transit peptide",
+                "Transmembrane",
+                "Virus host"
+            ],
+            "example": "Function"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "text",
+            "type": "TEXT",
+            "description": "The text description of the protein."
+        }
+    ]
+}

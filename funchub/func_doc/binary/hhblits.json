@@ -1,0 +1,36 @@
+{
+    "category_name": "binary",
+    "tool_name": "hhblits",
+    "tool_description": "HHblits is used to iteratively search a query sequence against a protein sequence database, generating high-quality multiple sequence alignments (MSAs) and a profile for downstream analysis.",
+    "required_parameters": [
+        {
+            "name": "query_sequence",
+            "type": "SEQUENCE",
+            "description": "A single protein sequence that will be used as the query for homology searches.",
+            "example": "GSHSMRYFYTAMSRPGRGEPRFIAVGYVDDTQFVRFDSDAASPRMAPRAPWIEQEGPEYWDRETQISKTNTQTYRESLRNLRGYYNQSEAGSHTLQRMYGCDVGPDGRLLRGHDQSAYDGKDYIALNEDLSSWTAADTAAQITQRKWEAAREAEQWRAYLEGLCVEWLRRYLENG"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "n_iter",
+            "type": "PARAMETER",
+            "description": "The number of search iterations to refine the multiple sequence alignment.",
+            "default": 2,
+            "example": 2
+        },
+        {
+            "name": "evalue",
+            "type": "PARAMETER",
+            "description": "The E-value threshold for including sequences in the MSA.",
+            "default": 1e-3,
+            "example": 1e-3
+        }
+    ],
+    "return_values": [
+        {
+            "name": "alignment_file",
+            "type": "SEQUENCE",
+            "description": "A multiple sequence alignment (MSA) file of homologous sequences identified during the search."
+        }
+    ]
+}

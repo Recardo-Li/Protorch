@@ -1,0 +1,24 @@
+{
+    "category_name": "pfam",
+    "tool_name": "pfam_match",
+    "tool_description": "This tool retrieves the pfam entry that matches the protein based on the input uniprot ID of the protein. The retrieved information includes the entry accession, entry name, entry type, start and end positions on the protein sequence.",
+    "required_parameters": [
+        {
+            "name": "uniprot_id",
+            "type": "TEXT",
+            "description": "The UniProt ID of the protein to be searched. For example, 'P00789'",
+            "example": "P00789"
+        }
+
+    ],
+    "optional_parameters": [
+
+    ],
+    "return_values": [
+        {
+            "name": "query_result",
+            "type": "TEXT",
+            "description": "A list of dictionaries, each containing detailed information of the matched Pfam entry, including entry accession, entry name, entry type, start position, and end position."
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "category_name": "protrek",
+    "tool_name": "protrek_protein2structure",
+    "tool_description": "Given a protein sequence, this tool searches for the most relevant structure of the protein.",
+    "required_parameters": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": "A string representing the amino acid sequence of the protein.",
+            "example": "MTEITAAMVKELRESTGAGMMDCKNALSETNGDFDKAVQLLREKGLGKAAKKADRLAAEG"
+        },
+        {
+            "name": "database",
+            "type": "SELECTION",
+            "description": "The specific database to search for the protein sequences.",
+            "choices": [
+                "Swiss-Prot"
+            ],
+            "example": "Swiss-Prot"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "protein_structure",
+            "type": "STRUCTURE",
+            "description": "The relevant protein structure."
+        }
+    ]
+}

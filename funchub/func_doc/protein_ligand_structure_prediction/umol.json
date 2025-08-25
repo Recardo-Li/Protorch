@@ -1,0 +1,43 @@
+{
+    "category_name": "protein_ligand_structure_prediction",
+    "tool_name": "umol",
+    "tool_description": "This tool predicts the structure of protein-ligand complexes from sequence information.",
+    "required_parameters": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": "A string representing the amino acid sequence of the protein.",
+            "example": "EIQLQQSGPELVKPGASVKISCKASGYSFTDYIMLWVKQSHGKSLEWIGNINPYYGSTSYNLKFKGKATLTVDKSSSTAYMQLNSLTSEDSAVYYCARKNYYGSSLDYWGQGTTLTVS"
+        },
+        {
+            "name": "ligand_sequence",
+            "type": "MOLECULE",
+            "description": "A SMILES(simplified molecular input line entry system) string representing the sequence of the ligand.",
+            "example": "CCc1sc2ncnc(N[C@H](Cc3ccccc3)C(=O)O)c2c1-c1cccc(Cl)c1C"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "protein_pocket",
+            "type": "PARAMETER",
+            "description": "The location of protein pockets(string split by comma, like 10, 11, 12, 15).",
+            "example": "50,51,53,54,55,56,57,58,59,60,61,62,64,65,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,92,93,94,95,96,97,98,99,100,101,103,104,124,127,128",
+            "default": "NONE"
+        },
+        {
+            "name": "num_recycles",
+            "type": "PARAMETER",
+            "description": "Number of recycles to use in the prediction.",
+            "example": 3,
+            "default": 3
+        }
+        
+    ],
+    "return_values": [
+        {
+            "name": "complex_structure",
+            "type": "STRUCTURE",
+            "description": "The predicted 3D structure of the protein-ligand complex saved as a PDB file."
+        }
+    ]
+}

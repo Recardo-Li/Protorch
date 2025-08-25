@@ -1,0 +1,42 @@
+{
+    "category_name": "binary",
+    "tool_name": "hhfilter",
+    "tool_description": "HHfilter processes multiple sequence alignments (MSA) to filter out redundant sequences based on sequence identity, coverage, and other criteria, producing a refined MSA.",
+    "required_parameters": [
+        {
+            "name": "input_msa",
+            "type": "SEQUENCE",
+            "description": "The input multiple sequence alignment (MSA) file, typically in A3M format, to be filtered."
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "id",
+            "type": "PARAMETER",
+            "description": "The maximum pairwise sequence identity allowed between sequences in the MSA.",
+            "default": 90,
+            "example": 70
+        },
+        {
+            "name": "cov",
+            "type": "PARAMETER",
+            "description": "The minimum coverage of sequences compared to the query sequence, expressed as a percentage.",
+            "default": 50,
+            "example": 80
+        },
+        {
+            "name": "diff",
+            "type": "PARAMETER",
+            "description": "The maximum allowable length difference between the longest and shortest sequences in the MSA.",
+            "default": 1000,
+            "example": 200
+        }
+    ],
+    "return_values": [
+        {
+            "name": "filtered_msa",
+            "type": "SEQUENCE",
+            "description": "The output filtered MSA file in A3M format, containing sequences that meet the specified filtering criteria."
+        }
+    ]
+}

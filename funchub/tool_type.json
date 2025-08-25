@@ -1,0 +1,106 @@
+{
+    "Function": {
+        "description": "If you are asked to do some prediction task, use these tools. These tools are based on the ProteinLLM model, which is a large language model trained on protein sequences. And you can use the pretrained model to do abundant downstream tasks. The tasks include regression, mutation, pair regression, classification, token classification, and pair classification on specific biomedical tasks, such as stability prediction and fitness prediction. Also, you can finetune your own model to proceed a new task if you have enough data.",
+        "tools": [
+            "saprot_regression",
+            "saprot_mutation",
+            "saprot_pair_regression",
+            "saprot_pair_classification",
+            "saprot_classification",
+            "saprot_token_classification",
+            "saprot_pair_classification",
+            "saprot_tune_regression",
+            "saprot_tune_pair_regression",
+            "saprot_tune_classification",
+            "saprot_tune_token_classification",
+            "saprot_tune_pair_classification",
+            "saprot_inference"
+        ]
+    },
+    "Structure": {
+        "description": "If you are asked to predict a protein structure according to its sequence, use these tools.",
+        "tools": [
+            "alphafold2",
+            "esmfold",
+            "foldseek",
+            "tmalign"
+        ]
+    },
+    "Design": {
+        "description": "If you are asked to design a protein, use these tools. These tools are based on the Rosetta software suite, which is a powerful software suite for protein structure prediction and protein design. And you can use the pretrained model to do abundant specific design tasks. The tasks include binder design, conditional fold generation, motif scaffolding, partial diffusion, unconditional protein design, and sequence design.",
+        "tools": [
+            "rf_diffusion_binder_design",
+            "rf_diffusion_motif_scaffolding",
+            "rf_diffusion_partial_diffusion",
+            "rf_diffusion_unconditional_protein_design",
+            "rf_diffusion_conditional_fold_generation",
+            "proteinmpnn",
+            "pinal",
+            "deepab",
+            "diffab_antigen_antibody",
+            "diffab_antigen_only",
+            "umol"
+        ]
+    },
+    "Database": {
+        "description": "If you are asked to do some protein related knowledge tasks, such as protein function prediction, protein family prediction, and protein structure prediction, use these tools.",
+        "tools": [
+            "uniprot_fetch_sequence",
+            "uniprot_fetch_structure",
+            "uniprot_fetch_subsection"
+        ]
+    },
+    "Knowledge": {
+        "description": "If you are asked to do some protein related knowledge tasks, such as protein function prediction, protein family prediction, and protein structure prediction, use these tools.",
+        "tools": [
+            "wikipedia",
+            "pfam_entry",
+            "pfam_match",
+            "biorxiv",
+            "pubmed"
+        ]
+    },
+    "Sequence": {
+        "description": "If you are asked to search for some protein related information, use these tools. They include searching for protein sequences, protein structures, protein functions, protein families, protein articles, and protein papers, and also some basic protein related concepts.",
+        "tools": [
+            "blast",
+            "mmseqs_cluster",
+            "mmseqs_group",
+            "mmseqs_search",
+            "hhsearch",
+            "hhfilter",
+            "hhblits",
+            "hhmake",
+            "hmm_search",
+            "clustalw",
+            "hhalign"
+        ]
+    },
+    "Multimodal": {
+        "description": "If you are asked to search for some protein multimodal related information, use these tools. They include searching for protein multimodal sequences, protein multimodal structures, protein multimodal functions, protein multimodal families, protein multimodal articles, and protein multimodal papers, and also some basic protein multimodal related concepts.",
+        "tools": [
+            "protrek_protein2text",
+            "protrek_text2protein",
+            "protrek_text2structure",
+            "protrek_protein2structure",
+            "protrek_structure2protein",
+            "protrek_structure2text",
+            "protrek_protein2protein",
+            "protrek_structure2structure",
+            "protrek_text2text",
+            "protein_chat_byid",
+            "protein_chat_byseq",
+            "protein_chat_bystruc"
+        ]
+    },
+    "Basic": {
+        "description": "These are basic utilities to smooth your work.",
+        "tools": [
+            "ChatAction",
+            "PythonInterpreter",
+            "FastaOperator.save",
+            "FastaOperator.load",
+            "StructureOperator.visualize"
+        ]
+    }
+}

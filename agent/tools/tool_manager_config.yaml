@@ -1,0 +1,196 @@
+tools: [
+    alphafold2.caller,
+    # biorxiv.caller,
+    blast.caller,
+    # build_dataset.caller,
+    clustalw.caller,
+    chat.caller,
+    deepab.caller,
+    diffab.design_caller,
+    diffab.optimize_caller,
+    esmfold.caller,
+    # evolla.id_caller,
+    # evolla.seq_caller,
+    # evolla.struct_caller,
+    fasta2seq.caller,
+    foldseek.caller,
+    foldseek_search.caller,
+    get_protein_length.caller,
+    extract_peptide.caller,
+    get_chain_sequence.caller,
+    hmmer.hmmbuild_caller,
+    hmmer.hmmsearch_caller,
+    hmmer.hmmscan_caller,
+    hhsuite.hhalign_hmm_caller,
+    hhsuite.hhalign_msa_caller,
+    hhsuite.hhblits_caller,
+    hhsuite.hhfilter_caller,
+    hhsuite.hhmake_caller,
+    hhsuite.hhsearch_caller,
+    interproscan.caller,
+    mmseqs_cluster.caller,
+    mmseqs_msa.caller,
+    mmseqs_search.caller,
+    pdb2seq.caller,
+    pdb_entry.caller,
+    pfam_entry.caller,
+    pfam_match.caller,
+    pinal.caller,
+    proteinmpnn.caller,
+    protrek.protein2protein_caller,
+    protrek.protein2structure_caller,
+    protrek.protein2text_caller,
+    protrek.structure2protein_caller,
+    protrek.structure2structure_caller,
+    protrek.structure2text_caller,
+    protrek.text2protein_caller,
+    protrek.text2structure_caller,
+    # protrek.text2text_caller,
+    pubmed.caller,
+    rfdiffusion.binder_caller,
+    rfdiffusion.motif_caller,
+    rfdiffusion.partial_caller,
+    rfdiffusion.unconditional_caller,
+    # saprot_task.classification_caller,
+    saprot_task.inference_classification_caller,
+    saprot_task.inference_regression_caller,
+    saprot_task.inference_token_classification_caller,
+    saprot_task.mutation_bypos_caller,
+    saprot_task.mutation_byinfo_caller,
+    # saprot_task.pair_classification_caller,
+    # saprot_task.pair_regression_caller,
+    # saprot_task.pair_inference_classification_caller,
+    # saprot_task.pair_inference_regression_caller,
+    # saprot_task.regression_caller,
+    # saprot_task.token_classification_caller,
+    saprot_tune.classification_caller,
+    saprot_tune.pair_classification_caller,
+    saprot_tune.pair_regression_caller,
+    saprot_tune.regression_caller,
+    saprot_tune.token_classification_caller,
+    build_dataset.caller,
+    seq2fasta.caller,
+    TMalign.caller,
+    umol.caller,
+    uniprot.fetch_byid_caller,
+    uniprot.query_caller,
+    wikipedia.caller,
+    extract_backbone.caller,
+]
+
+relationship:
+  Design:
+  - pinal:
+      priority: The most useful tool for protein sequence design. When using this tool, make the input text as detailed as possible. The input functional descriptions can become richer by using tools such as wikipedia.
+      usually_after:
+      - wikipedia
+      - uniprot_fetch_byid
+      - evolla_chat_byid
+      - evolla_chat_byseq
+      - evolla_chat_bystruct
+      - protrek_protein2text
+      - protrek_structure2text
+      usually_before:
+      - alphafold2
+      - esmfold
+  - rfdiffusion:
+      priority: Useful protein design tool without any special requirements. When lacking information, use this tool.
+      usually_after: ~
+      usually_before:
+      - proteinmpnn
+      - foldseek
+  - rfdiffusion_xxx:
+      priority: Often used for protein design with specific and parameterized conditions(such as length) related to some known protein structures.
+      usually_after:
+      - uniprot_fetch_structure
+      usually_before:
+      - proteinmpnn
+      - foldseek
+  - proteinmpnn:
+      priority: Useful protein sequence design tool given a specific protein backbone structure.
+      usually_after:
+      - rfdiffusion
+      - rfdiffusion_xxx
+      usually_before:
+      - alphafold2
+      - esmfold
+  - diffab_design:
+      priority: Specialized tool for antibody design. Only used when the user specifies the antigen and requires to design a new antibody.
+      usually_after: ~
+      usually_before:
+      - diffab_optimize
+  - diffab_optimize:
+      priority: Specialized tool for antibody optimization. Only used after the diffab_design tool.
+      usually_after:
+      - diffab_design
+      usually_before:
+      - deepab
+
+  Function:
+  - saprot_mutation_xxx:
+      priority: Mutation prediction tool given known protein sequence or structure and mutational sites. The sites can be specified in the input or searched by other tools.
+      usually_after:
+      - uniprot_fetch_byid
+      - uniprot_fetch_structure
+      - uniprot_fetch_sequence
+      - evolla_chat_byid
+      - evolla_chat_byseq
+      - evolla_chat_bystruct
+      usually_before: ~
+  - saprot_tune_xxx:
+      priority: Training tool given dataset composed of protein sequences/structures and their corresponding labels.
+      usually_after: ~
+      usually_before: saprot_tuned_xxx
+  - saprot_tuned_xxx:
+      priority: Inference tool given a trained model and a protein sequence/structure.
+      usually_after: saprot_tune_xxx
+      usually_before: ~
+
+  Knowledge:
+  - uniprot_query:
+      priority: Useful tool for getting protein subsequence with some specific conditions or keywords
+      usually_after: ~
+      usually_before:
+      - pinal
+      - saprot_mutation_xxx
+      - protrek_text2protein
+      - protrek_text2structure
+  - uniprot_fetch_byid:
+      priority: Useful tool for getting protein subsequence given uniprot ID. Only used when the uniprot ID is known.
+      usually_after: ~
+      usually_before:
+      - pinal
+      - saprot_mutation_xxx
+      - protrek_text2protein
+      - protrek_text2structure
+
+  - biorxiv or pubmed:
+      priority: Useful tool for literature search. When using this tool, make the input text as detailed as possible.
+      usually_after:
+      - uniprot_fetch_byid
+      - protrek_protein2text
+      - protrek_structure2text
+      - evolla_chat_byid
+      - evolla_chat_byseq
+      - evolla_chat_bystruct
+      usually_before: ~
+  - pfam_entry:
+      priority: Useful tool for getting protein family information given pfam ID. Only used when the pfam ID is known.
+      usually_after: ~
+      usually_before:
+      - pinal
+      - saprot_mutation_xxx
+      - protrek_text2protein
+      - protrek_text2structure
+  - pfam_match:
+      priority: Useful tool for getting protein family information given uniprot ID. Only used when the uniprot ID is known.
+      usually_after: ~
+      usually_before:
+      - pinal
+      - saprot_mutation_xxx
+      - protrek_text2protein
+      - protrek_text2structure
+
+
+embedding_model_path: modelhub/intfloat/multilingual-e5-large-instruct
+# embedding_model_path: huggingface/Retriever/multi-qa-mpnet-base-dot-v1

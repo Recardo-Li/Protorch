@@ -1,0 +1,37 @@
+example_output:
+  structure_results: af2_predicted_structure.pdb
+document:
+  category_name: Structure
+  tool_name: alphafold2
+  tool_description: This tool utilizes AlphaFold2 to accurately predict the three-dimensional structure of proteins from their amino acid sequences. AlphaFold2 excels in structure prediction by incorporating evolutionary information through multiple sequence alignments (MSA) and predicted residue-residue contact maps. It performs exceptionally well for proteins with homologous sequences, offering high accuracy in determining protein folds.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: Protein sequence to be predicted.
+  optional_parameters:
+  - name: msa_mode
+    type: SELECTION
+    detailed_type: MSA_DATABASE
+    description: Databases to use for creating the MSA. Default is UniRef30+Environmental.
+      Single sequences can also be used without MSA, by setting its value to 'single_sequence'.
+    choices:
+    - mmseqs2_uniref_env
+    - mmseqs2_uniref
+    - single_sequence
+    - custom
+    default: mmseqs2_uniref_env
+    example: mmseqs2_uniref_env
+  return_values:
+  - name: structure_results
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The predicted structure of the protein, saved as a PDB file, along
+      with the corresponding MSA information.
+  return_scores:
+  - name: avg_plddt
+    description: avg_plddt (Average Predicted Local Distance Difference Test), represents the average confidence score (0-100) for local structure accuracy across all residues, with higher values indicating more reliable overall backbone predictions.
+  - name: max_pae
+    description: max_pae (Maximum Predicted Aligned Error), estimates the highest expected positional error between any residue pair after structural alignment, reflecting the most uncertain region in the predicted model.
+  - name: ptm
+    description: ptm (Predicted TM-score), predicts the global structural similarity between the predicted and experimental structures, with scores above 0.5 suggesting plausible overall topology despite potential local errors.

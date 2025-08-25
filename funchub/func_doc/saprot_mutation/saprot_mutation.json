@@ -1,0 +1,35 @@
+{
+    "category_name": "saprot_mutation",
+    "tool_name": "saprot_mutation",
+    "tool_description": "Predicts the mutational effect score of a given mutation on a wild type sequence.",
+    "required_parameters": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": "The wild type sequence",
+            "example": "MTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQVVIDGETCLLDILDTAGQEEYSAMRDQYMRTGEGFLCVFAINNTKSFEDIHQYREQIKRVKDSDDVPMVLVGNKCDLAARTVESRQAQDLARSYGIPYIETSAKTRQGVEDAFYTLVREIRQHKLRKLNPPDESGPGCMNCKCVIS"
+        },
+        {
+            "name": "mut_position",
+            "type": "PARAMETER",
+            "description": "The position of this mutation. This should be a INT within the range of the sequence length, starting from 0",
+            "example": "0"
+        },
+        {
+            "name": "mut_info",
+            "type": "PARAMETER",
+            "description": "The mutation information in the format of \"A123B\", where A is the original amino acid, 123 is the position and B is the mutated amino acid. If multiple mutations are provided, they should be separated by colon, e.g. \"A123B:C124D\".",
+            "example": "A123B"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "effect_score",
+            "type": "PREDICTION",
+            "description": "The predicted mutational effect score of the specific mutant or position"
+        }
+    ]
+}
+
+

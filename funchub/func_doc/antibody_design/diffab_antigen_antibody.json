@@ -1,0 +1,37 @@
+{
+    "category_name": "antibody_design",
+    "tool_name": "diffab_antigen_antibody",
+    "tool_description": "This tool optimizes the variable region structures of the antibody based on the given antibody-antigen complex.",
+    "required_parameters": [
+        {
+            "name": "antigen_antibody_structure",
+            "type": "STRUCTURE",
+            "description": "The path to the antigen-antibody complex PDB file.",
+            "example": "examples/pdb/diffab/7DK2_AB_C.pdb"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "diffab_config",
+            "type": "SELECTION",
+            "description": "codesign_single: Sample both the sequence and structure of one CDR; codesign_multicdrs: Sample both the sequence and structure of all the CDRs simultaneously; abopt_singlecdr: Optimize the sequence and structure of one CDR; fixbb: Sample only the sequence of one CDR (fix-backbone sequence design); strpred: Sample only the structure of one CDR (structure prediction).",
+            "default": "codesign_multicdrs",
+            "choices":["abopt_singlecdr", "codesign_multicdrs", "codesign_single", "fixbb", "strpred"],
+            "example": "codesign_single"
+        },
+        {
+            "name": "num_samples",
+            "type": "PARAMETER",
+            "description": "Number of samples taken at each prediction.",
+            "default": 10,
+            "example": 10
+        }
+    ],
+    "return_values": [
+        {
+            "name": "complex_structure",
+            "type": "STRUCTURE",
+            "description": "The designed and docked 3D structure of the antibody-antigen complex saved as a PDB file."
+        }
+    ]
+}

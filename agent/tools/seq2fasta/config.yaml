@@ -1,0 +1,28 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+
+document:
+  category_name: Sequence
+  tool_name: seq2fasta
+  tool_description: This tool converts a protein sequence into a FASTA format. The FASTA
+    format is a text-based format for representing nucleotide or peptide sequences, where
+    each sequence is preceded by a header line that starts with a ">" character. This
+    tool is useful for researchers who need to prepare protein sequences for various
+    bioinformatics applications, such as sequence alignment, database searching, and
+    phylogenetic analysis.
+  required_parameters:
+  - name: protein_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The protein sequence to be converted into FASTA format.
+  optional_parameters:
+  - name: header
+    type: TEXT
+    detailed_type: FASTA_HEADER
+    description: The header line for the FASTA file. This line can include additional information about the sequence, such as the protein name,
+      source organism, or any other relevant details.
+    default: ">protein_sequence"
+  return_values:
+  - name: fasta_file
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: The protein sequence in FASTA format.

@@ -1,0 +1,42 @@
+{
+    "category_name": "antibody_design",
+    "tool_name": "deepab",
+    "tool_description": "Generate an antibody structure prediction from an Fv sequence (heavy chain and light chain).",
+    "required_parameters": [
+        {
+            "name": "heavy_chain_sequence",
+            "type": "SEQUENCE",
+            "description": "The amino acid sequence of the antibody's heavy chain.",
+            "example": "EIQLQQSGPELVKPGASVKISCKASGYSFTDYIMLWVKQSHGKSLEWIGNINPYYGSTSYNLKFKGKATLTVDKSSSTAYMQLNSLTSEDSAVYYCARKNYYGSSLDYWGQGTTLTVS"
+        },
+        {
+            "name": "light_chain_sequence",
+            "type": "SEQUENCE",
+            "description": "The amino acid sequence of the antibody's light chain.",
+            "example": "DVVMTQTPFSLPVSLGDQASISCRSSQSLVHSNGNTYLHWYLQKPGQSPKLLIYKVSNRFSGVPDRFSGSGSGTDFTLKISRVEAEDLGVYFCSQSTHVPYTFGGGTKLEIK"
+        }
+    ],
+    "optional_parameters": [
+        {
+            "name": "decoys",
+            "type": "PARAMETER",
+            "description": "Number of decoys to create. The lowest energy decoy will be selected as final predicted structure.",
+            "default": 5,
+            "example": 3
+        },
+        {
+            "name": "renumber",
+            "type": "PARAMETER",
+            "description": "Convert final predicted structure to Chothia format using AbNum. This allows for easier comparison of antibody structures and more accurate identification of key functional regions.",
+            "default": true,
+            "example": false
+        }
+    ],
+    "return_values": [
+        {
+            "name": "antibody_structure",
+            "type": "STRUCTURE",
+            "description": "The designed 3D structure of the antibody saved as a PDB file."
+        }
+    ]
+}

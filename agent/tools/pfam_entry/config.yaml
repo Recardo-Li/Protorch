@@ -1,0 +1,35 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+
+document:
+  category_name: Knowledge
+  tool_name: pfam_entry
+  tool_description: This tool retrieves detailed information about a specific entry in the Pfam database given its entry accession ID. The information includes the entry name, type, description, and Wikipedia search information. This tool is useful for researchers who need to access detailed information about a specific Pfam entry for further analysis on protein families and domains.
+  required_parameters:
+  - name: family_id
+    type: PFAM_ID
+    detailed_type: PFAM_ID
+    description: The accession ID of the Pfam entry to be searched. This ID typically
+      starts with 'PF' followed by five digits, for example, 'PF00001'
+  optional_parameters: []
+  return_values:
+  - name: name
+    type: TEXT
+    detailed_type: PFAM_NAME
+    description: The name of the Pfam entry.
+  - name: type
+    type: TEXT
+    detailed_type: PFAM_TYPE
+    description: The type of the Pfam entry, such as 'domain', 'family', etc.
+  - name: description
+    type: TEXT
+    detailed_type: TEXT
+    description: A detailed description of the Pfam entry, providing information about
+      the protein family or domain.
+  - name: wikipedia_search
+    type: TEXT
+    detailed_type: TEXT
+    description: A search query for Wikipedia related to the Pfam entry, which can  
+      be used to find more information about the protein family or domain.
+  return_scores:
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).

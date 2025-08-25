@@ -1,0 +1,20 @@
+mode: abopt
+model:
+  checkpoint: huggingface/DiffAb/DiffAb/codesign_single.pt
+
+sampling:
+  seed: 2022
+  sample_structure: true
+  sample_sequence: true
+  cdrs:
+    - H_CDR3
+  num_samples: 10
+  optimize_steps:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+    - 32
+    - 64
+

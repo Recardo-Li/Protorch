@@ -1,0 +1,17 @@
+This subsection of the 'Sequence' section provides information relevant to all types of RNA editing events (conversion, insertion, deletion of nucleotides) that lead to one or more amino acid changes compared to the translation of the non-edited RNA version.
+
+For RNA editing leading to conversion, we list the positions of the edited codons in the order of appearance in the protein sequence.
+
+Optional free text information may be provided to convey more information relevant to the RNA editing process or to the effect of the edition on the protein function.
+
+Examples: Q31796, Q85FL3, P04114
+
+When the mRNA sequence is fully edited, the canonical protein sequence displayed by default in the entry corresponds to the translation of the edited mRNA. For partially edited mRNAs, the translation is that of the genomic DNA and the amino acid changes are listed in the 'Natural variant' subsection.
+Example: P28335
+
+For RNA editing leading to insertion or deletion, the information is provided, but not described precisely as they result in major sequence changes.
+Example: Q07434
+
+We do not describe silent editing events.
+
+Related keyword: RNA editing

@@ -1,0 +1,28 @@
+This subsection of the 'Family and Domains' section describes a short (usually not more than 20 amino acids) conserved sequence motif of biological significance.
+
+Specific sequence motifs usually mediate a common function, such as protein-binding or targeting to a particular subcellular location, in a variety of proteins.
+
+Due to their short length and high level of sequence variability most motifs cannot be reliably predicted by computational means. Therefore we only annotate putative motifs when there is experimental evidence that the motif is functionally important or the presence of the putative motif is consistent with the function of the protein.
+Examples: Q9FFX4, Q8K3W3
+
+Some examples of specific motifs
+Nuclear localization signals are characterized by a high content of basic residues. They are highly degenerate and are annotated only when there is experimental evidence demonstrating their targeting function.
+Example: P54254
+
+C-terminal microbody targeting motifs are annotated in proteins that are known to be targeted to microbodies.
+Example: Q8HYL8
+
+The C-terminal motif that prevents secretion from the endoplasmic reticulum is annotated in proteins that are known to act in the endoplasmic reticulum or Golgi (such as glycosyltransferases).
+Example: O45293
+
+Certain motifs are specific for a particular family of proteins and are annotated when found in the appropriate family. For example, the DEXX motifs (DEAH, DEAD, DECH, etc.) are typical of helicases.
+Example: Q60452
+
+LXXLL motifs, which are essential for interaction with nuclear receptors, are only annotated in proteins known to participate in such interactions.
+Example: Q9Y6Q9
+
+See also
+Domain
+Region
+Repeat
+Zinc finger

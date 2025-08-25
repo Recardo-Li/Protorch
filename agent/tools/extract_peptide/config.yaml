@@ -1,0 +1,47 @@
+document:
+  category_name: Structure
+  tool_name: extract_peptide
+  tool_description: >-
+    Extracts a specific structural region, such as a functional domain or motif, 
+    from a protein structure. The extraction is defined by a start and end residue 
+    range, resulting in a new PDB file containing only the isolated fragment.
+  required_parameters:
+  - name: pdb_file
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: Path to the PDB file containing the protein structure.
+  - name: start_residue
+    type: INTEGER
+    detailed_type: AA_POSITION
+    description: Starting residue number (inclusive) for peptide extraction.
+  - name: end_residue
+    type: INTEGER
+    detailed_type: AA_POSITION
+    description: Ending residue number (inclusive) for peptide extraction.
+  optional_parameters:
+  - name: chain_id
+    type: TEXT
+    detailed_type: CHAIN_ID
+    description: Chain ID to extract from (default "A").
+    default: A
+  - name: output_filename
+    type: TEXT
+    detailed_type: TEXT
+    description: Name for the output PDB file. If not provided, auto-generated based on input and coordinates.
+    default: null
+  return_values:
+  - name: peptide_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: Amino acid sequence of the extracted peptide.
+  - name: chain_id
+    type: TEXT
+    detailed_type: CHAIN_ID
+    description: Chain ID from which peptide was extracted.
+  - name: output_file
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: Full path to the output PDB file containing the extracted peptide.
+  return_scores:
+  - name: duration
+    description: Time spent processing and extracting the peptide (in seconds). 

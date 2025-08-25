@@ -1,0 +1,40 @@
+example_output:
+  antibody_structure: pred_antibody.pdb
+python: /home/public/miniconda3/envs/antibody/bin/python
+model_dir: modelhub/DeepAb/ensemble_abresnet
+
+document:
+  category_name: Structure
+  tool_name: deepab
+  tool_description: Predict the structure of an antibody from an Fv sequence (heavy chain and light chain).
+  required_parameters:
+  - name: heavy_chain_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The amino acid sequence of the antibody's heavy chain.
+  - name: light_chain_sequence
+    type: SEQUENCE
+    detailed_type: AA_SEQUENCE
+    description: The amino acid sequence of the antibody's light chain.
+  optional_parameters:
+  - name: decoys
+    type: INTEGER
+    detailed_type: DECOY_NUM
+    description: Number of decoys to create. The lowest energy decoy will be selected
+      as final predicted structure.
+    default: 5
+  - name: renumber
+    type: BOOLEAN
+    detailed_type: RENUMBER
+    description: Convert final predicted structure to Chothia format using AbNum.
+      This allows for easier comparison of antibody structures and more accurate identification
+      of key functional regions.
+    default: true
+  return_values:
+  - name: antibody_structure
+    type: PATH
+    detailed_type: STRUCTURE_PATH
+    description: The designed 3D structure of the antibody saved as a PDB file.
+  return_scores:
+  - name: rosetta_energy
+    description: This score represents the ​final Rosetta energy (REU) of the refined structure, combining physical force-field terms and constraint satisfaction after full-atom minimization.

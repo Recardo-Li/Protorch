@@ -1,0 +1,21 @@
+{
+    "category_name": "uniprot",
+    "tool_name": "uniprot_fetch_sequence",
+    "tool_description": "This tool retrieves protein sequences from the UniProt database. Given a UniProt accession number or identifier, it queries the database to fetch the full amino acid sequence of the specified protein. This tool is useful for researchers who need to access the primary sequence information for further analysis, including functional annotation, alignment, and structural prediction.",
+    "required_parameters": [
+        {
+            "name": "uniprot_id",
+            "type": "TEXT",
+            "description": "The Uniprot ID of the target protein sequence",
+            "example": "P12345"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": "The protein sequence of the target protein."
+        }
+    ]
+}

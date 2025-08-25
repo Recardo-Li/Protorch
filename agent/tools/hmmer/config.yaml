@@ -1,0 +1,243 @@
+example_output:
+  hmmbuild:
+    hmm_file: hmmbuild/20250702_073018/profile.hmm
+  hmmsearch:
+    tblout_file: hmmsearch/20250702_081623/results.tblout
+    domtblout_file: hmmsearch/20250702_081623/results.domtblout
+    hit_domains_fasta: hmmsearch/20250702_081623/hit_domains.fasta
+  hmmscan:
+    tblout_file: hmmscan/20250703_065907/results.tblout
+    domtblout_file: hmmscan/20250703_065907/results.domtblout
+    hit_domains_fasta: hmmscan/20250703_065907/hit_domains.fasta
+
+HMMbuild: bin/hmmbuild
+HMMsearch: bin/hmmsearch
+HMMscan: bin/hmmscan
+
+PFAM_DB: dataset/hmm/Pfam-A.hmm
+
+document:
+- category_name: Sequence
+  tool_name: hmmbuild
+  tool_description: >-
+    Builds a profile Hidden Markov Model (HMM) from a multiple sequence alignment (MSA).
+    This tool is part of the HMMER suite and is the first step in creating a model
+    that can be used for sensitive database searching with hmmsearch.
+  required_parameters:
+  - name: msa_file
+    type: PATH
+    detailed_type: CLUSTALW_ALN_PATH
+    description: >-
+      Path to the input multiple sequence alignment file. HMMER can autodetect the
+      format, but Stockholm is the preferred and most feature-rich format. Corresponds
+      to the <msafile> positional argument.
+  optional_parameters:
+  - name: hmm_name
+    type: TEXT
+    detailed_type: HMM_NAME
+    description: >-
+      Name of the HMM to be created. If not specified, the name will be derived from
+      the input alignment file name. This is used to label the HMM in the output file.
+      Corresponds to the <hmmname> positional argument.
+    default: ~
+  - name: cpu
+    type: INTEGER
+    detailed_type: CPU_CORE_NUM
+    description: Number of CPU threads to use for the HMM building process.
+    default: 1
+  return_values:
+  - name: hmm_file
+    type: PATH
+    detailed_type: HMMER_HMM_PATH
+    description: >-
+      Path to the output profile HMM file. This is the primary output of hmmbuild
+      and is required for tools like hmmsearch. Corresponds to the <hmmfile> positional
+      argument.
+  return_scores:
+  - name: hmm_name
+    type: TEXT
+    description: The name of the generated HMM, derived from the input alignment file or specified by the user.
+  - name: hmm_length
+    type: INTEGER
+    description: The length of the generated HMM (number of match states).
+  - name: num_sequences
+    type: INTEGER
+    description: The number of sequences from the input alignment used to build the HMM.
+  - name: effective_num_sequences
+    type: FLOAT
+    description: >-
+      The effective number of sequences after HMMER's sequence weighting algorithm
+      has been applied to down-weight highly similar sequences.
+  - name: duration
+    type: FLOAT
+    description: Total time spent building the HMM (unit of measurement in seconds).
+- category_name: Sequence
+  tool_name: hmmsearch
+  tool_description: >-
+    Searches a sequence database for homologs of a profile Hidden Markov Model (HMM).
+    This tool is part of the HMMER suite and is used to find sequences that are
+    significantly similar to the family or domain represented by the input HMM.
+    It is known for its high sensitivity in detecting remote homologs.
+  required_parameters:
+  - name: hmm_file
+    type: PATH
+    detailed_type: HMMER_HMM_PATH
+    description: >-
+      Path to the input profile HMM file. This model is used as a query to search
+      against the sequence database. Corresponds to the <hmmfile> positional argument.
+  - name: seq_db
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: >-
+      Path to the target sequence database file (e.g., in FASTA format). This is the
+      collection of sequences that will be searched. Corresponds to the <seqdb>
+      positional argument.
+  optional_parameters:
+  - name: e_value_cutoff
+    type: FLOAT
+    detailed_type: E_VALUE
+    description: >-
+      Report sequences with an E-value of <= this value. The E-value is the expected
+      number of false positives with a score this high or higher. Corresponds to
+      the -E option.
+    default: 10.0
+  - name: bit_score_cutoff
+    type: FLOAT
+    detailed_type: BIT_SCORE
+    description: >-
+      Report sequences with a bit score of >= this value. This is a log-odds score
+      and provides an alternative to E-value for filtering. Corresponds to the -T
+      option.
+    default: ~
+  - name: cpu
+    type: INTEGER
+    detailed_type: CPU_CORE_NUM
+    description: >-
+      Number of parallel CPU threads to use for the search. Corresponds to the --cpu
+      option.
+    default: 1
+  return_values:
+  - name: tblout_file
+    type: PATH
+    detailed_type: HMMER_TBLOUT_PATH
+    description: >-
+      Path to the per-sequence tabular output file. This is a simple, space-delimited,
+      and easily parsable format summarizing the top hit for each sequence. Generated
+      via the --tblout option.
+  - name: domtblout_file
+    type: PATH
+    detailed_type: HMMER_DOMTBLOUT_PATH
+    description: >-
+      Path to the per-domain tabular output file. This file lists all significant
+      domain hits, one per line, making it ideal for detailed analysis. Generated
+      via the --domtblout option.
+  - name: hit_domains_fasta
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: >-
+      A FASTA file containing the sequences of all significant domain hits. This
+      file is generated by post-processing the domtblout results and extracting
+      the corresponding subsequences from the original sequence database (seq_db).
+      Each FASTA header is annotated with details like the original sequence ID,
+      domain coordinates, and score.
+  return_scores:
+  - name: num_hits_found
+    type: INTEGER
+    description: The number of target sequences that scored above the reporting thresholds.
+  - name: duration
+    type: FLOAT
+    description: Total time spent on the search (unit of measurement in seconds).
+- category_name: Sequence
+  tool_name: hmmscan
+  tool_description: >-
+    Scans a sequence or a set of sequences against a database of profile Hidden
+    Markov Models (HMMs). This tool is part of the HMMER suite and is used to
+    identify known protein domains or families present within the query sequence(s).
+    It is highly effective for the functional annotation of new protein sequences.
+  required_parameters:
+  - name: query_seq_file
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: >-
+      Path to the input sequence file (e.g., in FASTA format). These sequences
+      are used as queries to search against the HMM database. Corresponds to the
+      <seqfile> positional argument.
+  optional_parameters:
+  - name: hmm_database
+    type: SELECTION
+    choices:
+    - Pfam-A
+    detailed_type: HMMER_DB
+    description: >-
+      The pre-configured HMM database to scan against. Options currently only
+      include 'Pfam-A'. This corresponds to the <hmmdb> positional argument.
+    default: Pfam-A
+  - name: e_value_cutoff
+    type: FLOAT
+    detailed_type: E_VALUE
+    description: >-
+      Report domains with an E-value of <= this value. The E-value is the expected
+      number of false positives with a score this high or higher. Corresponds to
+      the -E option.
+    default: 10.0
+  - name: bit_score_cutoff
+    type: FLOAT
+    detailed_type: BIT_SCORE
+    description: >-
+      Report domains with a bit score of >= this value. This is a log-odds score
+      and provides an alternative to E-value for filtering. Corresponds to the -T
+      option.
+    default: ~
+  - name: cpu
+    type: INTEGER
+    detailed_type: CPU_CORE_NUM
+    description: >-
+      Number of parallel CPU threads to use for the scan. Corresponds to the --cpu
+      option.
+    default: 1
+  return_values:
+  - name: tblout_file
+    type: PATH
+    detailed_type: HMMER_TBLOUT_PATH
+    description: >-
+      Path to the per-sequence tabular output file. This is a simple, space-delimited,
+      and easily parsable format summarizing the top-scoring domain hit for each
+      query sequence. Generated via the --tblout option.
+  - name: domtblout_file
+    type: PATH
+    detailed_type: HMMER_DOMTBLOUT_PATH
+    description: >-
+      Path to the per-domain tabular output file. This file lists all significant
+      domain hits found in the query sequences, one hit per line, making it ideal
+      for detailed analysis. Generated via the --domtblout option.
+  - name: hit_domains_fasta
+    type: PATH
+    detailed_type: FASTA_PATH
+    description: >-
+      A FASTA file containing the sequences of all significant domain hits. This
+      file is generated by post-processing the domtblout results and extracting
+      the corresponding subsequences from the original query sequence file (query_seq_file).
+      Each FASTA header is annotated with details like the original sequence ID,
+      domain coordinates, and score.
+  - name: most_frequent_accession
+    type: TEXT
+    detailed_type: PFAM_ID
+    description: >-
+      The accession ID (e.g., 'PF00069') of the HMM that occurred most frequently
+      among all identified hits. This provides a quick summary of the most common
+      domain type found.
+  return_scores:
+  - name: total_hits
+    type: INTEGER
+    description: >-
+      The total number of individual domain hits found across all query sequences
+      that met the specified thresholds. This corresponds to the number of entries
+      in the domtblout file.
+  - name: num_unique_accessions
+    type: INTEGER
+    description: >-
+      The number of unique domain accessions (e.g., distinct Pfam families) identified
+      across all hits. This indicates the diversity of a domain's presence.
+  - name: duration
+    type: FLOAT
+    description: Total time spent on the scan (unit of measurement in seconds).

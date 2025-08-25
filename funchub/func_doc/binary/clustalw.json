@@ -1,0 +1,21 @@
+{
+    "category_name": "binary",
+    "tool_name": "clustalw",
+    "tool_description": "ClustalW is a widely used bioinformatics tool for multiple sequence alignment of protein sequences. It aligns sequences to identify regions of similarity that may indicate functional, structural, or evolutionary relationships among the sequences.",
+    "required_parameters": [
+        {
+            "name": "protein_sequence",
+            "type": "SEQUENCE",
+            "description": "A single protein sequence or a set of protein sequences to be aligned using ClustalW.",
+            "example": "examples/fasta/human_FP.fasta"
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "protein_alignment",
+            "type": "SEQUENCE",
+            "description": "The resulting multiple sequence alignment of the provided protein sequences."
+        }
+    ]
+}

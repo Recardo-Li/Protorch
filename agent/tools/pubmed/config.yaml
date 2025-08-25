@@ -1,0 +1,50 @@
+python: /home/public/miniconda3/envs/agent/bin/python
+
+document:
+  category_name: Knowledge
+  tool_name: pubmed
+  tool_description: Help users find literatures/articles/papers on the pubmed server. These keywords could be extracted by llm in the given context.
+  required_parameters:
+  - name: keywords
+    type: TEXT
+    detailed_type: TEXT
+    description: >
+      A short and precise term to search within all articles on pubmed server.
+      The term must:
+      - Be 1-3 words maximum (no long phrases)
+      - Use standard MeSH/Emtree terminology when applicable
+      - Represent core concepts (avoid peripheral terms)
+      - Include semantic variations where critical (e.g., "CRISPR" OR "Cas9")
+      - Prioritize high-impact nouns over verbs/adjectives
+      - Exclude stop words and Boolean operators
+  optional_parameters:
+  - name: max_papers
+    type: INTEGER
+    detailed_type: MAX_PAPER_NUM
+    description: The maximum number of articles you want to get. Default is 5.
+    default: 3
+  - name: start_date
+    type: DATE
+    detailed_type: DATE
+    description: The date from which you want to start searching for articles. Use
+      format "yyyy-mm-dd", e.g., "2024-03-19". Default(empty input) is 3 years ago
+      from today. The start date must be the same or earlier than the end date.
+    default: ~
+  - name: end_date
+    type: DATE
+    detailed_type: DATE
+    description: The date up to which you want to search for articles. Use format
+      "yyyy-mm-dd", e.g., "2024-03-19". Default(empty input) is today's date.
+    default: ~
+  return_values:
+  - name: search_result
+    type: TEXT
+    detailed_type: TEXT
+    description: The results of the user's search for articles. Including the title,
+      publication date, link and doi information of the articles.
+  return_scores:
+  - name: paper_count
+    description: The paper_count represents the total number of articles retrieved
+      from the pubmed server based on the specified search criteria.
+  - name: duration
+    description: Total time spent searching (unit of measurement in seconds).

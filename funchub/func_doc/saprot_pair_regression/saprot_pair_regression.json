@@ -1,0 +1,33 @@
+{
+    "category_name": "saprot_pair_regression",
+    "tool_name": "saprot_pair_regression",
+    "tool_description": "Use a pretrained saprot backbone model and a pretrained adaptor model to do protein-protein pairwise regression task",
+    "required_parameters": [
+        {
+            "name": "protein1_sequence",
+            "type": "SEQUENCE",
+            "description": "A string representing the amino acid sequence of the frist protein."
+        },
+        {
+            "name": "protein2_sequence",
+            "type": "SEQUENCE",
+            "description": "A string representing the amino acid sequence of the second protein."
+        },
+        {
+            "name": "lora_adaptor",
+            "type": "SELECTION",
+            "description": "The adaptor model to be used for localization prediction.",
+            "choices": [
+                "Model-Structural_Similarity-650M"
+            ]
+        }
+    ],
+    "optional_parameters": [],
+    "return_values": [
+        {
+            "name": "pred",
+            "type": "PREDICTION",
+            "description": "The regreesion result of the protein-protein pair."
+        }
+    ]
+}

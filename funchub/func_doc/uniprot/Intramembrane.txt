@@ -1,0 +1,11 @@
+This subsection of the 'Subcellular location' section describes the extent of a region that is buried within a membrane, but does not cross it.
+
+Examples: Q03135, A8MYU2.
+
+Related keyword:
+Membrane
+
+See also
+Evidence
+Transmembrane
+Sequence annotation (features)
