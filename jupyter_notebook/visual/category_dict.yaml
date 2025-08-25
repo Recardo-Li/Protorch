@@ -1,0 +1,266 @@
+Design:
+- pinal:
+    priority: The most useful tool for protein sequence design. When using this tool, make the input text as detailed as possible.
+    usually_after:
+    - wikipedia
+    - uniprot_fetch_subsection
+    - evolla_chat_byid
+    - evolla_chat_byseq
+    - evolla_chat_bystruct
+    - protrek_protein2text
+    - protrek_structure2text
+    usually_before:
+    - alphafold2
+    - esmfold
+- rfdiffusion:
+    priority: Useful protein design tool without any special requirements. If no functional descriptions is given, or some length restriction is required, this tool will be used.
+    usually_after: ~
+    usually_before:
+    - proteinmpnn
+    - foldseek
+- rfdiffusion_xxx:
+    priority: Often used for protein design with specific and parameterized conditions related to some known protein structures.
+    usually_after:
+    - uniprot_fetch_structure
+    usually_before:
+    - proteinmpnn
+    - foldseek
+- proteinmpnn:
+    priority: Useful protein sequence design tool given a specific protein backbone structure.
+    usually_after:
+    - rfdiffusion
+    - rfdiffusion_xxx
+    usually_before:
+    - alphafold2
+    - esmfold
+- diffab_design:
+    priority: Specialized tool for antibody design.
+    usually_after: ~
+    usually_before:
+    - diffab_optimize
+- diffab_optimize:
+    priority: Specialized tool for antibody optimization.
+    usually_after:
+    - diffab_design
+    usually_before:
+    - deepab
+
+Function:
+- saprot_mutation_xxx:
+    priority: Mutation prediction tool given known protein sequence or structure and mutational sites. The sites can be specified in the input or searched by other tools.
+    usually_after:
+    - uniprot_fetch_subsection
+    - uniprot_fetch_structure
+    - uniprot_fetch_sequence
+    - evolla_chat_byid
+    - evolla_chat_byseq
+    - evolla_chat_bystruct
+    usually_before: ~
+- saprot_tune_xxx:
+    priority: Training tool given dataset composed of protein sequences/structures and their corresponding labels.
+    usually_after: ~
+    usually_before: saprot_tuned_xxx
+- saprot_tuned_xxx:
+    priority: Inference tool given a trained model and a protein sequence/structure.
+    usually_after: saprot_tune_xxx
+    usually_before: ~
+
+Knowledge:
+- wikipedia:
+    priority: The most useful tool for protein knowledge. When using this tool, make the input text as detailed as possible.
+    usually_after: ~
+    usually_before:
+    - pinal
+    - biorxiv
+    - pubmed
+- uniprot_fetch_sequence:
+    priority: Useful tool for getting protein sequence given uniprot ID. Only used when the uniprot ID is known.
+    usually_after: ~
+    usually_before:
+    - saprot_mutation_xxx
+    - protrek_protein2text
+    - protrek_protein2structure
+    - protrek_protein2protein
+- uniprot_fetch_structure:
+    priority: Useful tool for getting protein structure given uniprot ID. Only used when the uniprot ID is known.
+    usually_after: ~
+    usually_before:
+    - saprot_mutation_xxx
+    - proteinmpnn
+    - pdb2aaseq
+    - protrek_structure2text
+    - protrek_structure2protein
+    - protrek_structure2structure
+- uniprot_fetch_subsection:
+    priority: Useful tool for getting protein subsequence given uniprot ID. Only used when the uniprot ID is known.
+    usually_after: ~
+    usually_before:
+    - pinal
+    - saprot_mutation_xxx
+    - protrek_text2protein
+    - protrek_text2structure
+- biorxiv or pubmed:
+    priority: Useful tool for literature search. When using this tool, make the input text as detailed as possible.
+    usually_after:
+    - uniprot_fetch_subsection
+    - protrek_protein2text
+    - protrek_structure2text
+    - evolla_chat_byid
+    - evolla_chat_byseq
+    - evolla_chat_bystruct
+    usually_before: ~
+- pfam_entry:
+    priority: Useful tool for getting protein family information given pfam ID. Only used when the pfam ID is known.
+    usually_after: ~
+    usually_before:
+    - pinal
+    - saprot_mutation_xxx
+    - protrek_text2protein
+    - protrek_text2structure
+- pfam_match:
+    priority: Useful tool for getting protein family information given uniprot ID. Only used when the uniprot ID is known.
+    usually_after: ~
+    usually_before:
+    - pinal
+    - saprot_mutation_xxx
+    - protrek_text2protein
+    - protrek_text2structure
+
+
+# Multimodal:
+# - protrek_protein2text:
+#     priority: The most useful tool for finding protein functional descriptions given protein
+#     usually_after: xxx
+#     usually_before: xxx
+# - evolla_chat_byseq:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - evolla_chat_byid:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - evolla_chat_bystruct:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - protrek_protein2protein:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - protrek_protein2structure:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+
+# - protrek_structure2protein:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - protrek_structure2structure:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - protrek_structure2text:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - protrek_text2protein:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - protrek_text2structure:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+
+# Sequence:
+# - blast:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - clustalw:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - fasta2seq:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - hmmsearch:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - hhalign:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - hhblits:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - hhfilter:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - hhmake:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - hhsearch:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - mmseqs_cluster:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - mmseqs_group:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - mmseqs_search:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - mmseqs_msa:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - seq2fasta:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# Structure:
+# - alphafold2:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - deepab:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - esmfold:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - foldseek:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - get_pdb:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - pdb2aaseq:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - tmalign:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
+# - umol:
+#     priority: xxx
+#     usually_after: xxx
+#     usually_before: xxx
