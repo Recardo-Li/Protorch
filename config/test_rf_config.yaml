@@ -1,0 +1,17 @@
+setting:
+  seed: 42
+  os_environ:
+    LOCAL_RANK: 0
+    WORLD_SIZE: 1
+    NODE_RANK: 0
+
+iterations: 50
+symmetry: "none"
+order: 1
+hotspot: ""
+chains: ""
+add_potential: True
+partial_T: "auto"
+num_designs: 1
+use_beta_model: False
+visual: "image"
